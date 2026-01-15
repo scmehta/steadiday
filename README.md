@@ -3,12 +3,12 @@ Steadiday
 
 Body text
 
-SteadiDay app website.
+SteadiDay App Website
 
 This repository hosts the public website for SteadiDay.
 
-The site provides an overview of the app, screenshots, and links to the App Store.
-The website is informational only and does not collect user data.
+The site provides an overview of the app, screenshots, and release status.
+This website is informational only and does not collect user data.
 
 SteadiDay is designed to help adults stay organized with daily routines, tasks, and simple tools in one place.# steadiday
 SteadiDay app website. Informational site with screenshots, feature overview, and links to the App Store.
