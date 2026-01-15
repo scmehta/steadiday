@@ -198,3 +198,14 @@ h1{
   .grid3{grid-template-columns:1fr}
   .shots{grid-template-columns:1fr}
 }
+.heroCard{
+  max-width: 560px;
+}
+
+.shots{
+  margin-top: 8px;
+}
+
+.footer{
+  margin-top: 32px;
+}
