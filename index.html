@@ -1,11 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary Meta Tags -->
+
+  <title>SteadiDay – Daily Routines & Support Tools for Independent Living</title>
+  <meta name="description" content="SteadiDay helps you manage medications, tasks, and daily routines with large buttons, clear text, and a calm design. Built for adults who value simplicity." />
+  <meta name="keywords" content="medication reminder app, daily routine app, senior friendly app, health management, task organizer" />
+
+  <!-- Open Graph / Social Sharing -->
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SteadiDay – Daily Support Made Simple" />
+  <meta property="og:description" content="Manage medications, tasks, and daily routines with large buttons, clear text, and a calm design." />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:url" content="https://scmehta.github.io/steadiday/" />
+
+  <!-- Twitter Card -->
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SteadiDay – Daily Support Made Simple" />
+  <meta name="twitter:description" content="Manage medications, tasks, and daily routines with large buttons and a calm design." />
+
+  <!-- Favicon -->
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.jpeg" />
+
+  <!-- Preload critical assets -->
+
+  <link rel="preload" href="styles.css" as="style" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <h1>Hello, World!</h1>
+  <!-- Skip link for keyboard/screen reader users -->
+  <a href="#main" class="skipLink">Skip to main content</a>
+
+  <header class="top" role="banner">
+    <div class="brand">
+      <img class="icon" src="assets/icon.jpeg" alt="" aria-hidden="true" />
+      <div class="brandText">
+        <div class="brandName">SteadiDay</div>
+        <div class="brandTag">Your daily companion</div>
+      </div>
+    </div>
+
+```
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="#features">Features</a>
+  <a href="#screens">Screenshots</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#privacy">Privacy</a>
+</nav>
+```
+
+  </header>
+
+  <main id="main" class="wrap" role="main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="heroCard">
+        <div class="kicker">Designed for clarity and comfort</div>
+
+```
+    <h1 id="heroTitle">Stay organized your way, every&nbsp;day</h1>
+
+    <p class="sub">
+      SteadiDay brings your medications, tasks, and health info together 
+      in one easy-to-use app. Large text, simple navigation, and a 
+      calming design that never feels rushed.
+    </p>
+
+    <ul class="pillRow" aria-label="Key features">
+      <li class="pill">Large, easy-to-read text</li>
+      <li class="pill">Simple one-tap actions</li>
+      <li class="pill">Medication reminders</li>
+      <li class="pill">Calm, uncluttered design</li>
+    </ul>
+
+    <div class="ctaRow">
+      <span class="btnPrimary disabled" role="status">
+        Coming Soon to the App Store
+      </span>
+    </div>
+
+    <p class="fine">
+      Join the waitlist below to be notified when SteadiDay launches.
+    </p>
+  </div>
+
+  <div class="phoneCard" aria-hidden="true">
+    <div class="phoneFrame">
+      <div class="phoneInner">
+        <img src="assets/screenshot-home.png" alt="SteadiDay home screen showing today's medications and tasks" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="section" aria-labelledby="featuresTitle">
+  <h2 id="featuresTitle">What SteadiDay Does for You</h2>
+
+  <div class="grid3">
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">💊</div>
+      <h3 class="cardTitle">Medication Reminders</h3>
+      <p class="cardText">
+        Never miss a dose. Get gentle reminders and track what you've taken 
+        with a simple tap.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">📋</div>
+      <h3 class="cardTitle">Daily Tasks</h3>
+      <p class="cardText">
+        Keep track of appointments, errands, and to-dos. Check them off 
+        as you go through your day.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">🆘</div>
+      <h3 class="cardTitle">Emergency SOS</h3>
+      <p class="cardText">
+        Quick access to call emergency contacts or 911. Always just 
+        one tap away when you need it.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">❤️</div>
+      <h3 class="cardTitle">Health Overview</h3>
+      <p class="cardText">
+        See your steps, heart rate, and other health data from Apple Health 
+        in one simple view.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">👥</div>
+      <h3 class="cardTitle">Trusted Contacts</h3>
+      <p class="cardText">
+        Keep your important people close. Quickly call or message family 
+        and caregivers.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="cardIcon" aria-hidden="true">🧘</div>
+      <h3 class="cardTitle">Mind Breaks</h3>
+      <p class="cardText">
+        Short, calming activities like breathing exercises and simple 
+        puzzles to help you relax.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- Screenshots Section -->
+<section id="screens" class="section" aria-labelledby="screensTitle">
+  <h2 id="screensTitle">See It in Action</h2>
+  <p class="sectionSub">Large buttons, clear text, and a design that's easy on the eyes.</p>
+
+  <div class="shots">
+    <figure class="shot">
+      <img src="assets/screenshot-home.png" alt="Home screen with today's schedule" loading="lazy" />
+      <figcaption>Your day at a glance</figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="assets/screenshot-sos.png" alt="Emergency SOS screen with large call buttons" loading="lazy" />
+      <figcaption>Emergency help, one tap away</figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="assets/screenshot-meds.png" alt="Medications screen showing daily medication reminders" loading="lazy" />
+      <figcaption>Medication reminders made simple</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="section" aria-labelledby="pricingTitle">
+  <h2 id="pricingTitle">Simple, Honest Pricing</h2>
+  <p class="sectionSub">Start free. Upgrade only if you want more.</p>
+
+  <div class="pricingGrid">
+    <article class="pricingCard">
+      <div class="pricingHeader">
+        <h3 class="pricingName">Essentials</h3>
+        <div class="pricingPrice">Free</div>
+        <div class="pricingPeriod">Forever</div>
+      </div>
+      <ul class="pricingFeatures">
+        <li>Up to 5 medications</li>
+        <li>Up to 10 daily tasks</li>
+        <li>3 trusted contacts</li>
+        <li>Emergency SOS (always free)</li>
+        <li>Fall detection (always free)</li>
+      </ul>
+    </article>
+
+    <article class="pricingCard pricingFeatured">
+      <div class="pricingBadge">Best Value</div>
+      <div class="pricingHeader">
+        <h3 class="pricingName">Premium</h3>
+        <div class="pricingPrice">$29.99</div>
+        <div class="pricingPeriod">per year</div>
+      </div>
+      <ul class="pricingFeatures">
+        <li>Unlimited medications</li>
+        <li>Unlimited tasks</li>
+        <li>Unlimited contacts</li>
+        <li>Health metrics from Apple Health</li>
+        <li>Lab results &amp; medical records</li>
+        <li>Mind Breaks activities</li>
+        <li>Priority support</li>
+      </ul>
+      <div class="pricingAlt">
+        Also available: $3.99/month or $59.99 lifetime
+      </div>
+    </article>
+  </div>
+
+  <p class="pricingNote">
+    <strong>30-day money-back guarantee.</strong> Cancel anytime in the App Store.
+  </p>
+</section>
+
+<!-- Privacy Section -->
+<section id="privacy" class="section" aria-labelledby="privacyTitle">
+  <h2 id="privacyTitle">Your Privacy Matters</h2>
+
+  <div class="card privacyCard">
+    <div class="cardIcon" aria-hidden="true">🔒</div>
+    <p class="cardText">
+      <strong>Your data stays on your device.</strong> SteadiDay doesn't collect, 
+      sell, or share your personal information. Your health data, medications, 
+      and contacts remain private—always.
+    </p>
+    <p class="cardText">
+      A complete privacy policy will be available when the app launches.
+    </p>
+  </div>
+</section>
+
+<!-- Waitlist / Contact Section -->
+<section id="waitlist" class="section" aria-labelledby="waitlistTitle">
+  <h2 id="waitlistTitle">Get Notified at Launch</h2>
+  
+  <div class="card waitlistCard">
+    <p class="cardText">
+      SteadiDay is coming soon to the App Store. Leave your email and 
+      we'll let you know the moment it's available.
+    </p>
+    <form 
+      class="waitlistForm" 
+      action="https://formsubmit.co/mehta.saawan@gmail.com" 
+      method="POST"
+      aria-label="Waitlist signup form"
+    >
+      <input type="hidden" name="_subject" value="SteadiDay Waitlist Signup" />
+      <input type="hidden" name="_captcha" value="false" />
+      <label for="email" class="srOnly">Email address</label>
+      <input 
+        type="email" 
+        id="email"
+        name="email" 
+        placeholder="your@email.com" 
+        required 
+        class="waitlistInput"
+        autocomplete="email"
+      />
+      <button type="submit" class="btnPrimary">Notify Me</button>
+    </form>
+    <p class="fine">We'll only email you about the launch. No spam, ever.</p>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="footerContent">
+    <p>© 2025 SteadiDay by SCM Solutions LLC. All rights reserved.</p>
+    <p class="footerLinks">
+      <a href="mailto:mehta.saawan@gmail.com">Contact</a>
+      <span aria-hidden="true">·</span>
+      <a href="#privacy">Privacy</a>
+    </p>
+  </div>
+</footer>
+```
+
+  </main>
 </body>
 </html>
