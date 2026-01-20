@@ -931,6 +931,108 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /* ==================== WAITLIST SECTION ==================== */
+        .waitlist-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+        }
+
+        .waitlist-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .waitlist-text .section-label {
+            color: var(--gold);
+        }
+
+        .waitlist-text h2 {
+            color: var(--white);
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .waitlist-text > p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .waitlist-benefits {
+            list-style: none;
+        }
+
+        .waitlist-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        .waitlist-benefits svg {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .waitlist-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .waitlist-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .waitlist-card > p {
+            color: var(--charcoal-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .waitlist-card .btn-large {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        .waitlist-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+        }
+
+        .waitlist-inline-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .waitlist-inline-form input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            background: var(--cream);
+        }
+
+        .waitlist-inline-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--teal);
+            background: var(--white);
+        }
+
+        .waitlist-inline-form .btn {
+            padding: 1rem 1.5rem;
+        }
+
         /* ==================== CONTACT FORM ==================== */
         .contact-section {
             padding: 6rem 0;
@@ -1109,6 +1211,17 @@
             .pricing-card.featured:hover {
                 transform: translateY(-4px);
             }
+
+            .waitlist-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .waitlist-benefits {
+                display: inline-block;
+                text-align: left;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1207,7 +1320,7 @@
                 <a href="#how-it-works">How It Works</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
-                <a href="#download" class="nav-cta">Get Started</a>
+                <a href="#waitlist" class="nav-cta">Join Waitlist</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1230,11 +1343,11 @@
                 <h1>Daily support for <span>independent</span> living</h1>
                 <p class="hero-description">SteadiDay helps you stay organized with medication reminders, daily tasks, and one-tap emergency help—all in one calm, easy-to-use app.</p>
                 <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    <a href="#waitlist" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
-                        Coming to App Store
+                        Join Waitlist
                     </a>
                     <a href="#features" class="btn btn-secondary">See Features</a>
                 </div>
@@ -1644,19 +1757,110 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA / Waitlist -->
     <section class="cta" id="download">
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to simplify your day?</h2>
-                <p>Join thousands of adults who trust SteadiDay for their daily organization and peace of mind.</p>
-                <a href="#" class="btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    Coming Soon on App Store
-                </a>
-                <p class="cta-note">Be the first to know when we launch—join our waitlist.</p>
+                <p>SteadiDay is coming soon to the App Store. Join the waitlist to be notified when we launch and get early access.</p>
+                
+                <div class="waitlist-form-container">
+                    <form class="waitlist-form" action="https://forms.gle/j85ei8onSRkWkwV2A" method="POST" target="_blank">
+                        <input type="email" name="entry.YOUR_EMAIL_ENTRY_ID" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                            Join Waitlist
+                        </button>
+                    </form>
+                    <p class="waitlist-note">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        We respect your privacy. No spam, ever.
+                    </p>
+                </div>
+
+                <div class="cta-benefits">
+                    <div class="cta-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Early access to the app</span>
+                    </div>
+                    <div class="cta-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Launch day notification</span>
+                    </div>
+                    <div class="cta-benefit">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Exclusive early-bird discount</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist-section" id="waitlist">
+        <div class="container">
+            <div class="waitlist-content">
+                <div class="waitlist-text">
+                    <span class="section-label">Coming Soon</span>
+                    <h2>Be the first to know when we launch</h2>
+                    <p>Join our waitlist and get early access to SteadiDay. We'll notify you as soon as the app is available on the App Store.</p>
+                    <ul class="waitlist-benefits">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Get notified on launch day
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Early bird pricing for waitlist members
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            No spam, just launch updates
+                        </li>
+                    </ul>
+                </div>
+                <div class="waitlist-form-container">
+                    <div class="waitlist-card">
+                        <h3>Join the Waitlist</h3>
+                        <p>Enter your email to reserve your spot.</p>
+                        <!-- OPTION 1: Link to Google Form (Recommended) -->
+                        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="btn btn-primary btn-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            Join Waitlist
+                        </a>
+                        <p class="waitlist-note">We respect your privacy. Unsubscribe anytime.</p>
+                        
+                        <!-- OPTION 2: Embedded form (uncomment if you prefer) -->
+                        <!--
+                        <form action="https://formsubmit.co/mehta.saawan@gmail.com" method="POST" class="waitlist-inline-form">
+                            <input type="hidden" name="_subject" value="New Waitlist Signup!">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="text" name="_honey" style="display:none">
+                            <input type="email" name="email" placeholder="your@email.com" required>
+                            <button type="submit" class="btn btn-primary">Join</button>
+                        </form>
+                        -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1669,7 +1873,7 @@
                 <h2>Have questions?</h2>
                 <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
             </div>
-            <form class="contact-form" action="https://formsubmit.co/mehta.saawan@gmail.com" method="POST">
+            <form class="contact-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
                 <!-- FormSubmit configuration - Replace YOUR_EMAIL_HERE with your email -->
                 <!-- After first submission, FormSubmit will give you an encoded URL to hide your email -->
                 <input type="hidden" name="_subject" value="SteadiDay Website Contact">
