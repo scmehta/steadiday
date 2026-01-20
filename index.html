@@ -1,301 +1,1649 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SteadiDay – Daily Support for Independent Living</title>
+    <meta name="description" content="SteadiDay helps adults 50+ stay organized with medication reminders, task management, and safety features. Simple, calm, and designed for you.">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpeg">
+    <link rel="apple-touch-icon" href="assets/icon.jpeg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SteadiDay – Daily Support for Independent Living">
+    <meta property="og:description" content="Simple daily organization for adults 50+. Medication reminders, tasks, and safety features in one calm app.">
+    <meta property="og:image" content="assets/icon.jpeg">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #FFFBF5;
+            --cream-dark: #F7F3ED;
+            --teal: #1A8A7D;
+            --teal-dark: #147568;
+            --teal-light: #E8F5F3;
+            --navy: #1E3A5F;
+            --navy-light: #2D4A6F;
+            --charcoal: #2D3436;
+            --charcoal-light: #5A6266;
+            --white: #FFFFFF;
+            --gold: #D4A853;
+            --gold-light: #FBF6E9;
+            --success: #2E7D32;
+            --shadow-soft: 0 2px 12px rgba(30, 58, 95, 0.08);
+            --shadow-medium: 0 4px 24px rgba(30, 58, 95, 0.12);
+            --shadow-strong: 0 8px 32px rgba(30, 58, 95, 0.16);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
 
-  <!-- Primary Meta Tags -->
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>SteadiDay – Daily Routines & Support Tools for Independent Living</title>
-  <meta name="description" content="SteadiDay helps you manage medications, tasks, and daily routines with large buttons, clear text, and a calm design. Built for adults who value simplicity." />
-  <meta name="keywords" content="medication reminder app, daily routine app, senior friendly app, health management, task organizer" />
+        html {
+            scroll-behavior: smooth;
+            font-size: 18px;
+        }
 
-  <!-- Open Graph / Social Sharing -->
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            background: var(--cream);
+            -webkit-font-smoothing: antialiased;
+        }
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="SteadiDay – Daily Support Made Simple" />
-  <meta property="og:description" content="Manage medications, tasks, and daily routines with large buttons, clear text, and a calm design." />
-  <meta property="og:image" content="assets/og-image.png" />
-  <meta property="og:url" content="https://scmehta.github.io/steadiday/" />
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', Georgia, serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy);
+        }
 
-  <!-- Twitter Card -->
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SteadiDay – Daily Support Made Simple" />
-  <meta name="twitter:description" content="Manage medications, tasks, and daily routines with large buttons and a calm design." />
+        a {
+            color: var(--teal);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
 
-  <!-- Favicon -->
+        a:hover {
+            color: var(--teal-dark);
+        }
 
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/icon.jpeg" />
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-  <!-- Preload critical assets -->
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 251, 245, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.08);
+            transition: all 0.3s ease;
+        }
 
-  <link rel="preload" href="styles.css" as="style" />
+        nav.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow-soft);
+        }
 
-  <link rel="stylesheet" href="styles.css" />
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-logo span {
+            font-family: 'Merriweather', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--teal);
+            color: var(--white) !important;
+            padding: 0.875rem 1.75rem !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--teal-dark);
+            color: var(--white) !important;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            color: var(--navy);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--teal-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(26, 138, 125, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gold-light);
+            color: var(--navy);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gold);
+        }
+
+        .hero-badge svg {
+            width: 18px;
+            height: 18px;
+            color: var(--gold);
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .hero h1 span {
+            color: var(--teal);
+        }
+
+        .hero-description {
+            font-size: 1.35rem;
+            color: var(--charcoal-light);
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+            padding: 1.125rem 2rem;
+            border-radius: var(--radius-md);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-height: 56px;
+        }
+
+        .btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(26, 138, 125, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-dark);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 138, 125, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-phone {
+            position: relative;
+            width: 280px;
+        }
+
+        .hero-phone img {
+            width: 100%;
+            border-radius: 32px;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .hero-phone::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, var(--teal-light) 0%, rgba(26, 138, 125, 0.1) 100%);
+            border-radius: 52px;
+            z-index: -1;
+        }
+
+        /* ==================== TRUST BADGES ==================== */
+        .trust-section {
+            padding: 4rem 0;
+            background: var(--white);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.08);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .trust-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--teal-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--teal);
+        }
+
+        .trust-text h4 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.125rem;
+        }
+
+        .trust-text p {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            line-height: 1.4;
+        }
+
+        /* ==================== FEATURES ==================== */
+        .features {
+            padding: 6rem 0;
+            background: var(--cream);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--charcoal-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--teal-light);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--teal-light) 0%, rgba(26, 138, 125, 0.15) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--teal);
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+
+        .feature-card p {
+            color: var(--charcoal-light);
+            line-height: 1.7;
+        }
+
+        .feature-card.highlight {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            border: none;
+        }
+
+        .feature-card.highlight .feature-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card.highlight .feature-icon svg {
+            color: var(--white);
+        }
+
+        .feature-card.highlight h3 {
+            color: var(--white);
+        }
+
+        .feature-card.highlight p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-card.highlight .free-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* ==================== HOW IT WORKS ==================== */
+        .how-it-works {
+            padding: 6rem 0;
+            background: var(--navy);
+        }
+
+        .how-it-works .section-header {
+            color: var(--white);
+        }
+
+        .how-it-works .section-label {
+            color: var(--gold);
+        }
+
+        .how-it-works .section-header h2 {
+            color: var(--white);
+        }
+
+        .how-it-works .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(26, 138, 125, 0.4);
+        }
+
+        .step h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== SCREENSHOTS ==================== */
+        .screenshots {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .screenshot-item {
+            text-align: center;
+        }
+
+        .screenshot-frame {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-frame:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .screenshot-frame img {
+            border-radius: var(--radius-md);
+            width: 100%;
+        }
+
+        .screenshot-item h4 {
+            font-size: 1.1rem;
+            color: var(--navy);
+        }
+
+        /* ==================== PRICING ==================== */
+        .pricing {
+            padding: 6rem 0;
+            background: var(--teal-light);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .pricing-card.featured {
+            background: var(--navy);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card.featured h3 {
+            color: var(--white);
+        }
+
+        .pricing-price {
+            font-family: 'Merriweather', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-card.featured .pricing-price {
+            color: var(--gold);
+        }
+
+        .pricing-period {
+            font-size: 0.95rem;
+            color: var(--charcoal-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.featured .pricing-period {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-features svg {
+            width: 20px;
+            height: 20px;
+            color: var(--success);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card.featured .pricing-features svg {
+            color: var(--gold);
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid var(--teal);
+            background: transparent;
+            color: var(--teal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .pricing-card.featured .pricing-btn {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .pricing-card.featured .pricing-btn:hover {
+            background: #c49943;
+            border-color: #c49943;
+        }
+
+        /* ==================== FAQ ==================== */
+        .faq {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--teal);
+        }
+
+        .faq-item h3 {
+            font-size: 1.15rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item p {
+            color: var(--charcoal-light);
+            line-height: 1.7;
+        }
+
+        /* ==================== PRIVACY ==================== */
+        .privacy-section {
+            padding: 5rem 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .privacy-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .privacy-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--teal-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .privacy-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--teal);
+        }
+
+        .privacy-content h2 {
+            margin-bottom: 1rem;
+        }
+
+        .privacy-content p {
+            font-size: 1.15rem;
+            color: var(--charcoal-light);
+            margin-bottom: 2rem;
+        }
+
+        .privacy-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .privacy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            background: var(--white);
+            color: var(--teal);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .privacy-link:hover {
+            background: var(--teal);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .privacy-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ==================== CTA ==================== */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+        }
+
+        .cta .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: 0 4px 20px rgba(212, 168, 83, 0.4);
+        }
+
+        .cta .btn-primary:hover {
+            background: #c49943;
+            box-shadow: 0 6px 24px rgba(212, 168, 83, 0.5);
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            padding: 3rem 0 2rem;
+            background: var(--charcoal);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .footer-brand span {
+            font-family: 'Merriweather', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-image {
+                order: 0;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-phone {
+                width: 220px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
 </head>
-
 <body>
-  <!-- Skip link for keyboard/screen reader users -->
-  <a href="#main" class="skipLink">Skip to main content</a>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/icon.jpeg" alt="SteadiDay">
+                <span>SteadiDay</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#download" class="nav-cta">Get Started</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
 
-  <header class="top" role="banner">
-    <div class="brand">
-      <img class="icon" src="assets/icon.jpeg" alt="" aria-hidden="true" />
-      <div class="brandText">
-        <div class="brandName">SteadiDay</div>
-        <div class="brandTag">Your daily companion</div>
-      </div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                    Safety Features Always Free
+                </div>
+                <h1>Daily support for <span>independent</span> living</h1>
+                <p class="hero-description">SteadiDay helps you stay organized with medication reminders, daily tasks, and one-tap emergency help—all in one calm, easy-to-use app.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        Coming to App Store
+                    </a>
+                    <a href="#features" class="btn btn-secondary">See Features</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-phone">
+                    <img src="assets/screenshot-home.png" alt="SteadiDay app home screen">
+                </div>
+            </div>
+        </div>
+    </section>
 
-```
-<nav class="nav" role="navigation" aria-label="Main navigation">
-  <a href="#features">Features</a>
-  <a href="#screens">Screenshots</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#privacy">Privacy</a>
-</nav>
-```
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <h4>100% Private</h4>
+                        <p>Data stays on your phone</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <h4>Easy to Use</h4>
+                        <p>Large text & buttons</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <h4>Free SOS</h4>
+                        <p>Emergency help always free</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <h4>Made in USA</h4>
+                        <p>Virginia-based company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </header>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Features</span>
+                <h2>Everything you need, nothing you don't</h2>
+                <p>Designed for clarity and ease, with large buttons and simple navigation.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                    </div>
+                    <h3>Medication Reminders</h3>
+                    <p>Never miss a dose. Get gentle reminders at the right time, and track what you've taken.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Daily Tasks</h3>
+                    <p>Keep track of appointments, errands, and routines with an easy-to-read task list.</p>
+                </div>
+                <div class="feature-card highlight">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Emergency SOS</h3>
+                    <p>One tap to alert your trusted contacts. Quick access when you need help fast.</p>
+                    <span class="free-badge">Always Free</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Trusted Contacts</h3>
+                    <p>Keep important people one tap away. Family, doctors, neighbors—whoever you count on.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Health Tracking</h3>
+                    <p>Connect with Apple Health to see your steps, sleep, and wellness data in one place.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>Mind Breaks</h3>
+                    <p>Short activities to pause, reset, and refocus when you need a mental break.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <main id="main" class="wrap" role="main">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="heroCard">
-        <div class="kicker">Designed for clarity and comfort</div>
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">How It Works</span>
+                <h2>Get started in minutes</h2>
+                <p>No complicated setup. No account required. Just download and go.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download</h3>
+                    <p>Get SteadiDay free from the App Store. Open it right away.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add Your Info</h3>
+                    <p>Enter medications and contacts. Scan labels to save typing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Set Reminders</h3>
+                    <p>Choose when to be reminded. Notifications are gentle and private.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Live Confidently</h3>
+                    <p>Go about your day knowing help is one tap away if needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-```
-    <h1 id="heroTitle">Stay organized your way, every&nbsp;day</h1>
+    <!-- Screenshots -->
+    <section class="screenshots" id="screens">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">App Preview</span>
+                <h2>See it in action</h2>
+                <p>Clean design with large text and easy-to-tap buttons.</p>
+            </div>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="assets/screenshot-home.png" alt="Home screen">
+                    </div>
+                    <h4>Home</h4>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="assets/screenshot-medical.png" alt="Medical information screen">
+                    </div>
+                    <h4>Medical Info</h4>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="assets/screenshot-sos.png" alt="Emergency SOS screen">
+                    </div>
+                    <h4>Emergency SOS</h4>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="assets/screenshot-mindbreaks.png" alt="Mind Breaks screen">
+                    </div>
+                    <h4>Mind Breaks</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p class="sub">
-      SteadiDay brings your medications, tasks, and health info together 
-      in one easy-to-use app. Large text, simple navigation, and a 
-      calming design that never feels rushed.
-    </p>
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Pricing</span>
+                <h2>Safety features free for everyone</h2>
+                <p>Core safety tools are always free. Upgrade for unlimited features.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="pricing-price">$0</div>
+                    <div class="pricing-period">Forever free</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Emergency SOS
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Fall Detection
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            5 Medications
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            3 Trusted Contacts
+                        </li>
+                    </ul>
+                    <button class="pricing-btn">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Monthly</h3>
+                    <div class="pricing-price">$3.99</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Everything in Free
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Unlimited Medications
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Unlimited Tasks
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Cancel Anytime
+                        </li>
+                    </ul>
+                    <button class="pricing-btn">Choose Monthly</button>
+                </div>
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Best Value</span>
+                    <h3>Annual</h3>
+                    <div class="pricing-price">$29.99</div>
+                    <div class="pricing-period">per year (save 37%)</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Everything in Monthly
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Save $17.89/year
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Priority Support
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Early New Features
+                        </li>
+                    </ul>
+                    <button class="pricing-btn">Choose Annual</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Lifetime</h3>
+                    <div class="pricing-price">$59.99</div>
+                    <div class="pricing-period">one-time purchase</div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            All Premium Features
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Pay Once, Yours Forever
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            All Future Updates
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            No Subscriptions
+                        </li>
+                    </ul>
+                    <button class="pricing-btn">Get Lifetime</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <ul class="pillRow" aria-label="Key features">
-      <li class="pill">Large, easy-to-read text</li>
-      <li class="pill">Simple one-tap actions</li>
-      <li class="pill">Medication reminders</li>
-      <li class="pill">Calm, uncluttered design</li>
-    </ul>
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Questions?</span>
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is my information private?</h3>
+                    <p>Yes. All your data stays on your iPhone and is protected by your phone's security. We never see or store your information on our servers.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do I need to create an account?</h3>
+                    <p>No account needed. Just download and start using it right away. Your data is stored safely on your device.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is the Emergency SOS really free?</h3>
+                    <p>Yes, always. Emergency SOS and fall detection are free for everyone, forever. We believe safety should never have a price tag.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can my family see my information?</h3>
+                    <p>Your data is private. You choose who to add as trusted contacts, and they're only notified if you use the SOS button.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if I'm not tech-savvy?</h3>
+                    <p>SteadiDay is designed for simplicity. Large buttons, clear text, and straightforward navigation. No tech skills needed.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I try before paying?</h3>
+                    <p>The free version includes all safety features plus 5 medications and 3 contacts—enough to fully experience the app before upgrading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="ctaRow">
-      <span class="btnPrimary disabled" role="status">
-        Coming Soon to the App Store
-      </span>
-    </div>
+    <!-- Privacy -->
+    <section class="privacy-section" id="privacy">
+        <div class="container">
+            <div class="privacy-content">
+                <div class="privacy-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h2>Your data stays yours</h2>
+                <p>SteadiDay stores everything on your device—not our servers. Your health information is never sold, shared, or used for advertising. We believe privacy is a right, not a feature.</p>
+                <div class="privacy-links">
+                    <a href="security.html" class="privacy-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        How We Protect Your Data
+                    </a>
+                    <a href="privacy.html" class="privacy-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Privacy Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p class="fine">
-      Join the waitlist below to be notified when SteadiDay launches.
-    </p>
-  </div>
+    <!-- CTA -->
+    <section class="cta" id="download">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to simplify your day?</h2>
+                <p>Join thousands of adults who trust SteadiDay for their daily organization and peace of mind.</p>
+                <a href="#" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    Coming Soon on App Store
+                </a>
+                <p class="cta-note">Be the first to know when we launch—join our waitlist.</p>
+            </div>
+        </div>
+    </section>
 
-  <div class="phoneCard" aria-hidden="true">
-    <div class="phoneFrame">
-      <div class="phoneInner">
-        <img src="assets/screenshot-home.png" alt="SteadiDay home screen showing today's medications and tasks" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/icon.jpeg" alt="SteadiDay">
+                    <span>SteadiDay</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="security.html">Security</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="mailto:support@steadiday.com">Contact</a>
+                </div>
+            </div>
+            <p class="footer-copy">© 2025 SCM Solutions LLC. All rights reserved. Made with care in Virginia, USA.</p>
+        </div>
+    </footer>
 
-<!-- Features Section -->
-<section id="features" class="section" aria-labelledby="featuresTitle">
-  <h2 id="featuresTitle">What SteadiDay Does for You</h2>
+    <!-- JavaScript for nav scroll effect -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-  <div class="grid3">
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">💊</div>
-      <h3 class="cardTitle">Medication Reminders</h3>
-      <p class="cardText">
-        Never miss a dose. Get gentle reminders and track what you've taken 
-        with a simple tap.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">📋</div>
-      <h3 class="cardTitle">Daily Tasks</h3>
-      <p class="cardText">
-        Keep track of appointments, errands, and to-dos. Check them off 
-        as you go through your day.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">🆘</div>
-      <h3 class="cardTitle">Emergency SOS</h3>
-      <p class="cardText">
-        Quick access to call emergency contacts or 911. Always just 
-        one tap away when you need it.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">❤️</div>
-      <h3 class="cardTitle">Health Overview</h3>
-      <p class="cardText">
-        See your steps, heart rate, and other health data from Apple Health 
-        in one simple view.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">👥</div>
-      <h3 class="cardTitle">Trusted Contacts</h3>
-      <p class="cardText">
-        Keep your important people close. Quickly call or message family 
-        and caregivers.
-      </p>
-    </article>
-
-    <article class="card">
-      <div class="cardIcon" aria-hidden="true">🧘</div>
-      <h3 class="cardTitle">Mind Breaks</h3>
-      <p class="cardText">
-        Short, calming activities like breathing exercises and simple 
-        puzzles to help you relax.
-      </p>
-    </article>
-  </div>
-</section>
-
-<!-- Screenshots Section -->
-<section id="screens" class="section" aria-labelledby="screensTitle">
-  <h2 id="screensTitle">See It in Action</h2>
-  <p class="sectionSub">Large buttons, clear text, and a design that's easy on the eyes.</p>
-
-  <div class="shots">
-    <figure class="shot">
-      <img src="assets/screenshot-home.png" alt="Home screen with today's schedule" loading="lazy" />
-      <figcaption>Your day at a glance</figcaption>
-    </figure>
-
-    <figure class="shot">
-      <img src="assets/screenshot-sos.png" alt="Emergency SOS screen with large call buttons" loading="lazy" />
-      <figcaption>Emergency help, one tap away</figcaption>
-    </figure>
-
-    <figure class="shot">
-      <img src="assets/screenshot-meds.png" alt="Medications screen showing daily medication reminders" loading="lazy" />
-      <figcaption>Medication reminders made simple</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- Pricing Section -->
-<section id="pricing" class="section" aria-labelledby="pricingTitle">
-  <h2 id="pricingTitle">Simple, Honest Pricing</h2>
-  <p class="sectionSub">Start free. Upgrade only if you want more.</p>
-
-  <div class="pricingGrid">
-    <article class="pricingCard">
-      <div class="pricingHeader">
-        <h3 class="pricingName">Essentials</h3>
-        <div class="pricingPrice">Free</div>
-        <div class="pricingPeriod">Forever</div>
-      </div>
-      <ul class="pricingFeatures">
-        <li>Up to 5 medications</li>
-        <li>Up to 10 daily tasks</li>
-        <li>3 trusted contacts</li>
-        <li>Emergency SOS (always free)</li>
-        <li>Fall detection (always free)</li>
-      </ul>
-    </article>
-
-    <article class="pricingCard pricingFeatured">
-      <div class="pricingBadge">Best Value</div>
-      <div class="pricingHeader">
-        <h3 class="pricingName">Premium</h3>
-        <div class="pricingPrice">$29.99</div>
-        <div class="pricingPeriod">per year</div>
-      </div>
-      <ul class="pricingFeatures">
-        <li>Unlimited medications</li>
-        <li>Unlimited tasks</li>
-        <li>Unlimited contacts</li>
-        <li>Health metrics from Apple Health</li>
-        <li>Lab results &amp; medical records</li>
-        <li>Mind Breaks activities</li>
-        <li>Priority support</li>
-      </ul>
-      <div class="pricingAlt">
-        Also available: $3.99/month or $59.99 lifetime
-      </div>
-    </article>
-  </div>
-
-  <p class="pricingNote">
-    <strong>30-day money-back guarantee.</strong> Cancel anytime in the App Store.
-  </p>
-</section>
-
-<!-- Privacy Section -->
-<section id="privacy" class="section" aria-labelledby="privacyTitle">
-  <h2 id="privacyTitle">Your Privacy Matters</h2>
-
-  <div class="card privacyCard">
-    <div class="cardIcon" aria-hidden="true">🔒</div>
-    <p class="cardText">
-      <strong>Your data stays on your device.</strong> SteadiDay doesn't collect, 
-      sell, or share your personal information. Your health data, medications, 
-      and contacts remain private—always.
-    </p>
-    <p class="cardText">
-      A complete privacy policy will be available when the app launches.
-    </p>
-  </div>
-</section>
-
-<!-- Waitlist / Contact Section -->
-<section id="waitlist" class="section" aria-labelledby="waitlistTitle">
-  <h2 id="waitlistTitle">Get Notified at Launch</h2>
-  
-  <div class="card waitlistCard">
-    <p class="cardText">
-      SteadiDay is coming soon to the App Store. Leave your email and 
-      we'll let you know the moment it's available.
-    </p>
-    <form 
-      class="waitlistForm" 
-      action="https://formsubmit.co/mehta.saawan@gmail.com" 
-      method="POST"
-      aria-label="Waitlist signup form"
-    >
-      <input type="hidden" name="_subject" value="SteadiDay Waitlist Signup" />
-      <input type="hidden" name="_captcha" value="false" />
-      <label for="email" class="srOnly">Email address</label>
-      <input 
-        type="email" 
-        id="email"
-        name="email" 
-        placeholder="your@email.com" 
-        required 
-        class="waitlistInput"
-        autocomplete="email"
-      />
-      <button type="submit" class="btnPrimary">Notify Me</button>
-    </form>
-    <p class="fine">We'll only email you about the launch. No spam, ever.</p>
-  </div>
-</section>
-
-<footer class="footer" role="contentinfo">
-  <div class="footerContent">
-    <p>© 2025 SteadiDay by SCM Solutions LLC. All rights reserved.</p>
-    <p class="footerLinks">
-      <a href="mailto:mehta.saawan@gmail.com">Contact</a>
-      <span aria-hidden="true">·</span>
-      <a href="#privacy">Privacy</a>
-    </p>
-  </div>
-</footer>
-```
-
-  </main>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
