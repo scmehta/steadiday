@@ -1,152 +1,651 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SteadiDay Privacy Policy</title>
-  <meta name="description" content="SteadiDay Privacy Policy" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Terms – SteadiDay</title>
+    <meta name="description" content="SteadiDay Privacy Policy and Terms of Service. Learn how we protect your data and keep your health information secure.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #FFF9ED;
+            --cream-dark: #F5EDE0;
+            --teal: #26A69A;
+            --teal-dark: #1E8A7E;
+            --teal-light: #E0F2F1;
+            --charcoal: #2D3436;
+            --charcoal-light: #4A5254;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(45, 52, 54, 0.08);
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background: var(--cream);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--charcoal);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(255, 249, 237, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 52, 54, 0.06);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-logo span {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--teal);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--teal-dark);
+        }
+
+        .nav-back svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 7rem 2rem 4rem;
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--teal);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: var(--charcoal-light);
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--charcoal-light);
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .section strong {
+            color: var(--charcoal);
+        }
+
+        .contact-box {
+            background: var(--teal-light);
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-md);
+            margin-top: 2rem;
+            border-left: 4px solid var(--teal);
+        }
+
+        .contact-box h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 2px solid var(--cream-dark);
+            margin: 4rem 0;
+        }
+
+        a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .toc h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .toc li {
+            margin: 0;
+        }
+
+        .toc a {
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background: var(--charcoal);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .footer-brand span {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+
+            main {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <main class="wrap">
-    <section class="section">
-      <h1>Privacy Policy</h1>
-      <div class="hint">Last Updated: December 14, 2025</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/icon.jpeg" alt="SteadiDay">
+                <span>SteadiDay</span>
+            </a>
+            <a href="index.html" class="nav-back">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+    </nav>
 
-      <div class="card">
-        <h2>Introduction</h2>
-        <p>
-          SteadiDay supports adults ages 50 to 70 with daily tasks, medications, and connection tools.
-          Privacy matters. This policy explains collected information, usage, and user rights.
-        </p>
+    <!-- Main Content -->
+    <main>
+        <div class="page-header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: January 19, 2026</p>
+        </div>
 
-        <h2>What Information Is Collected</h2>
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#information">2. Information We Collect</a></li>
+                <li><a href="#how-we-use">3. How We Use Your Information</a></li>
+                <li><a href="#storage">4. Data Storage & Security</a></li>
+                <li><a href="#sharing">5. Data Sharing</a></li>
+                <li><a href="#rights">6. Your Privacy Rights</a></li>
+                <li><a href="#healthkit">7. Apple HealthKit Data</a></li>
+                <li><a href="#terms">Terms of Service</a></li>
+            </ul>
+        </div>
 
-        <h3>Account Information</h3>
-        <p>
-          Name, email address, and login details provided during account creation.
-        </p>
+        <div class="section" id="introduction">
+            <h2>1. Introduction</h2>
+            <p>Welcome to SteadiDay ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
+            <p>By using SteadiDay, you agree to the collection and use of information in accordance with this policy.</p>
+        </div>
 
-        <h3>Health Data</h3>
-        <p>
-          Medication schedules, task lists, and health notes entered by the user.
-        </p>
+        <div class="section" id="information">
+            <h2>2. Information We Collect</h2>
 
-        <h3>Apple Health Data Optional</h3>
-        <p>
-          With user permission, the app reads selected Apple Health data. Data types include blood type,
-          height, weight, steps, heart rate, sleep hours, exercise minutes, and blood pressure. Access
-          occurs only after Apple Health integration is enabled and permissions are granted. Allergies,
-          medical conditions, emergency contacts, and organ donor status stay inaccessible due to Apple
-          restrictions.
-        </p>
+            <h3>2.1 Health Data</h3>
+            <p>With your explicit permission, we collect and process health-related information through Apple HealthKit, including but not limited to:</p>
+            <ul>
+                <li>Daily step count and activity data</li>
+                <li>Exercise minutes and workout information</li>
+                <li>Sleep duration and quality metrics</li>
+                <li>Heart rate and other vital signs (if shared)</li>
+                <li>Nutrition and dietary information (if shared)</li>
+            </ul>
+            <p><strong>Important:</strong> All health data is stored locally on your device. We do not transmit health data to our servers or any third parties.</p>
 
-        <h3>Contact Information</h3>
-        <p>
-          Emergency contacts and favorite contacts added by the user.
-        </p>
+            <h3>2.2 User-Generated Content</h3>
+            <ul>
+                <li>Medication schedules and reminders</li>
+                <li>Task lists and daily routines</li>
+                <li>Emergency contacts and trusted persons</li>
+                <li>Custom notes and reminders</li>
+            </ul>
 
-        <h3>Location Data</h3>
-        <p>
-          Location used for weather updates and location-based reminders. Access requires permission.
-        </p>
+            <h3>2.3 Account Information</h3>
+            <ul>
+                <li>Email address (if you create an account)</li>
+                <li>Display name or username</li>
+                <li>Account preferences and settings</li>
+            </ul>
 
-        <h3>Device Information</h3>
-        <p>
-          Device type, operating system, and app version used for technical support and stability.
-        </p>
+            <h3>2.4 Usage Data</h3>
+            <ul>
+                <li>App interactions and feature usage</li>
+                <li>Device type and operating system version</li>
+                <li>App version and crash reports</li>
+                <li>Session duration and frequency</li>
+            </ul>
 
-        <h2>How Information Is Used</h2>
-        <ul>
-          <li>Medication reminders and task notifications</li>
-          <li>Data sync across user devices</li>
-          <li>Emergency alerts sent to designated contacts</li>
-          <li>App improvement and issue resolution</li>
-          <li>Local weather updates</li>
-          <li>Display of Apple Health wellness metrics when enabled</li>
-        </ul>
+            <h3>2.5 Location Data</h3>
+            <p>We may request access to your device location to provide location-based features such as weather updates and emergency SOS. This data is processed locally and only shared if you explicitly enable location-based features.</p>
+        </div>
 
-        <h2>Data Storage and Security</h2>
-        <p>
-          Data stays stored on the device and within encrypted cloud storage. Security measures include
-          encryption, secure authentication, and routine security reviews. Health information is never
-          sold. Apple Health data flows through the Apple HealthKit framework and stays protected by iOS
-          security and device authentication.
-        </p>
+        <div class="section" id="how-we-use">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use the collected information for the following purposes:</p>
+            <ul>
+                <li><strong>App Functionality:</strong> To provide core features including medication reminders, task management, and health tracking</li>
+                <li><strong>Personalization:</strong> To customize your experience and provide relevant insights based on your data</li>
+                <li><strong>Analytics:</strong> To understand how users interact with our app and improve functionality</li>
+                <li><strong>Notifications:</strong> To send you reminders and updates based on your preferences</li>
+                <li><strong>Customer Support:</strong> To respond to your inquiries and provide technical assistance</li>
+                <li><strong>Security:</strong> To protect against unauthorized access and maintain data integrity</li>
+            </ul>
+        </div>
 
-        <h2>Connected Apps and Data Sharing</h2>
-        <p>
-          Third-party connections such as Apple Health or Google Calendar access only required data.
-          All connections start turned off. User action enables each connection. Disconnection stays
-          available through Settings.
-        </p>
+        <div class="section" id="storage">
+            <h2>4. Data Storage and Security</h2>
 
-        <h2>Apple Health Integration</h2>
-        <p>
-          Apple Health integration requests permission through system prompts. Approved data includes
-          blood type, height, weight, steps, heart rate, sleep hours, exercise minutes, and blood pressure.
-          Permission removal stays available through iPhone Settings, Privacy, Health, then SteadiDay.
-          Apple Health data stays local unless cloud sync is enabled. No third-party sharing occurs.
-        </p>
+            <h3>4.1 Local Storage</h3>
+            <p>The majority of your data, including all health information from HealthKit, is stored locally on your device. This ensures maximum privacy and gives you full control over your sensitive information.</p>
 
-        <h2>Important Notice</h2>
-        <p>
-          SteadiDay does not function as a medical device. The app does not diagnose, treat, cure, or
-          prevent disease. Health data serves informational and wellness tracking purposes only. Medical
-          decisions require guidance from a licensed healthcare professional.
-        </p>
+            <h3>4.2 Cloud Backup (Optional)</h3>
+            <p>If you enable cloud backup features, certain data may be synchronized to secure cloud storage via iCloud. You can disable this feature at any time in your app settings.</p>
 
-        <h2>Privacy Rights</h2>
-        <h3>Access</h3>
-        <p>Users request a copy of stored data.</p>
+            <h3>4.3 Security Measures</h3>
+            <p>We implement industry-standard security measures including:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Secure authentication protocols</li>
+                <li>Regular security audits and updates</li>
+                <li>Limited access to personal data by our team</li>
+            </ul>
 
-        <h3>Correction</h3>
-        <p>Users update personal information within the app.</p>
+            <h3>4.4 App Lock and Biometric Security</h3>
+            <p>SteadiDay requires a PIN code and offers optional biometric (Face ID/Touch ID) authentication to protect your app data:</p>
+            <ul>
+                <li>Your PIN is hashed using SHA-256 encryption and stored securely on your device</li>
+                <li>Biometric authentication uses iOS native security frameworks</li>
+                <li>We never transmit or store your PIN or biometric data on external servers</li>
+                <li>You can enable or disable app lock features at any time in Settings</li>
+            </ul>
+        </div>
 
-        <h3>Deletion</h3>
-        <p>Users request account and data removal.</p>
+        <div class="section" id="sharing">
+            <h2>5. Data Sharing and Disclosure</h2>
 
-        <h3>Portability</h3>
-        <p>Users export data in a standard format.</p>
+            <h3>5.1 We Do NOT Sell Your Data</h3>
+            <p>We do not sell, rent, or trade your personal information to third parties for marketing purposes.</p>
 
-        <h3>Opt-Out</h3>
-        <p>Users disable notifications, location access, or analytics at any time.</p>
+            <h3>5.2 Service Providers</h3>
+            <p>We may share limited data with trusted service providers who assist us in operating our app, including:</p>
+            <ul>
+                <li>Cloud infrastructure providers (for optional cloud backup)</li>
+                <li>Analytics services (anonymized usage data only)</li>
+                <li>Payment processors (for subscription management via RevenueCat)</li>
+                <li>Customer support platforms</li>
+            </ul>
+            <p>These providers are contractually obligated to protect your data and use it only for specified purposes.</p>
 
-        <h2>Cookies and Tracking</h2>
-        <p>
-          Advertising cookies and tracking technologies stay unused. Anonymous usage data supports app
-          improvement. Opt-out remains available in Settings.
-        </p>
+            <h3>5.3 Legal Requirements</h3>
+            <p>We may disclose your information if required to do so by law or in response to valid requests by public authorities.</p>
 
-        <h2>Subscription and Payment Information</h2>
-        <p>
-          Premium subscriptions process through the Apple App Store. Payment details remain with Apple.
-          SteadiDay receives subscription status only.
-        </p>
+            <h3>5.4 Business Transfers</h3>
+            <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred. We will notify you of any such change and the choices you may have.</p>
+        </div>
 
-        <h2>Children and Privacy</h2>
-        <p>
-          The app targets adults ages 50 to 70. Information from individuals under age 18 is not knowingly
-          collected.
-        </p>
+        <div class="section" id="rights">
+            <h2>6. Your Privacy Rights</h2>
+            <p>You have the following rights regarding your personal data:</p>
+            <ul>
+                <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong>Correction:</strong> Request correction of inaccurate or incomplete data</li>
+                <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                <li><strong>Export:</strong> Request a portable copy of your data</li>
+                <li><strong>Opt-Out:</strong> Disable data collection features at any time</li>
+                <li><strong>Revoke Permissions:</strong> Withdraw consent for health data access through iOS Settings</li>
+            </ul>
+            <p>To exercise these rights, please contact us at the email provided in the Contact section.</p>
+        </div>
 
-        <h2>Policy Changes</h2>
-        <p>
-          Policy updates occur as needed. Significant updates trigger in-app or email notices. Continued
-          app use signals acceptance of updated terms.
-        </p>
+        <div class="section" id="healthkit">
+            <h2>7. Apple HealthKit Data</h2>
+            <p>Special provisions for health data collected through Apple HealthKit:</p>
+            <ul>
+                <li>Health data is NEVER shared with third parties for advertising or marketing</li>
+                <li>We do not upload health data to external servers without explicit permission</li>
+                <li>You can revoke HealthKit permissions at any time through iOS Settings → Privacy → Health</li>
+                <li>Health data is not used for purposes other than providing app functionality</li>
+                <li>We comply with Apple HealthKit guidelines and applicable health data regulations</li>
+            </ul>
+        </div>
 
-        <h2>Contact</h2>
-        <p>
-          Questions about privacy or data receive support through the Feedback feature in Settings.
-        </p>
-      </div>
-    </section>
+        <div class="section">
+            <h2>8. Children's Privacy</h2>
+            <p>SteadiDay is designed for adults 50 and older. We do not knowingly collect personal information from children under 13. If we discover that we have collected information from a child under 13, we will delete it immediately.</p>
+        </div>
 
-    <footer class="footer">
-      © SteadiDay
-    </footer>
-  </main>
-</body>
-</html>
+        <div class="section">
+            <h2>9. California Privacy Rights (CCPA)</h2>
+            <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act:</p>
+            <ul>
+                <li>Right to know what personal information is collected</li>
+                <li>Right to know if personal information is sold or disclosed</li>
+                <li>Right to say no to the sale of personal information</li>
+                <li>Right to access your personal information</li>
+                <li>Right to equal service and price</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>10. GDPR Compliance (European Users)</h2>
+            <p>If you are located in the European Economic Area, you have rights under the General Data Protection Regulation including:</p>
+            <ul>
+                <li>Right to access, rectification, and erasure</li>
+                <li>Right to restriction of processing and data portability</li>
+                <li>Right to object to processing</li>
+                <li>Right to withdraw consent</li>
+                <li>Right to lodge a complaint with a supervisory authority</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>11. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by:</p>
+            <ul>
+                <li>Posting the new Privacy Policy in the app</li>
+                <li>Updating the "Last Updated" date</li>
+                <li>Sending you a notification (for significant changes)</li>
+            </ul>
+            <p>Your continued use of the app after changes constitutes acceptance of the updated policy.</p>
+        </div>
+
+        <div class="contact-box">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+            <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#bccfc9ccccd3cec8fccfc8d9ddd8d5d8ddc592dfd3d1"><span class="__cf_email__" data-cfemail="e4979194948b9690a497908185808d80859dca878b89">[email&#160;protected]</span></a></p>
+            <p><strong>Response Time:</strong> We aim to respond to all inquiries within 48 hours.</p>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Terms of Service -->
+        <div class="page-header" id="terms">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: January 19, 2026</p>
+        </div>
+
+        <div class="section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using SteadiDay, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the app.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. License to Use</h2>
+            <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use SteadiDay for personal, non-commercial purposes, subject to these terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Subscription Terms</h2>
+
+            <h3>3.1 Premium Features</h3>
+            <p>Certain features require a paid subscription. Subscription options include:</p>
+            <ul>
+                <li><strong>Monthly:</strong> $3.99/month, billed monthly</li>
+                <li><strong>Annual:</strong> $29.99/year, billed annually (best value)</li>
+                <li><strong>Lifetime:</strong> $59.99 one-time purchase</li>
+            </ul>
+            <p>Payment is charged to your Apple ID account at confirmation of purchase.</p>
+
+            <h3>3.2 Auto-Renewal</h3>
+            <p>Monthly and annual subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. You can manage subscriptions and turn off auto-renewal in your Apple ID Account Settings.</p>
+
+            <h3>3.3 Free Features</h3>
+            <p>Core safety features including Emergency SOS and Fall Detection are free for all users. Free tier includes up to 5 medications, 10 tasks, and 3 trusted contacts.</p>
+
+            <h3>3.4 Refunds</h3>
+            <p>Refund requests are handled by Apple according to their policies. We cannot provide direct refunds for App Store purchases.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. User Conduct</h2>
+            <p>You agree NOT to:</p>
+            <ul>
+                <li>Use the app for any illegal purpose</li>
+                <li>Attempt to gain unauthorized access to our systems</li>
+                <li>Reverse engineer, decompile, or disassemble the app</li>
+                <li>Remove or modify any proprietary notices</li>
+                <li>Use the app in any way that could damage or overburden our services</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>5. Health Disclaimer</h2>
+            <p><strong>IMPORTANT:</strong> SteadiDay is NOT a medical device and is not intended to diagnose, treat, cure, or prevent any disease or medical condition.</p>
+            <ul>
+                <li>The app is designed for general wellness and organizational purposes only</li>
+                <li>Always consult with qualified healthcare professionals for medical advice</li>
+                <li>Do not disregard professional medical advice based on information from this app</li>
+                <li>In case of emergency, call 911 or your local emergency services immediately</li>
+                <li>The Emergency SOS feature is a convenience tool and does not replace emergency services</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>6. Intellectual Property</h2>
+            <p>All content, features, and functionality of SteadiDay are owned by SCM Solutions LLC and protected by copyright, trademark, and other intellectual property laws. Your content remains yours, but you grant us a license to use it to provide app services.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Limitation of Liability</h2>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, SCM SOLUTIONS LLC SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY.</p>
+        </div>
+
+        <div class="section">
+            <h2>8. Warranty Disclaimer</h2>
+            <p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+        </div>
+
+        <div class="section">
+            <h2>9. Changes to Service</h2>
+            <p>We reserve the right to modify, suspend, or discontinue any part of the app at any time without notice. We are not liable for any modification, suspension, or discontinuation of the service.</p>
+        </div>
+
+        <div class="section">
+            <h2>10. Termination</h2>
+            <p>We may terminate or suspend your access to the app immediately, without prior notice, for any reason, including breach of these Terms. Upon termination, your right to use the app will cease immediately.</p>
+        </div>
+
+        <div class="section">
+            <h2>11. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Virginia, United States, without regard to conflict of law provisions.</p>
+        </div>
+
+        <div class="contact-box">
+            <h2>Contact Information</h2>
+            <p>For questions about these Terms of Service:</p>
+            <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#d0a3a5a0a0bfa2a490a3a4b5b1b4b9b4b1a9feb3bfbd"><span class="__cf_email__" data-cfemail="483b3d3838273a3c083b3c2d292c212c2931662b2725">[email&#160;protected]</span></a></p>
+            <p><strong>Company:</strong> SCM Solutions LLC, Virginia, USA</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/icon.jpeg" alt="SteadiDay">
+                <span>SteadiDay</span>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</
