@@ -199,12 +199,33 @@
             border: none;
             padding: 0.5rem;
             cursor: pointer;
+            z-index: 1002;
         }
 
         .mobile-menu-btn svg {
             width: 28px;
             height: 28px;
             color: var(--navy);
+            transition: transform 0.3s ease;
+        }
+
+        /* Overlay when menu is open */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 58, 95, 0.3);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            display: block;
+            opacity: 1;
         }
 
         /* ==================== HERO ==================== */
@@ -1235,8 +1256,40 @@
                 font-size: 16px;
             }
 
+            /* Mobile Navigation Styles */
             .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--cream);
+                padding: 5rem 2rem 2rem;
+                gap: 0;
+                box-shadow: -4px 0 24px rgba(30, 58, 95, 0.15);
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                padding: 1rem 0;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+            }
+
+            .nav-links a::after {
                 display: none;
+            }
+
+            .nav-cta {
+                margin-top: 1rem;
+                text-align: center;
             }
 
             .mobile-menu-btn {
@@ -1314,6 +1367,9 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Overlay (for closing menu when clicking outside) -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container nav-container">
@@ -1321,15 +1377,15 @@
                 <img src="assets/icon.jpeg" alt="SteadiDay">
                 <span>SteadiDay</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#faq">FAQ</a>
                 <a href="#waitlist" class="nav-cta">Join Waitlist</a>
             </div>
-            <button class="mobile-menu-btn" aria-label="Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="menuIcon">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
@@ -1870,6 +1926,46 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+        const menuIcon = document.getElementById('menuIcon');
+
+        function toggleMenu() {
+            const isOpen = navLinks.classList.contains('active');
+            
+            if (isOpen) {
+                // Close menu
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+                // Change icon back to hamburger
+                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            } else {
+                // Open menu
+                navLinks.classList.add('active');
+                navOverlay.classList.add('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+                // Change icon to X
+                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a nav link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
         });
 
         // Smooth scroll for anchor links
