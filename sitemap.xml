@@ -9,12 +9,12 @@
         <image:image>
             <image:loc>https://www.steadiday.com/assets/icon.jpeg</image:loc>
             <image:title>SteadiDay App Icon</image:title>
-            <image:caption>SteadiDay - All-in-one daily wellness and safety companion app for adults 50+</image:caption>
+            <image:caption>SteadiDay - All-in-one daily companion app for adults 50+ with medications, tasks, health tracking, tools, and more</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://www.steadiday.com/assets/screenshot-home.png</image:loc>
             <image:title>SteadiDay Home Screen</image:title>
-            <image:caption>SteadiDay app home screen showing medication reminders, daily tasks, health tracking, and more</image:caption>
+            <image:caption>SteadiDay app home screen showing daily overview with medications, tasks, calendar events, and quick access to tools</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://www.steadiday.com/assets/screenshot-sos.png</image:loc>
@@ -24,7 +24,7 @@
         <image:image>
             <image:loc>https://www.steadiday.com/assets/screenshot-mindbreaks.png</image:loc>
             <image:title>SteadiDay Mind Breaks</image:title>
-            <image:caption>Mind Breaks feature with relaxing games and activities for mental wellness</image:caption>
+            <image:caption>Mind Breaks feature with relaxing games and calming activities for mental wellness</image:caption>
         </image:image>
     </url>
     <url>
