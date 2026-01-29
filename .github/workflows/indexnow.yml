@@ -1,0 +1,16 @@
+name: IndexNow
+on:
+  push:
+    branches:
+      - main  # Change this to 'master' if your branch name is different
+
+jobs:
+  check-and-submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: indexnow-action
+        uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: 'https://www.steadiday.com/sitemap.xml'
+          key: ${{ secrets.INDEXNOW_KEY }} # Use the exact name of your GitHub Secret here
+          endpoint: 'www.bing.com'
