@@ -9,9 +9,11 @@ on:
         description: 'Optional: Specify a blog topic'
         required: false
         type: string
+        
 permissions:
   contents: write
   pull-requests: write
+  
   env:
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
