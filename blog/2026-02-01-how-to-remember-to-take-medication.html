@@ -3,256 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Remember to Take Medication Every Day - SteadiDay Blog</title>
-    <meta name="description" content="Struggling to remember your daily medications? Learn proven strategies for how to remember to take medication every day, even with a busy schedule.">
-    <meta name="keywords" content="how to remember to take medication, medication reminders, pill reminder, senior health, medication management, health habits">
+    <title>How to Remember to Take Your Medication Every Day | SteadiDay Blog</title>
+    <meta name="description" content="Practical strategies for adults 50+ to build consistent medication habits. Learn proven techniques to never miss a dose again.">
+    <meta name="keywords" content="how to remember to take medication, pill reminder, medication reminder app, senior health, medication adherence">
+    <meta name="author" content="SteadiDay">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scm-solutions-llc.github.io/steadiday/blog/2026-02-01-how-to-remember-to-take-medication.html">
     
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="How to Remember to Take Medication Every Day (Even When Life Gets Busy)">
-    <meta property="og:description" content="Struggling to remember your daily medications? Learn proven strategies for how to remember to take medication every day, even with a busy schedule.">
+    <!-- Open Graph -->
     <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Remember to Take Your Medication Every Day">
+    <meta property="og:description" content="Practical strategies for adults 50+ to build consistent medication habits.">
     <meta property="og:url" content="https://scm-solutions-llc.github.io/steadiday/blog/2026-02-01-how-to-remember-to-take-medication.html">
+    <meta property="og:site_name" content="SteadiDay">
+    
+    <link rel="icon" type="image/jpeg" href="../assets/icon.jpeg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --cream: #FFFBF5;
+            --teal: #1A8A7D;
+            --teal-dark: #147568;
+            --teal-light: #E8F5F3;
+            --navy: #1E3A5F;
+            --charcoal: #2D3436;
+            --charcoal-light: #5A6266;
+            --white: #FFFFFF;
+            --gold: #D4A853;
         }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background-color: #f8f9fa;
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            background: var(--cream);
         }
         
+        h1, h2, h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+        
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-dark); text-decoration: underline; }
+        
+        /* Navigation */
         .nav {
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
         
         .nav-container {
-            max-width: 800px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .nav a {
-            color: #667eea;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             text-decoration: none;
-            font-weight: 500;
         }
         
-        .nav a:hover {
-            text-decoration: underline;
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
         }
         
+        .nav-logo span {
+            font-family: 'Merriweather', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        
+        .nav-back {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Header */
         .article-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            padding: 4rem 0;
+            color: var(--white);
         }
         
-        .article-header h1 {
+        .header-container {
             max-width: 800px;
-            margin: 0 auto 15px;
-            font-size: 2.2rem;
-            line-height: 1.3;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
         
         .article-meta {
-            font-size: 1rem;
+            font-size: 0.95rem;
             opacity: 0.9;
+            margin-bottom: 1rem;
         }
         
+        .article-header h1 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .article-excerpt {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        /* Article Content */
         .article-container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background: white;
-            margin-top: -30px;
-            border-radius: 12px 12px 0 0;
-            position: relative;
-        }
-        
-        .article-content h2 {
-            font-size: 1.5rem;
-            margin: 35px 0 15px;
-            color: #333;
+            padding: 3rem 2rem;
         }
         
         .article-content p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #444;
+            margin-bottom: 1.5rem;
         }
         
-        .article-content a {
-            color: #667eea;
+        .article-content h2 {
+            font-size: 1.75rem;
+            margin: 2.5rem 0 1rem;
         }
         
-        .article-content a:hover {
-            text-decoration: none;
+        .article-content h3 {
+            font-size: 1.35rem;
+            margin: 2rem 0 0.75rem;
         }
         
+        /* CTA Box */
         .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .cta-box h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            background: var(--teal-light);
+            border-left: 4px solid var(--teal);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
         }
         
         .cta-box p {
-            color: white !important;
-            margin-bottom: 15px;
+            margin-bottom: 0.5rem;
         }
         
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
+        .cta-box a {
             font-weight: 600;
         }
         
-        .cta-button:hover {
+        /* Sources */
+        .sources {
+            background: var(--white);
+            border: 1px solid rgba(30, 58, 95, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        .sources h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sources ul {
+            list-style: none;
+        }
+        
+        .sources li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer CTA */
+        .footer-cta {
+            background: var(--navy);
+            padding: 4rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .footer-cta h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-cta p {
             opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .back-to-blog {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            background: white;
-        }
-        
-        .back-to-blog a {
-            color: #667eea;
+        .btn {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
             text-decoration: none;
-            font-weight: 500;
+            transition: all 0.3s ease;
         }
         
-        .footer {
+        .btn:hover {
+            background: var(--teal-dark);
+            color: var(--white);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 2rem 0;
             text-align: center;
-            padding: 30px;
-            color: #666;
-            font-size: 0.9rem;
-            background: white;
         }
         
-        .footer a {
-            color: #667eea;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-copy {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 2rem; }
+            .article-header { padding: 3rem 0; }
+            .header-container, .article-container { padding: 0 1.5rem; }
         }
     </style>
 </head>
 <body>
     <nav class="nav">
         <div class="nav-container">
-            <a href="index.html">← Back to Blog</a>
-            <a href="https://www.steadiday.com">Download SteadiDay</a>
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/icon.jpeg" alt="SteadiDay">
+                <span>SteadiDay</span>
+            </a>
+            <a href="index.html" class="nav-back">← Back to Blog</a>
         </div>
     </nav>
     
     <header class="article-header">
-        <h1>How to Remember to Take Medication Every Day (Even When Life Gets Busy)</h1>
-        <div class="article-meta">February 1, 2026 • By SteadiDay Team • 6 min read</div>
+        <div class="header-container">
+            <div class="article-meta">February 1, 2026 · 6 min read</div>
+            <h1>How to Remember to Take Your Medication Every Day</h1>
+            <p class="article-excerpt">Practical, proven strategies to help you build consistent medication habits and never miss a dose again.</p>
+        </div>
     </header>
     
     <article class="article-container">
         <div class="article-content">
-            <p>If you've ever gotten to the end of the day and thought "wait, did I take my pill this morning?" you're not alone. Figuring out how to remember to take medication every day is one of the most common health challenges people face, especially as we get older and our routines change.</p>
+            <p>If you've ever found yourself staring at your pill bottle wondering whether you already took today's dose, you're not alone. According to the CDC, approximately one in five new prescriptions are never filled, and among those filled, about half are taken incorrectly in terms of timing, dosage, or frequency. For adults over 50 managing multiple medications, keeping track of everything can feel like a part-time job.</p>
             
-            <p>The good news is that this isn't a memory problem. It's a systems problem. And systems can be fixed.</p>
+            <p>The good news is that building reliable medication habits doesn't require superhuman memory. With the right strategies and tools, you can create a system that works with your daily life rather than against it.</p>
             
-            <h2>Why We Forget (And Why It's Not Your Fault)</h2>
+            <h2>Understanding Why We Forget</h2>
             
-            <p>Here's something that might make you feel better: forgetting medication is incredibly common. <a href="https://www.cdc.gov/grand-rounds/pp/2017/20170221-medication-adherence.html" target="_blank" rel="noopener">According to the CDC</a>, about 50% of people don't take their medications as prescribed. That's half of everyone with a prescription. So if you're struggling, you're in very large company.</p>
+            <p>Before diving into solutions, it helps to understand why medication adherence is so challenging. The National Institute on Aging points out that older adults often have multiple medical conditions requiring several medications at the same time. When you're juggling morning pills, evening pills, pills with food, and pills on an empty stomach, confusion is almost inevitable.</p>
             
-            <p>The reasons we forget are usually pretty simple. We get interrupted during our morning routine. We travel and our schedule changes. We feel fine and subconsciously wonder if we really need the medication. Or we simply have too many things competing for our attention.</p>
+            <p>Life also has a way of disrupting routines. Travel, visitors, schedule changes, or simply having a busy day can throw off even well-established habits. The key is building systems that are resilient enough to handle these disruptions.</p>
             
-            <p>The problem is that inconsistent medication use can have real consequences. <a href="https://www.mayoclinic.org/healthy-lifestyle/consumer-health/in-depth/prescription-drug-abuse/art-20045189" target="_blank" rel="noopener">Research from the Mayo Clinic</a> shows that taking medications irregularly can make them less effective and, in some cases, can actually be dangerous. This is especially true for medications that need to maintain a consistent level in your bloodstream, like blood pressure medications or thyroid hormones.</p>
+            <h2>Anchor Your Medications to Existing Habits</h2>
             
-            <h2>The "Anchor Habit" Strategy</h2>
+            <p>One of the most effective strategies is linking your medications to activities you already do every day without thinking. Brushing your teeth, having your morning coffee, or eating breakfast are perfect anchors. When your blood pressure pill becomes as automatic as your first sip of coffee, you've created what behavioral scientists call a "habit stack."</p>
             
-            <p>The single most effective way I've found to remember daily medication is to anchor it to something you already do every single day without thinking. This is called habit stacking, and it works because you're not trying to remember something new. You're just adding a small step to an existing routine.</p>
-            
-            <p>Think about what you do every morning without fail. Maybe you brush your teeth. Maybe you make coffee. Maybe you feed the cat. Whatever it is, that's your anchor. Your medication goes immediately before or after that activity, every single time.</p>
-            
-            <p>For example, if you always make coffee first thing in the morning, your new routine becomes: start the coffee maker, take your medication, pour your coffee. The coffee maker becomes your trigger. After a few weeks of this, reaching for the coffee pot will automatically remind you of your medication.</p>
-            
-            <h2>How to Remember to Take Medication When Your Schedule Varies</h2>
-            
-            <p>The anchor habit works great when you have a consistent routine. But what about weekends? What about travel? What about those days when nothing goes according to plan?</p>
-            
-            <p>This is where a reliable reminder system becomes essential. And I'll be honest, this is exactly the problem that led me to start using <a href="https://www.steadiday.com">SteadiDay</a>. The app sends me a gentle reminder at the same time each day, and I just tap to confirm I've taken my medication. On days when my routine is completely off, that reminder has saved me more than once.</p>
-            
-            <p>The key is choosing a reminder system you'll actually use. Some people do well with a simple phone alarm. Others need something more sophisticated that tracks whether they've actually taken the medication, not just reminded them to. The best system is the one you'll stick with.</p>
-            
-            <h2>The Visual Confirmation Trick</h2>
-            
-            <p>Here's something that has helped a lot of people: make your medication visible, and create a clear way to know whether you've taken it that day.</p>
-            
-            <p>A weekly pill organizer is the classic solution for a reason. When Monday's compartment is empty, you know you took Monday's pills. <a href="https://www.nia.nih.gov/health/medicines-and-medication-management-older-adults/safe-use-medicines-older-adults" target="_blank" rel="noopener">The National Institute on Aging recommends</a> pill organizers as one of the most effective tools for medication management, especially for people taking multiple medications.</p>
-            
-            <p>If a pill organizer feels too "old" or you don't like how they look, there are plenty of modern alternatives. Some people use a simple notepad where they check off each day. Others flip a small object on their counter, like a decorative stone, to indicate "taken" versus "not taken." The method doesn't matter as long as you have a visual confirmation system.</p>
-            
-            <h2>What About Multiple Medications at Different Times?</h2>
-            
-            <p>Managing how to remember to take medication becomes significantly more complicated when you have pills at breakfast, pills at dinner, and maybe something at bedtime too. This is where most simple solutions break down.</p>
-            
-            <p>The anchor habit still works here, but you need multiple anchors. Breakfast medications anchor to your morning coffee. Dinner medications anchor to sitting down for your evening meal. Bedtime medications anchor to brushing your teeth at night.</p>
-            
-            <p>For those managing complex medication schedules, SteadiDay's premium features include detailed tracking for unlimited medications and personalized reminders for each one. The app learns your schedule and can show you trends over time, so you can see if you're consistently missing that afternoon dose and adjust your strategy.</p>
-            
-            <h2>When You Do Forget</h2>
-            
-            <p>Even with the best systems, there will be days when you realize at 3pm that you never took your morning medication. What then?</p>
-            
-            <p><a href="https://www.fda.gov/drugs/special-features/tips-help-you-remember-take-your-medication" target="_blank" rel="noopener">The FDA recommends</a> checking the specific instructions for your medication first. Some medications should be taken as soon as you remember. Others should be skipped if it's close to your next dose. Some should never be doubled up. This is a conversation worth having with your pharmacist, so you know the protocol for each of your medications before the situation arises.</p>
-            
-            <p>Keep a small note in your wallet or phone with instructions for each medication about what to do if you miss a dose. Future you will thank present you for thinking ahead.</p>
-            
-            <h2>Building a System That Actually Works</h2>
-            
-            <p>The real secret to remembering medication isn't willpower or a better memory. It's building a system that doesn't rely on you remembering at all. Between anchor habits, visual confirmation, and reliable reminders, you can create a routine that practically runs itself.</p>
-            
-            <p>Start small. Pick one strategy from this article and try it for a week. Once it feels automatic, add another layer if you need it. The goal isn't perfection on day one. It's gradual improvement until taking your medication feels as automatic as brushing your teeth.</p>
+            <p>The trick is choosing anchors that happen at consistent times and places. If your morning routine varies wildly depending on the day, your medication anchor needs to be something more reliable, like placing your pills next to your coffee maker so you see them before you can pour your first cup.</p>
             
             <div class="cta-box">
-                <h3>Ready to Take Control of Your Medication Routine?</h3>
-                <p>SteadiDay helps you manage medications with gentle reminders and easy tracking—all designed for adults 50+.</p>
-                <a href="https://www.steadiday.com" class="cta-button">Download SteadiDay Free</a>
+                <p><strong>Make it automatic.</strong> SteadiDay's medication reminder feature sends gentle notifications at exactly the times you choose, helping you build consistent habits without relying on memory alone.</p>
+                <p><a href="https://www.steadiday.com">Learn more about SteadiDay →</a></p>
             </div>
             
-            <p>If you're ready to take control of your medication routine, <a href="https://www.steadiday.com">SteadiDay</a> can help. Download the free app and see how much easier it is when you have a system working with you instead of relying on memory alone. Your health is worth the five minutes it takes to set up, and future you will be grateful you did.</p>
+            <h2>Create Visual Cues That Work</h2>
+            
+            <p>Out of sight truly is out of mind when it comes to medications. Keeping your pills in a medicine cabinet behind a closed door is practically asking to forget them. Instead, place your medications somewhere you'll see them during the time you need to take them.</p>
+            
+            <p>A weekly pill organizer on your kitchen counter, next to your reading glasses, or on your nightstand creates a visual reminder that's hard to ignore. These organizers also answer the nagging question of whether you've already taken today's dose since you can see at a glance whether the compartment is empty.</p>
+            
+            <p>For those who prefer a tidier look, decorative pill boxes or small containers that blend with your decor can serve the same purpose without feeling clinical.</p>
+            
+            <h2>Use Technology as Your Backup</h2>
+            
+            <p>While visual cues and habit stacking work well for routine situations, technology provides an important safety net for those off-schedule days. Simple phone alarms are a good start, but dedicated medication reminder apps offer features specifically designed for this purpose.</p>
+            
+            <p>Look for apps that let you track multiple medications with different schedules, send persistent reminders until you confirm you've taken your dose, and provide a history so you can check whether you took yesterday's evening pills. Many pharmacies also offer medication synchronization services that align all your refills to the same date each month, reducing the mental load of tracking multiple prescriptions.</p>
+            
+            <h2>Involve Your Support Network</h2>
+            
+            <p>There's no shame in asking for help. If you live with a spouse or have family members who check in regularly, letting them know your medication schedule can provide an extra layer of accountability. A simple "Did you take your morning pills?" during a routine phone call can make all the difference.</p>
+            
+            <p>For those who are serious about staying on track with their health goals, SteadiDay's premium features include the ability to set up trusted contacts who can receive updates about your medication adherence, giving your loved ones peace of mind without constant phone calls.</p>
+            
+            <h2>Talk to Your Doctor About Simplification</h2>
+            
+            <p>Sometimes the problem isn't memory but complexity. If you're taking medications at four different times throughout the day, ask your doctor whether any can be consolidated. Extended-release versions of some medications allow once-daily dosing, and some drugs that were traditionally taken multiple times per day can safely be taken all at once.</p>
+            
+            <p>Your pharmacist is another excellent resource. They can review your entire medication list for potential simplifications and identify any interactions you should know about. Many pharmacies offer medication therapy management services specifically for patients taking multiple prescriptions.</p>
+            
+            <h2>Plan Ahead for Disruptions</h2>
+            
+            <p>Vacations, holidays, and changes in routine are prime times for missed doses. Before any trip, count out exactly how many pills you'll need plus a few extra days' worth. Keep medications in their original labeled containers when traveling to avoid issues at security checkpoints.</p>
+            
+            <p>Consider setting a recurring reminder on your phone for when you typically travel, prompting you to pack your medications before you pack anything else. A small pill case in your purse, briefcase, or car ensures you always have a backup if you're away from home longer than expected.</p>
+            
+            <h2>Be Patient With Yourself</h2>
+            
+            <p>Building any new habit takes time. Research suggests it can take anywhere from 18 to 254 days for a new behavior to become automatic, with an average of about 66 days. If you miss a dose, don't beat yourself up. Simply note what went wrong, adjust your system if needed, and continue forward.</p>
+            
+            <p>The goal isn't perfection but consistency. Even small improvements in medication adherence can lead to better health outcomes, fewer emergency room visits, and a greater sense of control over your own wellbeing.</p>
+            
+            <p>Taking your medications as prescribed is one of the most important things you can do for your health. With the right combination of habits, visual cues, technology, and support, you can build a system that keeps you on track day after day.</p>
+        </div>
+        
+        <div class="sources">
+            <h3>Sources</h3>
+            <ul>
+                <li><a href="https://www.cdc.gov/mmwr/volumes/66/wr/mm6645a2.htm" target="_blank" rel="noopener">CDC: Improving Medication Adherence for Chronic Disease Management</a></li>
+                <li><a href="https://www.nia.nih.gov/health/medicines-and-medication-management/taking-medicines-safely-you-age" target="_blank" rel="noopener">National Institute on Aging: Taking Medicines Safely as You Age</a></li>
+                <li><a href="https://www.mayoclinic.org/healthy-lifestyle/healthy-aging/in-depth/medications-older-adults/art-20572714" target="_blank" rel="noopener">Mayo Clinic: Medicine Use in Older Adults</a></li>
+            </ul>
         </div>
     </article>
     
-    <div class="back-to-blog">
-        <a href="index.html">← See all blog posts</a>
-    </div>
+    <section class="footer-cta">
+        <h2>Ready to Take Control of Your Health?</h2>
+        <p>SteadiDay helps you manage medications, track daily tasks, and stay connected with loved ones, all in one simple app designed for adults 50+.</p>
+        <a href="https://www.steadiday.com" class="btn">Learn More About SteadiDay</a>
+    </section>
     
-    <footer class="footer">
-        <p>&copy; 2026 SteadiDay. All rights reserved. | <a href="../index.html">Home</a> | <a href="../liability.html">Terms</a></p>
+    <footer>
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Blog</a>
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+        </div>
+        <p class="footer-copy">© 2026 SCM Solutions LLC. All rights reserved.</p>
     </footer>
 </body>
 </html>
