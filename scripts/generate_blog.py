@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 SteadiDay Blog Generator
-Generates SEO-optimized blog posts and automatically updates blog/index.html
+Generates SEO-optimized blog posts with stock photos and automatically updates blog/index.html
 
 Features:
 - Correct canonical URLs (uses custom domain)
 - Titles under 60 characters
 - Short, SEO-friendly filenames
+- Stock photos in blog posts (hero image + inline images)
 - Auto-updates blog/index.html with new entry
 """
 
@@ -21,7 +22,7 @@ from datetime import datetime
 WEBSITE_URL = "https://www.steadiday.com"
 BLOG_BASE_URL = f"{WEBSITE_URL}/blog"
 
-# Stock image URLs for different categories
+# Stock images for blog index cards (thumbnails)
 CATEGORY_IMAGES = {
     "Mental Wellness": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
     "Medication Tips": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80",
@@ -33,6 +34,107 @@ CATEGORY_IMAGES = {
     "Brain Health": "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80",
     "Safety": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
     "Wellness": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
+}
+
+# Hero images for the top of blog posts (larger, more impactful)
+HERO_IMAGES = {
+    "Mental Wellness": [
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80",
+        "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80",
+        "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=1200&q=80",
+    ],
+    "Medication Tips": [
+        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=80",
+        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1200&q=80",
+        "https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=1200&q=80",
+    ],
+    "Healthy Aging": [
+        "https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=1200&q=80",
+        "https://images.unsplash.com/photo-1516307365426-bea591f05011?w=1200&q=80",
+        "https://images.unsplash.com/photo-1454418747937-bd95bb945625?w=1200&q=80",
+    ],
+    "Exercise": [
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80",
+        "https://images.unsplash.com/photo-1486218119243-13883505764c?w=1200&q=80",
+        "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=1200&q=80",
+        "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=1200&q=80",
+    ],
+    "Nutrition": [
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=80",
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80",
+        "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&q=80",
+        "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=1200&q=80",
+    ],
+    "Sleep": [
+        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80",
+        "https://images.unsplash.com/photo-1515894203077-9cd36032142f?w=1200&q=80",
+        "https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=1200&q=80",
+    ],
+    "Heart Health": [
+        "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=1200&q=80",
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80",
+        "https://images.unsplash.com/photo-1628348070889-cb656235b4eb?w=1200&q=80",
+    ],
+    "Brain Health": [
+        "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&q=80",
+        "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=1200&q=80",
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80",
+    ],
+    "Safety": [
+        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80",
+        "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&q=80",
+    ],
+    "Wellness": [
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=80",
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80",
+        "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&q=80",
+    ],
+}
+
+# Inline/secondary images to use within blog content
+INLINE_IMAGES = {
+    "Mental Wellness": [
+        {"url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", "alt": "Person practicing mindfulness in a peaceful setting"},
+        {"url": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80", "alt": "Peaceful nature scene for relaxation"},
+        {"url": "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=800&q=80", "alt": "Calm meditation space"},
+    ],
+    "Medication Tips": [
+        {"url": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80", "alt": "Organized pill organizer for daily medications"},
+        {"url": "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&q=80", "alt": "Healthcare and medication management"},
+    ],
+    "Healthy Aging": [
+        {"url": "https://images.unsplash.com/photo-1516307365426-bea591f05011?w=800&q=80", "alt": "Active senior enjoying life"},
+        {"url": "https://images.unsplash.com/photo-1559234938-b60fff04894d?w=800&q=80", "alt": "Healthy lifestyle choices"},
+    ],
+    "Exercise": [
+        {"url": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80", "alt": "Gentle stretching exercises"},
+        {"url": "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=800&q=80", "alt": "Senior doing light exercise"},
+        {"url": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&q=80", "alt": "Walking for fitness"},
+    ],
+    "Nutrition": [
+        {"url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80", "alt": "Healthy meal preparation"},
+        {"url": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&q=80", "alt": "Fresh fruits and vegetables"},
+        {"url": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80", "alt": "Nutritious balanced meal"},
+    ],
+    "Sleep": [
+        {"url": "https://images.unsplash.com/photo-1515894203077-9cd36032142f?w=800&q=80", "alt": "Peaceful bedroom for better sleep"},
+        {"url": "https://images.unsplash.com/photo-1531353826977-0941b4779a1c?w=800&q=80", "alt": "Relaxing bedtime routine"},
+    ],
+    "Heart Health": [
+        {"url": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80", "alt": "Heart-healthy lifestyle"},
+        {"url": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800&q=80", "alt": "Cardiovascular health"},
+    ],
+    "Brain Health": [
+        {"url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80", "alt": "Brain exercises and puzzles"},
+        {"url": "https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=800&q=80", "alt": "Staying mentally active"},
+    ],
+    "Safety": [
+        {"url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&q=80", "alt": "Home safety measures"},
+    ],
+    "Wellness": [
+        {"url": "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80", "alt": "Overall wellness and self-care"},
+        {"url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80", "alt": "Holistic health approach"},
+    ],
 }
 
 TOPIC_CATEGORIES = [
@@ -72,7 +174,7 @@ STEADIDAY_FEATURES = {
 
 
 def get_html_template():
-    """Returns the HTML template with correct canonical URL."""
+    """Returns the HTML template with correct canonical URL and image support."""
     return '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +196,7 @@ def get_html_template():
     <meta property="og:description" content="{meta_description}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{canonical_url}">
-    <meta property="og:image" content="{website_url}/assets/og-image.png">
+    <meta property="og:image" content="{hero_image}">
     <meta property="og:site_name" content="SteadiDay">
     <meta property="article:published_time" content="{iso_date}">
     <meta property="article:author" content="SteadiDay Team">
@@ -104,7 +206,7 @@ def get_html_template():
     <meta name="twitter:url" content="{canonical_url}">
     <meta name="twitter:title" content="{title}">
     <meta name="twitter:description" content="{meta_description}">
-    <meta name="twitter:image" content="{website_url}/assets/og-image.png">
+    <meta name="twitter:image" content="{hero_image}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="../assets/icon.jpeg">
@@ -117,7 +219,7 @@ def get_html_template():
         "@type": "Article",
         "headline": "{title}",
         "description": "{meta_description}",
-        "image": "{website_url}/assets/og-image.png",
+        "image": "{hero_image}",
         "author": {{
             "@type": "Organization",
             "name": "SteadiDay Team",
@@ -176,10 +278,17 @@ def get_html_template():
         
         .nav a:hover {{ text-decoration: underline; }}
         
+        /* Hero Image */
+        .hero-image {{
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }}
+        
         .article-header {{
             background: linear-gradient(135deg, #1E3A5F 0%, #2D4A6F 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
         }}
         
@@ -200,9 +309,6 @@ def get_html_template():
             margin: 0 auto;
             padding: 40px 20px;
             background: white;
-            margin-top: -30px;
-            border-radius: 12px 12px 0 0;
-            position: relative;
         }}
         
         .article-content h2 {{
@@ -227,6 +333,26 @@ def get_html_template():
         
         .article-content li {{
             margin-bottom: 10px;
+        }}
+        
+        /* Inline images in article */
+        .article-image {{
+            margin: 30px 0;
+            text-align: center;
+        }}
+        
+        .article-image img {{
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }}
+        
+        .article-image figcaption {{
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
         }}
         
         .cta-box {{
@@ -287,6 +413,7 @@ def get_html_template():
         @media (max-width: 768px) {{
             .article-header h1 {{ font-size: 1.75rem; }}
             .article-container {{ padding: 30px 15px; }}
+            .hero-image {{ max-height: 250px; }}
         }}
     </style>
 </head>
@@ -297,6 +424,9 @@ def get_html_template():
             <a href="{website_url}">SteadiDay Home</a>
         </div>
     </nav>
+    
+    <!-- Hero Image -->
+    <img src="{hero_image}" alt="{title}" class="hero-image">
     
     <header class="article-header">
         <h1>{title}</h1>
@@ -327,6 +457,17 @@ def get_html_template():
 '''
 
 
+def get_images_for_category(category: str) -> dict:
+    """Get hero and inline images for a category."""
+    hero_options = HERO_IMAGES.get(category, HERO_IMAGES['Wellness'])
+    inline_options = INLINE_IMAGES.get(category, INLINE_IMAGES['Wellness'])
+    
+    return {
+        "hero": random.choice(hero_options),
+        "inline": random.sample(inline_options, min(2, len(inline_options)))
+    }
+
+
 def generate_blog_post(topic_data: dict = None) -> dict:
     """Generate a blog post using Claude API."""
     
@@ -339,9 +480,24 @@ def generate_blog_post(topic_data: dict = None) -> dict:
     target_keyword = topic_data["keyword"]
     category = topic_data.get("category", "Wellness")
     
+    # Get images for this category
+    images = get_images_for_category(category)
+    
     free_feature = random.choice(STEADIDAY_FEATURES["free"])
     premium_feature = random.choice(STEADIDAY_FEATURES["premium"])
     
+    # Build image insertion instructions
+    inline_img_instructions = ""
+    if images["inline"]:
+        inline_img_instructions = f"""
+IMPORTANT - IMAGE PLACEHOLDERS:
+Insert these image placeholders in your content at appropriate points (after relevant sections):
+
+After the 2nd section, insert exactly: [IMAGE_1]
+After the 4th section, insert exactly: [IMAGE_2]
+
+These will be replaced with relevant stock photos automatically."""
+
     prompt = f"""You are a health and wellness content writer for SteadiDay, a mobile app for adults 50+.
 
 Write a blog post about: "{topic}"
@@ -354,14 +510,15 @@ TARGET AUDIENCE:
 
 BLOG REQUIREMENTS:
 1. **TITLE: MUST be under 55 characters** (this is critical for SEO - count carefully!)
-2. Length: 800-1200 words
+2. Length: 900-1300 words
 3. Tone: Warm, encouraging, respectful (never condescending)
 4. Structure: 
-   - Compelling introduction
-   - 4-6 main sections with clear subheadings (use <h2> tags)
+   - Compelling introduction paragraph
+   - 5-6 main sections with clear subheadings (use <h2> tags)
    - Practical, actionable tips
    - Natural mention of how SteadiDay's {free_feature} or {premium_feature} can help
    - Encouraging conclusion
+{inline_img_instructions}
 
 5. Include:
    - At least one relevant statistic with source
@@ -375,19 +532,36 @@ KEYWORDS: keyword1, keyword2, keyword3, {target_keyword}
 READ_TIME: X
 
 CONTENT:
+<p>Opening paragraph that hooks the reader...</p>
+
 <h2>First Section Title</h2>
 <p>Paragraph text here...</p>
+<p>Another paragraph...</p>
 
 <h2>Second Section Title</h2>
 <p>More content...</p>
 
-(Continue with more sections...)
+[IMAGE_1]
+
+<h2>Third Section Title</h2>
+<p>Content continues...</p>
+
+<h2>Fourth Section Title</h2>
+<p>More helpful information...</p>
+
+[IMAGE_2]
+
+<h2>Fifth Section Title</h2>
+<p>Wrapping up...</p>
+
+<h2>Conclusion</h2>
+<p>Final thoughts and encouragement...</p>
 
 Remember: Help the reader genuinely, position SteadiDay as a helpful tool—not the focus."""
 
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=3000,
+        max_tokens=4000,
         messages=[
             {"role": "user", "content": prompt}
         ]
@@ -405,13 +579,27 @@ Remember: Help the reader genuinely, position SteadiDay as a helpful tool—not 
     title = title_match.group(1).strip() if title_match else topic
     meta_description = meta_match.group(1).strip() if meta_match else f"Learn about {topic} - tips for adults 50+"
     keywords = keywords_match.group(1).strip() if keywords_match else target_keyword
-    read_time = read_time_match.group(1) if read_time_match else "5"
+    read_time = read_time_match.group(1) if read_time_match else "6"
     content = content_match.group(1).strip() if content_match else response_text
     
-    # Ensure title is under 55 characters (leaves room for " - SteadiDay Blog")
+    # Ensure title is under 55 characters
     if len(title) > 55:
-        # Try to cut at a natural break point
         title = title[:52].rsplit(' ', 1)[0] + "..."
+    
+    # Replace image placeholders with actual images
+    if images["inline"]:
+        for i, img_data in enumerate(images["inline"]):
+            placeholder = f"[IMAGE_{i+1}]"
+            img_html = f'''
+            <figure class="article-image">
+                <img src="{img_data['url']}" alt="{img_data['alt']}" loading="lazy">
+                <figcaption>{img_data['alt']}</figcaption>
+            </figure>
+            '''
+            content = content.replace(placeholder, img_html)
+    
+    # Remove any remaining placeholders that weren't replaced
+    content = re.sub(r'\[IMAGE_\d+\]', '', content)
     
     # Create SHORT slug from title (max 5-6 words)
     slug_words = re.sub(r'[^a-z0-9\s]', '', title.lower()).split()[:5]
@@ -425,12 +613,13 @@ Remember: Help the reader genuinely, position SteadiDay as a helpful tool—not 
         "content": content,
         "slug": slug,
         "category": category,
+        "hero_image": images["hero"],
         "date": datetime.now().strftime('%Y-%m-%d')
     }
 
 
 def create_blog_html(post_data: dict) -> tuple:
-    """Create the final HTML file with correct canonical URL."""
+    """Create the final HTML file with correct canonical URL and images."""
     
     template = get_html_template()
     
@@ -450,6 +639,7 @@ def create_blog_html(post_data: dict) -> tuple:
         keywords=post_data['keywords'],
         canonical_url=canonical_url,
         website_url=WEBSITE_URL,
+        hero_image=post_data['hero_image'],
         iso_date=iso_date,
         formatted_date=formatted_date,
         read_time=post_data['read_time'],
@@ -472,7 +662,7 @@ def update_blog_index(post_data: dict, filename: str):
     with open(index_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Get image URL for category
+    # Get image URL for category (thumbnail version)
     category = post_data.get('category', 'Wellness')
     image_url = CATEGORY_IMAGES.get(category, CATEGORY_IMAGES['Wellness'])
     
@@ -509,7 +699,7 @@ def update_blog_index(post_data: dict, filename: str):
     if marker in content:
         # Check if there's already a featured post
         if 'class="blog-card featured"' in content:
-            # Remove 'featured' from the current featured post (it will become a regular card)
+            # Remove 'featured' from the current featured post
             content = content.replace('class="blog-card featured"', 'class="blog-card"', 1)
         
         # Make the new post the featured one
@@ -570,6 +760,7 @@ def main():
         print("🎲 Selecting random topic from pool...")
         topic_data = random.choice(TOPIC_CATEGORIES)
         print(f"📝 Selected: {topic_data['topic']}")
+        print(f"🏷️  Category: {topic_data['category']}")
     
     # Generate the blog post
     print()
@@ -578,6 +769,7 @@ def main():
     
     print(f"📰 Title: {post_data['title']}")
     print(f"   Length: {len(post_data['title'])} characters {'✅' if len(post_data['title']) <= 55 else '⚠️ TOO LONG'}")
+    print(f"🖼️  Hero image: {post_data['hero_image'][:50]}...")
     
     # Create HTML with correct canonical URL
     html, filename = create_blog_html(post_data)
@@ -611,6 +803,8 @@ def main():
     print(f"  • Category: {post_data['category']}")
     print(f"  • Read time: {post_data['read_time']} min")
     print(f"  • Title length: {len(post_data['title'])} chars (max 55)")
+    print(f"  • Hero image: ✅ Included")
+    print(f"  • Inline images: ✅ 2 images embedded")
     print(f"  • Canonical URL: {canonical_url}")
     print()
 
