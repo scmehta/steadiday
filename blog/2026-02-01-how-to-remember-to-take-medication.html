@@ -24,6 +24,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Schema.org Article Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Remember to Take Your Medication Every Day",
+        "description": "Practical strategies for adults 50+ to build consistent medication habits. Learn proven techniques to never miss a dose again.",
+        "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=80",
+        "author": {
+            "@type": "Organization",
+            "name": "SteadiDay Team",
+            "url": "https://www.steadiday.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "SteadiDay",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.steadiday.com/assets/icon.jpeg"
+            }
+        },
+        "datePublished": "2026-02-01",
+        "dateModified": "2026-02-01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.steadiday.com/blog/2026-02-01-how-to-remember-to-take-medication.html"
+        }
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.steadiday.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://www.steadiday.com/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "How to Remember to Take Your Medication Every Day"
+            }
+        ]
+    }
+    </script>
+    
     <style>
         :root {
             --cream: #FFFBF5;
@@ -100,6 +157,32 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--charcoal-light);
+        }
+        
+        .breadcrumbs a:hover {
+            color: var(--teal);
+        }
+        
+        .breadcrumbs span {
+            color: var(--charcoal-light);
+            margin: 0 0.5rem;
+        }
+        
+        .breadcrumbs .current {
+            color: var(--navy);
+            font-weight: 500;
         }
         
         /* Hero Image */
@@ -312,6 +395,15 @@
             <a href="index.html" class="nav-back">← Back to Blog</a>
         </div>
     </nav>
+    
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <a href="../index.html">Home</a>
+        <span>›</span>
+        <a href="index.html">Blog</a>
+        <span>›</span>
+        <span class="current">How to Remember to Take Your Medication</span>
+    </div>
     
     <!-- Hero Image -->
     <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=80" alt="Medication pills and bottles organized on a clean surface" class="hero-image" loading="eager">
