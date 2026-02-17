@@ -1,4 +1,4 @@
-name: Generate Weekly Blog Post
+name: Generate Twice-Weekly Blog Post
 
 on:
   schedule:
@@ -59,13 +59,13 @@ jobs:
           to: mehta.saawan@gmail.com
           from: SteadiDay Blog Bot <${{ secrets.EMAIL_USERNAME }}>
           body: |
-            A new blog post has been automatically published to SteadiDay!
+            A new blog post has been auto-published to steadiday.com!
 
-            📰 Title: ${{ env.BLOG_TITLE }}
-            📅 Date: ${{ env.BLOG_DATE }}
-            🔗 URL: https://www.steadiday.com/blog/${{ env.BLOG_FILENAME }}
+            Title: ${{ env.BLOG_TITLE }}
+            Date: ${{ env.BLOG_DATE }}
+            URL: https://www.steadiday.com/blog/${{ env.BLOG_FILENAME }}
 
-            The post is now live on your website. Review it at the link above.
+            The post is now live on your website.
 
             ---
-            This is an automated notification from your SteadiDay Blog Generator.
+            This is an automated notification from your SteadiDay blog workflow.
