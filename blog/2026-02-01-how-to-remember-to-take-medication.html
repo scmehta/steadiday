@@ -268,6 +268,34 @@
             font-style: italic;
         }
         
+        /* Video Embed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-caption {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            text-align: center;
+            padding: 0.75rem;
+            font-style: italic;
+        }
+
         /* CTA Box - Uses TEAL */
         .cta-box {
             background: var(--teal-light);
@@ -463,11 +491,21 @@
             
             <p>Look for apps that let you track multiple medications with different schedules, send persistent reminders until you confirm you've taken your dose, and provide a history so you can check whether you took yesterday's evening pills. Many pharmacies also offer medication synchronization services that align all your refills to the same date each month, reducing the mental load of tracking multiple prescriptions.</p>
             
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/xLUaVeKhbK8"
+                    title="Tips for Managing Multiple Medications — AARP"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="video-caption">Video: Tips for Managing Multiple Medications — AARP</p>
+
             <figure class="article-image">
                 <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?w=800&q=80" alt="Two people having a supportive conversation" loading="lazy">
                 <figcaption>Your support network can help keep you on track</figcaption>
             </figure>
-            
+
             <h2>Involve Your Support Network</h2>
             
             <p>There's no shame in asking for help. If you live with a spouse or have family members who check in regularly, letting them know your medication schedule can provide an extra layer of accountability. A simple "Did you take your morning pills?" during a routine phone call can make all the difference.</p>

@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- TITLE: Must be under 60 characters (currently 47 chars) -->
+
+    <!-- Primary Meta Tags - TITLE MUST BE UNDER 60 CHARS -->
     <title>Simple Mindfulness for Seniors: A Beginner's Guide</title>
-    
+
     <meta name="description" content="Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50. Start your journey to better mental wellness today.">
     <meta name="keywords" content="mindfulness for seniors, meditation for older adults, stress relief over 50, mindfulness exercises, senior wellness, mental health seniors">
     <meta name="author" content="SteadiDay Team">
     <meta name="robots" content="index, follow">
-    
+
     <!-- CRITICAL: Canonical URL must use custom domain -->
     <link rel="canonical" href="https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html">
-    
+
     <!-- Open Graph - ALL URLs must use custom domain -->
     <meta property="og:title" content="Simple Mindfulness for Seniors: A Beginner's Guide">
     <meta property="og:description" content="Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50. Start your journey to better mental wellness today.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html">
-    <meta property="og:image" content="https://www.steadiday.com/assets/og-image.png">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80">
     <meta property="og:site_name" content="SteadiDay">
-    <meta property="article:published_time" content="2026-02-02">
+    <meta property="article:published_time" content="2026-02-02T00:00:00">
     <meta property="article:author" content="SteadiDay Team">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html">
     <meta name="twitter:title" content="Simple Mindfulness for Seniors: A Beginner's Guide">
     <meta name="twitter:description" content="Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50.">
-    <meta name="twitter:image" content="https://www.steadiday.com/assets/og-image.png">
-    
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80">
+
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="../assets/icon.jpeg">
     <link rel="apple-touch-icon" href="../assets/icon.jpeg">
-    
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Schema.org Article Markup -->
     <script type="application/ld+json">
     {
@@ -43,7 +48,7 @@
         "@type": "Article",
         "headline": "Simple Mindfulness for Seniors: A Beginner's Guide",
         "description": "Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50. Start your journey to better mental wellness today.",
-        "image": "https://www.steadiday.com/assets/og-image.png",
+        "image": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80",
         "author": {
             "@type": "Organization",
             "name": "SteadiDay Team",
@@ -57,15 +62,15 @@
                 "url": "https://www.steadiday.com/assets/icon.jpeg"
             }
         },
-        "datePublished": "2026-02-02",
-        "dateModified": "2026-02-02",
+        "datePublished": "2026-02-02T00:00:00",
+        "dateModified": "2026-02-02T00:00:00",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html"
         }
     }
     </script>
-    
+
     <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
     {
@@ -92,200 +97,272 @@
         ]
     }
     </script>
-    
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background-color: #f8f9fa;
+        :root {
+            --cream: #FFFBF5;
+            --teal: #1A8A7D;
+            --teal-dark: #147568;
+            --teal-light: #E8F5F3;
+            --navy: #1E3A5F;
+            --navy-light: #2D4A6F;
+            --charcoal: #2D3436;
+            --charcoal-light: #5A6266;
+            --white: #FFFFFF;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            background: var(--cream);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Merriweather', Georgia, serif;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-dark); text-decoration: underline; }
+
+        /* Navigation */
         .nav {
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(30, 58, 95, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        
+
         .nav-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .nav a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
-        
-        .nav a:hover { text-decoration: underline; }
-        
+
         /* Breadcrumbs */
         .breadcrumbs {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 1rem 20px;
+            padding: 1rem 2rem;
             font-size: 0.9rem;
         }
-        
+
         .breadcrumbs a {
-            color: #666;
+            color: var(--charcoal-light);
         }
-        
+
         .breadcrumbs a:hover {
-            color: #667eea;
+            color: var(--teal);
         }
-        
+
         .breadcrumbs span {
-            color: #666;
+            color: var(--charcoal-light);
             margin: 0 0.5rem;
         }
-        
+
         .breadcrumbs .current {
-            color: #333;
+            color: var(--navy);
             font-weight: 500;
         }
-        
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+        }
+
+        /* Article Header */
         .article-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
             text-align: center;
         }
-        
+
         .article-header h1 {
             max-width: 800px;
-            margin: 0 auto 15px;
-            font-size: 2.2rem;
-            line-height: 1.3;
+            margin: 0 auto 1rem;
+            font-size: 2.25rem;
+            color: var(--white);
         }
-        
+
         .article-meta {
             font-size: 1rem;
             opacity: 0.9;
         }
-        
+
+        /* Article Content */
         .article-container {
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background: white;
-            margin-top: -30px;
-            border-radius: 12px 12px 0 0;
-            position: relative;
+            padding: 3rem 2rem;
+            background: var(--white);
         }
-        
+
         .article-content h2 {
-            font-size: 1.5rem;
-            margin: 35px 0 15px;
-            color: #333;
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--navy);
         }
-        
+
         .article-content p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: #444;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
         }
-        
-        .article-content a { color: #667eea; }
-        .article-content a:hover { text-decoration: none; }
-        
-        /* Stock photo styling */
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Inline Images */
         .article-image {
             width: 100%;
-            margin: 30px 0;
+            margin: 2rem 0;
             border-radius: 12px;
             overflow: hidden;
         }
-        
+
         .article-image img {
             width: 100%;
             height: auto;
             display: block;
         }
-        
+
         .article-image figcaption {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
             text-align: center;
-            padding: 10px;
-            background: #f8f9fa;
+            padding: 0.75rem 1rem;
+            background: var(--cream);
             font-style: italic;
         }
-        
+
+        /* Video Embed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-caption {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            text-align: center;
+            padding: 0.75rem;
+            font-style: italic;
+        }
+
+        /* CTA Box */
         .cta-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            color: var(--white);
+            padding: 2rem;
             border-radius: 12px;
             text-align: center;
-            margin: 40px 0;
+            margin: 2.5rem 0;
         }
-        
+
         .cta-box h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.35rem;
+            color: var(--white);
         }
-        
+
         .cta-box p {
-            color: white !important;
-            margin-bottom: 15px;
+            color: rgba(255,255,255,0.9) !important;
+            margin-bottom: 1rem;
         }
-        
+
         .cta-button {
             display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 12px 30px;
-            border-radius: 25px;
+            background: var(--white);
+            color: var(--teal);
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s ease;
         }
-        
-        .cta-button:hover { opacity: 0.9; }
-        
-        .back-to-blog {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            background: white;
-        }
-        
-        .back-to-blog a {
-            color: #667eea;
+
+        .cta-button:hover {
+            opacity: 0.9;
             text-decoration: none;
-            font-weight: 500;
+            transform: translateY(-2px);
         }
-        
+
+        /* Back to Blog */
+        .back-to-blog {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .back-to-blog a {
+            font-weight: 600;
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #666;
+            padding: 2rem;
+            color: var(--charcoal-light);
             font-size: 0.9rem;
-            background: white;
+            background: var(--white);
+            border-top: 1px solid rgba(30, 58, 95, 0.1);
         }
-        
-        .footer a { color: #667eea; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.75rem; }
+            .article-header { padding: 2rem 1.5rem; }
+            .article-container { padding: 2rem 1.5rem; }
+            .hero-image { max-height: 280px; }
+        }
     </style>
 </head>
 <body>
     <nav class="nav">
         <div class="nav-container">
             <a href="index.html">← Back to Blog</a>
-            <a href="https://www.steadiday.com">Download SteadiDay</a>
+            <a href="https://www.steadiday.com">SteadiDay Home</a>
         </div>
     </nav>
-    
+
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <a href="../index.html">Home</a>
@@ -294,85 +371,93 @@
         <span>›</span>
         <span class="current">Simple Mindfulness for Seniors</span>
     </div>
-    
+
+    <!-- Hero Image -->
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80" alt="Person meditating peacefully in morning light" class="hero-image" loading="eager">
+
     <header class="article-header">
         <h1>Simple Mindfulness for Seniors: A Beginner's Guide</h1>
         <div class="article-meta">February 02, 2026 • By SteadiDay Team • 5 min read</div>
     </header>
-    
+
     <article class="article-container">
         <div class="article-content">
-            <figure class="article-image">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80" alt="Person meditating peacefully in morning light" loading="lazy">
-                <figcaption>Finding peace through simple mindfulness practices</figcaption>
-            </figure>
-            
             <h2>Why Mindfulness Matters More After 50</h2>
             <p>I've noticed something wonderful happening in recent years – more and more people are discovering that life after 50 can be the perfect time to embrace mindfulness. There's something beautiful about reaching this stage of life where we finally have permission to slow down and truly pay attention to the present moment.</p>
             <p>Here's the thing about <a href="https://www.mayoclinic.org/healthy-lifestyle/consumer-health/in-depth/mindfulness-exercises/art-20046356" target="_blank" rel="noopener">mindfulness practice</a> – it's not about emptying your mind or sitting in complicated yoga poses. It's simply about being aware of what's happening right now, without judgment. For those of us over 50, this practice can be particularly powerful because we bring decades of life experience to our mindfulness journey.</p>
             <p>The beauty of mindfulness for seniors lies in its simplicity and accessibility. You don't need special equipment, expensive classes, or even the ability to sit on the floor. What you need is curiosity about your own experience and a willingness to start where you are.</p>
-            
+
             <figure class="article-image">
                 <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80" alt="Hands resting gently during meditation practice" loading="lazy">
                 <figcaption>Breath awareness is the foundation of mindfulness</figcaption>
             </figure>
-            
+
             <h2>Getting Started with Breath Awareness</h2>
             <p>Let me share the most approachable way to begin your mindfulness practice – simply paying attention to your breathing. I love recommending this because breathing is something we're already doing, so we're not adding another task to our day.</p>
             <p>Find a comfortable chair with good back support and simply notice your breath as it flows in and out. You might place one hand on your chest and another on your belly to feel the gentle rise and fall. When your mind wanders to your grocery list or tomorrow's doctor appointment – and it will – just gently return your attention to your breath.</p>
             <p>Speaking of gentle guidance, I've found that SteadiDay's mindful break exercises provide perfect bite-sized moments of breath awareness that fit naturally into your day. These short practices help build the foundation for longer mindfulness sessions.</p>
             <p>The <a href="https://www.health.harvard.edu/blog/mindfulness-meditation-may-ease-anxiety-mental-stress-201401086967" target="_blank" rel="noopener">research on mindfulness and stress reduction</a> is particularly encouraging for our age group, showing significant benefits for both mental and physical well-being.</p>
-            
+
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/inpok4MKVLM"
+                    title="5-Minute Meditation You Can Do Anywhere — Goodful"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="video-caption">Video: 5-Minute Meditation You Can Do Anywhere — Goodful</p>
+
             <h2>Body Awareness and Gentle Movement</h2>
             <p>One of my favorite aspects of mindfulness for seniors is how it can transform our relationship with our changing bodies. Rather than focusing on what feels different or more challenging than it used to, mindfulness invites us to appreciate what our bodies are doing right now.</p>
             <p>Try this gentle body scan while sitting comfortably or lying down. Start by noticing your feet – are they warm or cool? Tense or relaxed? Gradually move your attention up through your legs, torso, arms, and head. There's no need to change anything; just notice with kindness and curiosity.</p>
             <p>You might discover areas of tension you didn't realize you were carrying, or you might simply enjoy the novel experience of checking in with yourself from head to toe. This practice can be especially soothing before bedtime or whenever you need a few minutes of calm.</p>
-            
+
             <figure class="article-image">
                 <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80" alt="Warm cup of tea being held gently" loading="lazy">
                 <figcaption>Your morning tea or coffee can become a mindful moment</figcaption>
             </figure>
-            
+
             <h2>Mindful Daily Activities</h2>
             <p>Here's something I find exciting about mindfulness practice – it doesn't require setting aside large blocks of time. Some of the most profound moments of awareness can happen during ordinary activities we're already doing.</p>
             <p>Consider your morning coffee or tea ritual. Instead of drinking while scrolling through your phone or planning your day, try making your warm beverage a mindful experience. Notice the aroma, the warmth of the cup in your hands, the first sip, and how it feels to pause and simply be present with this simple pleasure.</p>
             <p>Walking offers another beautiful opportunity for mindfulness. Whether you're walking around your neighborhood, through a park, or even just from room to room in your home, you can bring awareness to the sensation of your feet touching the ground, the rhythm of your steps, and the sights and sounds around you.</p>
-            
+
             <h2>Working with Challenging Emotions</h2>
             <p>Let's be honest – life after 50 often brings its share of complex emotions. We might be dealing with health changes, loss of loved ones, retirement transitions, or simply the natural reflection that comes with accumulated life experience. Mindfulness for seniors isn't about pushing these feelings away; it's about learning to be with them more skillfully.</p>
             <p>When difficult emotions arise, try the simple practice of naming what you're feeling. "I notice anxiety," or "I'm aware of sadness right now." This gentle acknowledgment, without trying to fix or change the feeling, can create a sense of space and perspective.</p>
             <p>The goal isn't to eliminate challenging emotions – they're a natural part of being human. Instead, mindfulness helps us relate to our feelings with greater compassion and less reactivity.</p>
-            
+
             <figure class="article-image">
                 <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80" alt="Peaceful nature scene with sunlight through trees" loading="lazy">
                 <figcaption>Nature provides perfect opportunities for mindful moments</figcaption>
             </figure>
-            
+
             <h2>Building Your Practice Gradually</h2>
             <p>I always encourage people to start small and build gradually. Five minutes of mindful breathing is infinitely more valuable than planning to meditate for an hour and then feeling guilty when it doesn't happen. Consistency matters more than duration when you're beginning.</p>
             <p>You might start with just three minutes of breath awareness each morning, or a brief body scan before bed. As these short practices become natural, you can gradually extend the time or add additional practices to your routine.</p>
             <p>If you're using SteadiDay to support your wellness journey, you'll find that the premium features include detailed progress reports that can help you track your mindfulness practice alongside other wellness activities, creating a complete picture of your self-care efforts.</p>
-            
+
             <h2>Creating a Supportive Environment</h2>
             <p>While mindfulness can be practiced anywhere, creating a small, dedicated space in your home can help support your practice. This doesn't need to be elaborate – perhaps just a comfortable chair with a soft blanket nearby, or a corner of your bedroom with a cushion and a plant.</p>
             <p>Some people enjoy having a few meaningful objects nearby – a photo that brings joy, a stone from a memorable trip, or a small bell to mark the beginning and end of their practice. The key is choosing items that help you feel peaceful and grounded.</p>
             <p>Remember that mindfulness for seniors is ultimately about befriending yourself and your experience with greater kindness. There's no perfect way to practice, and there's certainly no age limit on developing a deeper sense of presence and peace.</p>
             <p>Ready to begin your mindfulness journey? SteadiDay offers gentle, accessible mindfulness exercises designed specifically for adults over 50. Visit <a href="https://www.steadiday.com">steadiday.com</a> to download the app and discover how just a few minutes of daily practice can enhance your overall well-being and bring more moments of calm to your day.</p>
-            
+
             <div class="cta-box">
-                <h3>Ready to Take Control of Your Health?</h3>
+                <h3>Ready to Take Control of Your Daily Wellness?</h3>
                 <p>SteadiDay helps you manage medications, track your wellness, and build healthy habits—all designed for adults 50+.</p>
-                <a href="https://www.steadiday.com" class="cta-button">Download SteadiDay Free</a>
+                <a href="https://www.steadiday.com/#waitlist" class="cta-button">Join the Waitlist</a>
             </div>
         </div>
     </article>
-    
+
     <div class="back-to-blog">
         <a href="index.html">← See all blog posts</a>
     </div>
-    
+
     <footer class="footer">
-        <p>&copy; 2026 SteadiDay. All rights reserved. | <a href="https://www.steadiday.com">Home</a> | <a href="https://www.steadiday.com/privacy.html">Privacy</a> | <a href="https://www.steadiday.com/terms.html">Terms</a></p>
+        <p>&copy; 2026 SCM Solutions LLC. All rights reserved. | <a href="https://www.steadiday.com">Home</a> | <a href="https://www.steadiday.com/privacy.html">Privacy</a> | <a href="https://www.steadiday.com/terms.html">Terms</a></p>
     </footer>
 </body>
 </html>
