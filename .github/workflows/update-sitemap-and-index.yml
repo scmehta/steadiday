@@ -7,9 +7,7 @@
 #   - After the blog generator workflow completes
 #   - After any push to main that changes HTML files
 #   - Manual trigger
-
 name: Update Sitemap & Index
-
 on:
   # Trigger after blog generator completes — must match exact workflow name
   workflow_run:
@@ -27,11 +25,13 @@ on:
   # Manual trigger
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Prevent concurrent runs
 concurrency:
   group: sitemap-update
   cancel-in-progress: false
-
 jobs:
   update-sitemap:
     runs-on: ubuntu-latest
