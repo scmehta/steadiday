@@ -1,128 +1,134 @@
 #!/usr/bin/env python3
 """
-inject_gtag.py — Inject Google Ads conversion tracking tag into all HTML files.
+Inject Google Ads gtag + App Store conversion tracking into all HTML files.
 
-Usage:
-    python scripts/inject_gtag.py [directory]
+What it does:
+1. Finds every .html file in the repo
+2. Injects the gtag.js base snippet after <head> (if not already present)
+3. Injects an App Store click conversion tracker before </body> (if not already present)
 
-    directory: Root directory to scan for .html files (default: current directory ".")
-
-This script:
-  1. Scans all .html files in the given directory (recursively)
-  2. Skips files that already have the Google tag installed
-  3. Injects the gtag snippet right after the opening <head> tag
-  4. Reports what it changed
-
-Safe to run multiple times — it won't double-inject.
+Safe to run multiple times — skips files that already have the tags.
 """
 
 import os
 import sys
-import re
 
-# ── Google Ads Tag ──────────────────────────────────────────────────────────
-GTAG_SNIPPET = """<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17929124014"></script>
+# ─── Configuration ───────────────────────────────────────────────────────────
+GTAG_ID = "AW-17929124014"
+
+# The conversion event snippet from Google Ads
+# Replace the send_to value with your actual conversion label from Google Ads
+CONVERSION_LABEL = "AW-17929124014/REPLACE_WITH_YOUR_CONVERSION_LABEL"
+
+GTAG_SNIPPET = f'''<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GTAG_ID}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
-  gtag('config', 'AW-17929124014');
-</script>"""
+  gtag('config', '{GTAG_ID}');
+</script>'''
 
-CONVERSION_ID = "AW-17929124014"
+CONVERSION_SNIPPET = f'''<!-- Google Ads: App Store click conversion tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {{
+    // Track clicks on all App Store links as conversions
+    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+    for (var i = 0; i < links.length; i++) {{
+      links[i].addEventListener('click', function() {{
+        if (typeof gtag === 'function') {{
+          gtag('event', 'conversion', {{
+            'send_to': '{CONVERSION_LABEL}',
+            'event_callback': function() {{
+              // Allow the link to proceed after tracking
+            }}
+          }});
+        }}
+      }});
+    }}
+  }});
+</script>'''
+
+# ─── Markers to detect existing injections ───────────────────────────────────
+GTAG_MARKER = f"googletagmanager.com/gtag/js?id={GTAG_ID}"
+CONVERSION_MARKER = "App Store click conversion tracking"
+
+# ─── File discovery ──────────────────────────────────────────────────────────
+SKIP_DIRS = {'.git', 'node_modules', '.github', '__pycache__'}
 
 
-def already_has_gtag(html_content):
-    """Check if the file already contains the Google tag."""
-    return CONVERSION_ID in html_content
-
-
-def inject_gtag(html_content):
-    """Inject the gtag snippet right after the opening <head> tag."""
-    # Match <head> or <head ...attributes...>
-    pattern = re.compile(r'(<head[^>]*>)', re.IGNORECASE)
-    match = pattern.search(html_content)
-
-    if not match:
-        return None  # No <head> tag found
-
-    insert_pos = match.end()
-    updated = html_content[:insert_pos] + "\n" + GTAG_SNIPPET + "\n" + html_content[insert_pos:]
-    return updated
-
-
-def process_directory(root_dir):
-    """Walk through all HTML files and inject the tag."""
-    modified = []
-    skipped = []
-    errors = []
-
+def find_html_files(root_dir):
+    """Find all .html files, skipping irrelevant directories."""
+    html_files = []
     for dirpath, dirnames, filenames in os.walk(root_dir):
-        # Skip hidden directories and node_modules
-        dirnames[:] = [d for d in dirnames if not d.startswith('.') and d != 'node_modules']
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for f in filenames:
+            if f.endswith('.html'):
+                html_files.append(os.path.join(dirpath, f))
+    return html_files
 
-        for filename in filenames:
-            if not filename.endswith('.html'):
-                continue
 
-            filepath = os.path.join(dirpath, filename)
+def inject_into_file(filepath):
+    """Inject gtag and conversion snippets into a single HTML file."""
+    with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+        content = f.read()
 
-            try:
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    content = f.read()
+    modified = False
 
-                if already_has_gtag(content):
-                    skipped.append(filepath)
-                    continue
+    # 1. Inject gtag after <head>
+    if GTAG_MARKER not in content:
+        # Try <head> with attributes first, then plain <head>
+        for tag in ['<head>', '<HEAD>']:
+            if tag in content:
+                content = content.replace(tag, tag + '\n' + GTAG_SNIPPET, 1)
+                modified = True
+                break
+        else:
+            # Try regex-style match for <head ...>
+            import re
+            head_match = re.search(r'<head[^>]*>', content, re.IGNORECASE)
+            if head_match:
+                insert_pos = head_match.end()
+                content = content[:insert_pos] + '\n' + GTAG_SNIPPET + content[insert_pos:]
+                modified = True
 
-                updated = inject_gtag(content)
+    # 2. Inject conversion tracking before </body>
+    if CONVERSION_MARKER not in content:
+        for tag in ['</body>', '</BODY>']:
+            if tag in content:
+                content = content.replace(tag, CONVERSION_SNIPPET + '\n' + tag, 1)
+                modified = True
+                break
 
-                if updated is None:
-                    errors.append((filepath, "No <head> tag found"))
-                    continue
-
-                with open(filepath, 'w', encoding='utf-8') as f:
-                    f.write(updated)
-
-                modified.append(filepath)
-
-            except Exception as e:
-                errors.append((filepath, str(e)))
-
-    return modified, skipped, errors
+    if modified:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
 
 
 def main():
-    root_dir = sys.argv[1] if len(sys.argv) > 1 else "."
+    root = sys.argv[1] if len(sys.argv) > 1 else '.'
+    html_files = find_html_files(root)
 
-    if not os.path.isdir(root_dir):
-        print(f"Error: '{root_dir}' is not a directory.")
-        sys.exit(1)
+    if not html_files:
+        print(f"No .html files found in {os.path.abspath(root)}")
+        return
 
-    print(f"Scanning '{root_dir}' for HTML files...\n")
+    injected = 0
+    skipped = 0
 
-    modified, skipped, errors = process_directory(root_dir)
+    for filepath in html_files:
+        rel = os.path.relpath(filepath, root)
+        if inject_into_file(filepath):
+            print(f"  ✅ Injected: {rel}")
+            injected += 1
+        else:
+            print(f"  ⏭️  Skipped (already has tags): {rel}")
+            skipped += 1
 
-    if modified:
-        print(f"✅ Injected Google tag into {len(modified)} file(s):")
-        for f in modified:
-            print(f"   {f}")
-    else:
-        print("ℹ️  No files needed the Google tag injected.")
-
-    if skipped:
-        print(f"\n⏭️  Skipped {len(skipped)} file(s) (already have the tag):")
-        for f in skipped:
-            print(f"   {f}")
-
-    if errors:
-        print(f"\n⚠️  Errors in {len(errors)} file(s):")
-        for f, err in errors:
-            print(f"   {f}: {err}")
-
-    print("\nDone.")
+    print(f"\nDone! {injected} files updated, {skipped} already had tags.")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
