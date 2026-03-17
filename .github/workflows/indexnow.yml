@@ -4,6 +4,9 @@ on:
     branches:
       - main  # Change this to 'master' if your branch name is different
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   check-and-submit:
     runs-on: ubuntu-latest
