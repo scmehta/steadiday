@@ -23,6 +23,7 @@ from datetime import datetime
 # IMPORTANT: Always use the custom domain, not the GitHub Pages URL
 WEBSITE_URL = "https://www.steadiday.com"
 BLOG_BASE_URL = f"{WEBSITE_URL}/blog"
+APP_STORE_URL = "https://apps.apple.com/us/app/steadiday/id6758526744"
 
 # Stock images for blog index cards (thumbnails)
 CATEGORY_IMAGES = {
@@ -646,12 +647,12 @@ def get_html_template():
     
     <article class="article-container">
         <div class="article-content">
-            {content}
+            {{content}}
             
             <div class="cta-box">
                 <h3>Ready to Take Control of Your Daily Wellness?</h3>
-                <p>SteadiDay helps you manage medications, track your health, and stay connected with loved ones—all designed for adults 50+. Every feature is free during our beta.</p>
-                <a href="{website_url}/#waitlist" class="cta-button">Get Early Access</a>
+                <p>SteadiDay helps you manage medications, track your health, and stay connected with loved ones—all designed for adults 50+. Every feature is completely free.</p>
+                <a href="https://apps.apple.com/us/app/steadiday/id6758526744" class="cta-button">Download Free on the App Store</a>
             </div>
         </div>
     </article>
@@ -661,7 +662,7 @@ def get_html_template():
     </div>
     
     <footer class="footer">
-        <p>&copy; {year} SCM Solutions LLC. All rights reserved. | <a href="{website_url}">Home</a> | <a href="{website_url}/privacy.html">Privacy</a> | <a href="{website_url}/terms.html">Terms</a></p>
+        <p>&copy; {{year}} SCM Solutions LLC. All rights reserved. | <a href="{website_url}">Home</a> | <a href="{website_url}/privacy.html">Privacy</a> | <a href="{website_url}/terms.html">Terms</a></p>
     </footer>
 </body>
 </html>
@@ -729,7 +730,7 @@ BLOG REQUIREMENTS:
    - Compelling introduction paragraph
    - 6-7 main sections with clear subheadings (use <h2> tags)
    - Practical, actionable tips
-   - Natural mention of how SteadiDay's {free_feature} can help (all features are free during beta)
+   - Natural mention of how SteadiDay's {free_feature} can help (every feature is completely free)
    - Encouraging conclusion
 
 IMPORTANT - MEDIA PLACEHOLDERS:
