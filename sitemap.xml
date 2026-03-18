@@ -1,111 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    
-    <!-- Homepage -->
-    <url>
-        <loc>https://www.steadiday.com/</loc>
-        <lastmod>2026-02-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://www.steadiday.com/assets/icon.jpeg</image:loc>
-            <image:title>SteadiDay App Icon</image:title>
-            <image:caption>SteadiDay - All-in-one daily companion app for adults 50+</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://www.steadiday.com/assets/screenshot-home.png</image:loc>
-            <image:title>SteadiDay Home Screen</image:title>
-            <image:caption>SteadiDay app home screen showing daily overview</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://www.steadiday.com/assets/screenshot-sos.png</image:loc>
-            <image:title>SteadiDay Emergency SOS</image:title>
-            <image:caption>Emergency SOS feature with fall detection for senior safety</image:caption>
-        </image:image>
-        <image:image>
-            <image:loc>https://www.steadiday.com/assets/screenshot-mindbreaks.png</image:loc>
-            <image:title>SteadiDay Mind Breaks</image:title>
-            <image:caption>Mind Breaks feature with relaxing games for mental wellness</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Core Pages -->
-    <url>
-        <loc>https://www.steadiday.com/security.html</loc>
-        <lastmod>2026-02-01</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://www.steadiday.com/privacy.html</loc>
-        <lastmod>2026-01-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://www.steadiday.com/terms.html</loc>
-        <lastmod>2026-01-26</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    
-    <!-- Blog Index -->
-    <url>
-        <loc>https://www.steadiday.com/blog/</loc>
-        <lastmod>2026-02-05</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Blog Posts - Comparison/Pillar Content (Higher Priority) -->
-    <url>
-        <loc>https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</loc>
-        <lastmod>2026-02-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&amp;q=80</image:loc>
-            <image:title>Best Medication Reminder Apps for Seniors 2026</image:title>
-            <image:caption>Comprehensive comparison of top medication reminder apps for adults 50+</image:caption>
-        </image:image>
-    </url>
-    
-    <!-- Blog Posts - Regular Articles -->
-    <url>
-        <loc>https://www.steadiday.com/blog/2026-02-05-easy-hearthealthy-recipes-for-adults.html</loc>
-        <lastmod>2026-02-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&amp;q=80</image:loc>
-            <image:title>Easy Heart-Healthy Recipes for Adults 50+</image:title>
-            <image:caption>Simple and delicious heart-healthy recipes for seniors</image:caption>
-        </image:image>
-    </url>
-    
-    <url>
-        <loc>https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</loc>
-        <lastmod>2026-02-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&amp;q=80</image:loc>
-            <image:title>Simple Mindfulness for Seniors</image:title>
-            <image:caption>Beginner's guide to mindfulness for adults over 50</image:caption>
-        </image:image>
-    </url>
-    
-    <url>
-        <loc>https://www.steadiday.com/blog/2026-02-01-how-to-remember-to-take-medication.html</loc>
-        <lastmod>2026-02-05</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <image:image>
-            <image:loc>https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&amp;q=80</image:loc>
-            <image:title>How to Remember to Take Your Medication</image:title>
-            <image:caption>Practical medication reminder strategies for seniors</image:caption>
-        </image:image>
-    </url>
-    
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.steadiday.com/privacy.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/liability.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/security.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/terms.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-03-16-calm-your-mind-breathing-exercises.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-03-12-blood-pressure-numbers-what-they.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-03-09-morning-stretches-for-better-mobility.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-03-05-natural-chronic-pain-relief-for.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-03-02-easy-hearthealthy-recipes-for-active.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-26-simple-memory-techniques-that-really.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-19-easy-hearthealthy-recipes-for-active.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-17-breathing-exercises-to-reduce-stress.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-16-morning-stretches-for-better-mobility.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-09-sleep-better-tonight-7-tips.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-05-easy-hearthealthy-recipes-for-adults.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-02-01-how-to-remember-to-take-medication.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
