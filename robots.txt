@@ -1,6 +1,7 @@
 # Robots.txt for SteadiDay
 # https://www.steadiday.com/
 
+# Allow all crawlers
 User-agent: *
 Allow: /
 
@@ -22,3 +23,12 @@ Allow: /
 
 User-agent: Applebot
 Allow: /
+
+# Block duplicate blog posts (consolidated into newer versions)
+# These duplicates are being removed — canonical versions exist at later dates
+User-agent: *
+Disallow: /blog/2026-02-05-easy-hearthealthy-recipes-for-adults.html
+Disallow: /blog/2026-02-19-easy-hearthealthy-recipes-for-active.html
+Disallow: /blog/2026-02-23-easy-hearthealthy-recipes-for-adults.html
+Disallow: /blog/2026-02-16-morning-stretches-for-better-mobility.html
+Disallow: /blog/2026-02-17-breathing-exercises-to-reduce-stress.html
