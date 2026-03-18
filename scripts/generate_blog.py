@@ -11,6 +11,14 @@ Features:
 - Embedded YouTube videos for enhanced engagement
 - Auto-updates blog/index.html with new entry
 - Design system: teal (#1A8A7D), navy (#1E3A5F), cream (#FFFBF5)
+
+CHANGELOG:
+- 2026-03-18: Removed all "Join Waitlist" references, replaced with App Store download links
+- 2026-03-18: Updated nav links (removed Pricing, added Blog link)
+- 2026-03-18: Updated bottom CTA from waitlist to App Store download
+- 2026-03-18: Added meta description, canonical tag, Apple Smart App Banner to blog index
+- 2026-03-18: Updated footer links to match main site
+- 2026-03-18: Added support email to contact references
 """
 
 import anthropic
@@ -23,7 +31,7 @@ from datetime import datetime
 # IMPORTANT: Always use the custom domain, not the GitHub Pages URL
 WEBSITE_URL = "https://www.steadiday.com"
 BLOG_BASE_URL = f"{WEBSITE_URL}/blog"
-APP_STORE_URL = "https://apps.apple.com/us/app/steadiday/id6758526744"
+APP_STORE_URL = "https://apps.apple.com/app/steadiday/id6758526744"
 
 # Stock images for blog index cards (thumbnails)
 CATEGORY_IMAGES = {
@@ -279,6 +287,7 @@ def get_html_template():
     <meta name="keywords" content="{keywords}">
     <meta name="author" content="SteadiDay Team">
     <meta name="robots" content="index, follow">
+    <meta name="apple-itunes-app" content="app-id=6758526744">
     
     <!-- CRITICAL: Canonical URL must use custom domain -->
     <link rel="canonical" href="{canonical_url}">
@@ -468,7 +477,7 @@ def get_html_template():
             <div class="cta-box">
                 <h3>Ready to Take Control of Your Daily Wellness?</h3>
                 <p>SteadiDay helps you manage medications, track your health, and stay connected with loved ones—all designed for adults 50+. Every feature is completely free.</p>
-                <a href="https://apps.apple.com/us/app/steadiday/id6758526744" class="cta-button">Download Free on the App Store</a>
+                <a href="{app_store_url}" class="cta-button">Download Free on the App Store</a>
             </div>
         </div>
     </article>
@@ -693,6 +702,7 @@ def create_blog_html(post_data: dict) -> tuple:
         keywords=post_data['keywords'],
         canonical_url=canonical_url,
         website_url=WEBSITE_URL,
+        app_store_url=APP_STORE_URL,
         hero_image=post_data['hero_image'],
         iso_date=iso_date,
         formatted_date=formatted_date,
