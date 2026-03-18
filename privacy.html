@@ -356,5 +356,24 @@
             <p class="footer-copy">&copy; 2026 SCM Solutions LLC. All rights reserved. Made with care in Virginia, USA.</p>
         </div>
     </footer>
+<!-- Google Ads: App Store click conversion tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track clicks on all App Store links as conversions
+    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17929124014/REPLACE_WITH_YOUR_CONVERSION_LABEL',
+            'event_callback': function() {
+              // Allow the link to proceed after tracking
+            }
+          });
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
