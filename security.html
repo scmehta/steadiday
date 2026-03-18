@@ -22,7 +22,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Security & Data Protection – SteadiDay</title>
-    <meta name="description" content="Learn how SteadiDay protects your health data. All information stays on your device, encrypted and secure.">
+    <meta name="description" content="Learn how SteadiDay protects your health data. All information stays on your device, encrypted and secure. No servers, no cloud storage.">
+    <link rel="canonical" href="https://www.steadiday.com/security.html">
+    <meta name="apple-itunes-app" content="app-id=6758526744">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpeg">
+    <link rel="apple-touch-icon" href="assets/icon.jpeg">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,546 +53,138 @@
             --radius-lg: 24px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--charcoal);
-            background: var(--cream);
+            font-size: 18px; line-height: 1.7; color: var(--charcoal); background: var(--cream);
         }
+        h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
 
-        h1, h2, h3 {
-            font-family: 'Fraunces', Georgia, serif;
-            font-weight: 500;
-            line-height: 1.3;
-            color: var(--charcoal);
-        }
-
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            background: rgba(255, 249, 237, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem;
+            background: rgba(255, 249, 237, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(45, 52, 54, 0.06);
         }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-logo img { width: 44px; height: 44px; border-radius: 10px; box-shadow: var(--shadow-soft); }
+        .nav-logo span { font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); }
+        .nav-back { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--teal); font-weight: 500; transition: color 0.2s ease; }
+        .nav-back:hover { color: var(--teal-dark); }
+        .nav-back svg { width: 20px; height: 20px; }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .nav-logo span {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .nav-back {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--teal);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-back:hover {
-            color: var(--teal-dark);
-        }
-
-        .nav-back svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Hero */
         .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
+            padding: 8rem 2rem 4rem; text-align: center;
             background: linear-gradient(180deg, var(--teal-light) 0%, var(--cream) 100%);
         }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        .hero-container { max-width: 800px; margin: 0 auto; }
         .hero-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
+            width: 80px; height: 80px; background: var(--white); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;
             box-shadow: var(--shadow-medium);
         }
+        .hero-icon svg { width: 40px; height: 40px; color: var(--teal); }
+        .hero h1 { font-size: 2.75rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.25rem; color: var(--charcoal-light); max-width: 600px; margin: 0 auto; }
 
-        .hero-icon svg {
-            width: 40px;
-            height: 40px;
-            color: var(--teal);
-        }
+        main { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+        .section { margin-bottom: 4rem; }
+        .section h2 { font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section h2 svg { width: 28px; height: 28px; color: var(--teal); }
+        .section p { margin-bottom: 1rem; }
 
-        .hero h1 {
-            font-size: 2.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--charcoal-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-        }
-
-        .section h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section h2 svg {
-            width: 28px;
-            height: 28px;
-            color: var(--teal);
-        }
-
-        .section p {
-            margin-bottom: 1rem;
-        }
-
-        /* Key Points Grid */
-        .key-points {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .key-point {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-        }
-
+        .key-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 3rem 0; }
+        .key-point { background: var(--white); padding: 2rem; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-soft); }
         .key-point-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--teal-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
+            width: 60px; height: 60px; background: var(--teal-light); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
         }
+        .key-point-icon svg { width: 30px; height: 30px; color: var(--teal-dark); }
+        .key-point h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .key-point p { font-size: 0.95rem; color: var(--charcoal-light); margin: 0; }
 
-        .key-point-icon svg {
-            width: 30px;
-            height: 30px;
-            color: var(--teal-dark);
-        }
-
-        .key-point h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .key-point p {
-            font-size: 0.95rem;
-            color: var(--charcoal-light);
-            margin: 0;
-        }
-
-        /* Data Table */
         .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background: var(--white);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
+            width: 100%; border-collapse: collapse; margin: 2rem 0; background: var(--white);
+            border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-soft);
         }
+        .data-table th, .data-table td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid var(--cream-dark); }
+        .data-table th { background: var(--charcoal); color: var(--white); font-weight: 600; }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover { background: var(--cream); }
+        .status-yes { color: var(--green); font-weight: 600; }
+        .status-no { color: var(--red); font-weight: 600; }
 
-        .data-table th,
-        .data-table td {
-            padding: 1rem 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--cream-dark);
-        }
+        .do-dont-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0; }
+        .do-list, .dont-list { background: var(--white); padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
+        .do-list { border-top: 4px solid var(--green); }
+        .dont-list { border-top: 4px solid var(--red); }
+        .do-list h3, .dont-list h3 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+        .do-list h3 svg { color: var(--green); }
+        .dont-list h3 svg { color: var(--red); }
+        .do-list ul, .dont-list ul { list-style: none; margin: 0; }
+        .do-list li, .dont-list li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+        .do-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: bold; }
+        .dont-list li::before { content: '✗'; position: absolute; left: 0; color: var(--red); font-weight: bold; }
 
-        .data-table th {
-            background: var(--charcoal);
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .data-table tr:hover {
-            background: var(--cream);
-        }
-
-        .status-yes {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        .status-no {
-            color: var(--red);
-            font-weight: 600;
-        }
-
-        /* Do/Don't Lists */
-        .do-dont-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .do-list,
-        .dont-list {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .do-list {
-            border-top: 4px solid var(--green);
-        }
-
-        .dont-list {
-            border-top: 4px solid var(--red);
-        }
-
-        .do-list h3,
-        .dont-list h3 {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .do-list h3 svg {
-            color: var(--green);
-        }
-
-        .dont-list h3 svg {
-            color: var(--red);
-        }
-
-        .do-list ul,
-        .dont-list ul {
-            list-style: none;
-            margin: 0;
-        }
-
-        .do-list li,
-        .dont-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .do-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--green);
-            font-weight: bold;
-        }
-
-        .dont-list li::before {
-            content: '✗';
-            position: absolute;
-            left: 0;
-            color: var(--red);
-            font-weight: bold;
-        }
-
-        /* Info Box */
         .info-box {
-            background: var(--teal-light);
-            padding: 1.5rem 2rem;
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--teal);
-            margin: 2rem 0;
+            background: var(--teal-light); padding: 1.5rem 2rem; border-radius: var(--radius-md);
+            border-left: 4px solid var(--teal); margin: 2rem 0;
         }
+        .info-box h4 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .info-box h4 svg { width: 20px; height: 20px; color: var(--teal-dark); }
+        .info-box p { margin: 0; font-size: 0.95rem; }
 
-        .info-box h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .info-box h4 svg {
-            width: 20px;
-            height: 20px;
-            color: var(--teal-dark);
-        }
-
-        .info-box p {
-            margin: 0;
-            font-size: 0.95rem;
-        }
-
-        /* Photo Privacy Section */
-        .photo-flow {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
+        .photo-flow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 2rem 0; flex-wrap: wrap; }
         .photo-step {
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: var(--white);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
+            flex: 1; min-width: 150px; text-align: center; padding: 1.5rem 1rem;
+            background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-soft);
         }
-
         .photo-step-number {
-            width: 32px;
-            height: 32px;
-            background: var(--teal);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin: 0 auto 0.75rem;
+            width: 32px; height: 32px; background: var(--teal); color: var(--white); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 600; margin: 0 auto 0.75rem;
         }
+        .photo-step h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .photo-step p { font-size: 0.85rem; color: var(--charcoal-light); margin: 0; }
+        .photo-arrow { font-size: 1.5rem; color: var(--teal); }
 
-        .photo-step h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .photo-step p {
-            font-size: 0.85rem;
-            color: var(--charcoal-light);
-            margin: 0;
-        }
-
-        .photo-arrow {
-            font-size: 1.5rem;
-            color: var(--teal);
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 3rem;
-            background: var(--charcoal);
-            border-radius: var(--radius-lg);
-            margin-top: 4rem;
-        }
-
-        .cta-section h2 {
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
-        }
-
+        .cta-section { text-align: center; padding: 3rem; background: var(--charcoal); border-radius: var(--radius-lg); margin-top: 4rem; }
+        .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: var(--radius-md);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            background: var(--teal);
-            color: var(--white);
-            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem;
+            border-radius: var(--radius-md); font-size: 1.1rem; font-weight: 600; text-decoration: none;
+            background: var(--teal); color: var(--white); transition: all 0.3s ease;
         }
+        .btn:hover { background: var(--teal-dark); transform: translateY(-2px); }
 
-        .btn:hover {
-            background: var(--teal-dark);
-            transform: translateY(-2px);
-        }
+        footer { padding: 2rem; background: var(--charcoal); text-align: center; margin-top: 0; }
+        .footer-content { max-width: 800px; margin: 0 auto; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .footer-brand img { width: 32px; height: 32px; border-radius: 6px; }
+        .footer-brand span { font-family: 'Fraunces', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: var(--white); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-copy { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; }
 
-        /* Footer */
-        footer {
-            padding: 2rem;
-            background: var(--charcoal);
-            text-align: center;
-            margin-top: 0;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-        }
-
-        .footer-brand span {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-copy {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-logo span {
-                display: none;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            main {
-                padding: 3rem 1.5rem;
-            }
-
-            .key-points {
-                grid-template-columns: 1fr;
-            }
-
-            .do-dont-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .photo-flow {
-                flex-direction: column;
-            }
-
-            .photo-arrow {
-                transform: rotate(90deg);
-            }
-
-            .data-table {
-                font-size: 0.9rem;
-            }
-
-            .data-table th,
-            .data-table td {
-                padding: 0.75rem 1rem;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
+            nav { padding: 1rem; }
+            .nav-logo span { display: none; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            main { padding: 3rem 1.5rem; }
+            .key-points { grid-template-columns: 1fr; }
+            .do-dont-grid { grid-template-columns: 1fr; }
+            .photo-flow { flex-direction: column; }
+            .photo-arrow { transform: rotate(90deg); }
+            .data-table { font-size: 0.9rem; }
+            .data-table th, .data-table td { padding: 0.75rem 1rem; }
+            .footer-links { flex-wrap: wrap; gap: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -602,7 +200,6 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-icon">
@@ -615,9 +212,7 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main>
-        <!-- Key Points -->
         <div class="key-points">
             <div class="key-point">
                 <div class="key-point-icon">
@@ -648,7 +243,6 @@
             </div>
         </div>
 
-        <!-- Where Data Is Stored -->
         <div class="section">
             <h2>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -666,51 +260,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Medications & Schedules</td>
-                        <td class="status-yes">✓ Yes, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Tasks & Reminders</td>
-                        <td class="status-yes">✓ Yes, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Emergency Contacts</td>
-                        <td class="status-yes">✓ Yes, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Health Metrics</td>
-                        <td class="status-yes">✓ Yes, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Doctor Information</td>
-                        <td class="status-yes">✓ Yes, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Insurance Card Details</td>
-                        <td class="status-yes">✓ Text only, encrypted</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Insurance Card Photos</td>
-                        <td class="status-no">✗ Never saved</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
-                    <tr>
-                        <td>Prescription Photos</td>
-                        <td class="status-no">✗ Never saved</td>
-                        <td class="status-no">✗ Never</td>
-                    </tr>
+                    <tr><td>Medications & Schedules</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Tasks & Reminders</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Emergency Contacts</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Health Metrics</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Food & Water Logs</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Doctor Information</td><td class="status-yes">✓ Yes, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Insurance Card Details</td><td class="status-yes">✓ Text only, encrypted</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Insurance Card Photos</td><td class="status-no">✗ Never saved</td><td class="status-no">✗ Never</td></tr>
+                    <tr><td>Prescription Photos</td><td class="status-no">✗ Never saved</td><td class="status-no">✗ Never</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- What We Do / Don't Do -->
         <div class="section">
             <h2>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -734,7 +296,7 @@
                         <li>Show generic notifications only</li>
                         <li>Let you export your data anytime</li>
                         <li>Let you delete everything instantly</li>
-                        <li>Keep safety features free for all</li>
+                        <li>Keep all features free</li>
                     </ul>
                 </div>
                 <div class="dont-list">
@@ -745,19 +307,28 @@
                         What We DON'T Do
                     </h3>
                     <ul>
-                        <li>Send your data to our servers</li>
+                        <li>Send your app data to our servers</li>
                         <li>Sell or share your information</li>
                         <li>Store photos of cards or prescriptions</li>
                         <li>Show sensitive info in notifications</li>
-                        <li>Use third-party analytics trackers</li>
-                        <li>Connect to advertising networks</li>
+                        <li>Include analytics trackers in the app</li>
+                        <li>Connect to advertising networks in the app</li>
                         <li>Require an account to use the app</li>
                     </ul>
                 </div>
             </div>
+
+            <div class="info-box">
+                <h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    A note about our website
+                </h4>
+                <p>Our website (steadiday.com) uses Google Analytics and Google Ads to understand how visitors find our site. This is standard for websites and is completely separate from the SteadiDay app. The app itself contains no analytics, tracking, or advertising code. Your health data, medications, tasks, and all other app data never touches any analytics service.</p>
+            </div>
         </div>
 
-        <!-- Photo Privacy -->
         <div class="section">
             <h2>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -805,7 +376,6 @@
             </div>
         </div>
 
-        <!-- App Security Features -->
         <div class="section">
             <h2>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -848,7 +418,6 @@
             </div>
         </div>
 
-        <!-- Compliance -->
         <div class="section">
             <h2>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -874,20 +443,18 @@
             </div>
         </div>
 
-        <!-- CTA -->
         <div class="cta-section">
             <h2>Ready to Take Control?</h2>
             <p>Download SteadiDay and keep your health information private and secure.</p>
-            <a href="index.html#download" class="btn">
+            <a href="https://apps.apple.com/app/steadiday/id6758526744" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="22" height="22">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
-                Get SteadiDay
+                Download Free on the App Store
             </a>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
@@ -897,7 +464,13 @@
             <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#features">Features</a>
+                <a href="blog/index.html">Blog</a>
                 <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms</a>
                 <a href="index.html#contact">Contact</a>
             </div>
-            <p class="footer-copy">© 2025 SCM Solutions LLC. All rights reserved.</p>
+            <p class="footer-copy">&copy; 2026 SCM Solutions LLC. All rights reserved. Made with care in Virginia, USA.</p>
+        </div>
+    </footer>
+</body>
+</html>
