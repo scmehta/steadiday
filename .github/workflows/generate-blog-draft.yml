@@ -16,14 +16,12 @@ on:
         required: false
         type: boolean
         default: false
-
 permissions:
   contents: write
-
 env:
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   generate-blog:
     runs-on: ubuntu-latest
@@ -33,16 +31,13 @@ jobs:
         with:
           # Fetch latest to avoid push conflicts
           fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: |
           pip install anthropic python-dateutil
-
       - name: Determine generation mode
         id: mode
         run: |
@@ -64,7 +59,6 @@ jobs:
             echo "args=" >> $GITHUB_OUTPUT
             echo "Mode: Topic pool (Thursday schedule)"
           fi
-
       - name: Generate blog post
         run: |
           if [ -n "${{ steps.mode.outputs.args }}" ]; then
@@ -72,7 +66,6 @@ jobs:
           else
             python scripts/generate_blog.py
           fi
-
       - name: Commit and push to main
         run: |
           git config user.name "github-actions[bot]"
@@ -100,7 +93,6 @@ jobs:
             sleep 5
             git pull --rebase origin main
           done
-
       - name: Send email notification
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -120,6 +112,9 @@ jobs:
             URL: https://www.steadiday.com/blog/${{ env.BLOG_FILENAME }}
             
             The post is now live on your website.
+            
+            A Buttondown email draft has been created for this post.
+            Review and send it at: https://buttondown.com/emails
             
             ---
             This is an automated notification from your SteadiDay blog workflow.
