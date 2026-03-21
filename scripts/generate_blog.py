@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 """
-SteadiDay Blog Generator v3.0
-Changes from v2.0:
-- Fixed: empty string topic_override bug from scheduled workflow runs
-- Fixed: topic pool de-duplicated (removed entries that overlap with each other)
-- Fixed: tighter duplicate thresholds (0.55 title, 0.60 slug, 2-word keyword overlap)
-- Fixed: news-driven mode now uses Claude's web_search tool for real current events
-- Added: semantic similarity check using Claude for borderline cases
-- Added: git pull --rebase note in workflow to prevent push race conditions
-- Added: removed/retired topics that have already been published
+SteadiDay Blog Generator v3.1
+Changes from v3.0:
+- Added: RSS feed generation (blog/rss.xml) — auto-updates on every blog post
+- Added: Buttondown email newsletter draft creation via API
+- Added: RSS <link> tag in blog post HTML template <head>
 """
 
 import anthropic
@@ -18,6 +14,7 @@ import os
 import sys
 import glob
 import json
+import urllib.request
 from datetime import datetime
 from difflib import SequenceMatcher
 
@@ -367,6 +364,7 @@ def get_html_template():
     <meta name="robots" content="index, follow">
     <meta name="apple-itunes-app" content="app-id=6758526744">
     <link rel="canonical" href="{canonical_url}">
+    <link rel="alternate" type="application/rss+xml" title="SteadiDay Blog RSS" href="https://www.steadiday.com/blog/rss.xml">
     <meta property="og:title" content="{title}">
     <meta property="og:description" content="{meta_description}">
     <meta property="og:type" content="article">
@@ -645,6 +643,170 @@ def update_blog_index(post_data, filename):
     return False
 
 
+# ============================================================
+# NEW IN v3.1: RSS Feed Generation
+# ============================================================
+
+def generate_rss_feed(blog_dir="blog"):
+    """Generate/update blog/rss.xml from existing blog posts."""
+
+    rss_path = os.path.join(blog_dir, "rss.xml")
+
+    if not os.path.exists(blog_dir):
+        print(f"  Warning: {blog_dir} not found. Skipping RSS generation.")
+        return
+
+    # Collect all blog post HTML files (sorted newest first by filename)
+    posts = []
+    for fname in sorted(os.listdir(blog_dir), reverse=True):
+        if fname.endswith('.html') and fname != 'index.html':
+            filepath = os.path.join(blog_dir, fname)
+
+            # Skip redirect stubs (under 1KB)
+            try:
+                if os.path.getsize(filepath) < 1024:
+                    continue
+            except OSError:
+                continue
+
+            try:
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read(5000)
+            except Exception:
+                continue
+
+            # Extract title from <title> tag
+            title_match = re.search(r'<title>(.*?)\s*\|', content)
+            title = title_match.group(1).strip() if title_match else fname
+
+            # Extract meta description
+            desc_match = re.search(r'<meta\s+name="description"\s+content="(.*?)"', content)
+            description = desc_match.group(1) if desc_match else ""
+
+            # Extract date from filename (YYYY-MM-DD-slug.html)
+            date_match = re.match(r'(\d{4}-\d{2}-\d{2})', fname)
+            if date_match:
+                date_str = date_match.group(1)
+                date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+                pub_date = date_obj.strftime('%a, %d %b %Y 00:00:00 GMT')
+            else:
+                pub_date = ""
+
+            canonical_url = f"{BLOG_BASE_URL}/{fname}"
+
+            posts.append({
+                'title': title,
+                'description': description,
+                'url': canonical_url,
+                'pub_date': pub_date,
+            })
+
+    # Limit to most recent 20 posts
+    posts = posts[:20]
+
+    # Build RSS XML
+    now = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+    items_xml = ""
+    for post in posts:
+        # Escape XML special characters
+        safe_title = post['title'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+        safe_desc = post['description'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+        items_xml += f"""
+        <item>
+            <title>{safe_title}</title>
+            <link>{post['url']}</link>
+            <guid isPermaLink="true">{post['url']}</guid>
+            <description>{safe_desc}</description>
+            <pubDate>{post['pub_date']}</pubDate>
+        </item>"""
+
+    rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SteadiDay Blog — Health &amp; Wellness for Adults 50+</title>
+        <link>{WEBSITE_URL}/blog/index.html</link>
+        <description>Health and wellness tips for adults 50+. Expert advice on medication management, heart health, sleep, exercise, nutrition and mental wellness from the SteadiDay team.</description>
+        <language>en-us</language>
+        <lastBuildDate>{now}</lastBuildDate>
+        <atom:link href="{WEBSITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
+        <image>
+            <url>{WEBSITE_URL}/assets/icon.jpeg</url>
+            <title>SteadiDay Blog</title>
+            <link>{WEBSITE_URL}/blog/index.html</link>
+        </image>{items_xml}
+    </channel>
+</rss>"""
+
+    with open(rss_path, 'w', encoding='utf-8') as f:
+        f.write(rss_xml)
+
+    print(f"  RSS feed updated: {rss_path} ({len(posts)} posts)")
+
+
+# ============================================================
+# NEW IN v3.1: Buttondown Email Newsletter Notification
+# ============================================================
+
+def notify_buttondown(post_data, filename):
+    """Draft a Buttondown email notification for the new blog post.
+
+    Creates a DRAFT by default — you review and send from buttondown.com.
+    To auto-send instead, change "status": "draft" to "status": "about_to_send".
+    """
+
+    api_key = os.environ.get('BUTTONDOWN_API_KEY')
+    if not api_key:
+        print("  BUTTONDOWN_API_KEY not set. Skipping email notification.")
+        return
+
+    canonical_url = f"{BLOG_BASE_URL}/{filename}"
+
+    # Build a clean, simple email body in Markdown
+    email_body = f"""# {post_data['title']}
+
+{post_data['meta_description']}
+
+**[Read the full article →]({canonical_url})**
+
+---
+
+*You're receiving this because you subscribed to the SteadiDay Health & Wellness newsletter. New articles are published every Monday and Thursday.*
+
+*[Download SteadiDay free on the App Store]({APP_STORE_URL})*
+"""
+
+    payload = json.dumps({
+        "subject": f"New on SteadiDay: {post_data['title']}",
+        "body": email_body,
+        "status": "draft"
+    }).encode('utf-8')
+
+    req = urllib.request.Request(
+        "https://api.buttondown.com/v1/emails",
+        data=payload,
+        headers={
+            "Authorization": f"Token {api_key}",
+            "Content-Type": "application/json"
+        },
+        method="POST"
+    )
+
+    try:
+        with urllib.request.urlopen(req) as response:
+            if response.status in (200, 201):
+                print("  Buttondown draft created! Review and send at https://buttondown.com/emails")
+            else:
+                print(f"  Buttondown returned status {response.status}")
+    except urllib.error.HTTPError as e:
+        print(f"  Buttondown API error {e.code}: {e.reason}")
+    except Exception as e:
+        print(f"  Buttondown notification failed: {e}")
+
+
+# ============================================================
+
 def save_blog_post(html, filename):
     """Save blog post HTML file."""
     os.makedirs("blog", exist_ok=True)
@@ -681,7 +843,7 @@ def main():
         use_news = True
 
     print("=" * 60)
-    print("SteadiDay Blog Generator v3.0")
+    print("SteadiDay Blog Generator v3.1")
     print("=" * 60)
     print(f"Date: {datetime.now().strftime('%Y-%m-%d')}")
     print(f"Mode: {'Custom topic' if topic_override else 'News-driven' if use_news else 'Topic pool'}")
@@ -759,6 +921,14 @@ def main():
     print(f"  Saved: {fp}\n")
 
     update_blog_index(post, fn)
+
+    # v3.1: Generate RSS feed
+    print("\nGenerating RSS feed...")
+    generate_rss_feed()
+
+    # v3.1: Create Buttondown email draft
+    print("\nCreating Buttondown email draft...")
+    notify_buttondown(post, fn)
 
     set_github_env("BLOG_TITLE", post['title'])
     set_github_env("BLOG_FILENAME", fn)
