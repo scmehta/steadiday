@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17929124014"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17929124014');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why Vaccination Rates Are Dropping for Adults 50+ | SteadiDay Blog</title>
@@ -147,5 +155,24 @@
     </div></article>
     <div class="back-to-blog"><a href="index.html">&larr; See all blog posts</a></div>
     <footer class="footer"><p>&copy; 2026 SCM Solutions LLC. | <a href="https://www.steadiday.com">Home</a> | <a href="https://www.steadiday.com/privacy.html">Privacy</a> | <a href="https://www.steadiday.com/terms.html">Terms</a></p></footer>
+<!-- Google Ads: App Store click conversion tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track clicks on all App Store links as conversions
+    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17929124014/REPLACE_WITH_YOUR_CONVERSION_LABEL',
+            'event_callback': function() {
+              // Allow the link to proceed after tracking
+            }
+          });
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
