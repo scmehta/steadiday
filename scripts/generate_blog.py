@@ -112,29 +112,17 @@ def get_content_words(text):
 
 
 def is_duplicate(new_title, new_slug, existing_posts, threshold_title=0.55, threshold_slug=0.60):
-    """
-    Check if a new post would be a duplicate of an existing one.
-    Uses multiple signals: title similarity, slug similarity, keyword overlap.
-    Tighter thresholds than v2.0 to catch more near-duplicates.
-    """
     ntl = normalize_text(new_title)
     nsl = normalize_text(new_slug)
-
     for post in existing_posts:
         etl = normalize_text(post['title'])
         esl = normalize_text(post['slug'])
-
-        # Title similarity (SequenceMatcher)
         title_ratio = SequenceMatcher(None, ntl, etl).ratio()
         if title_ratio >= threshold_title:
             return (True, f"Title similarity {title_ratio:.2f}", post['filename'])
-
-        # Slug similarity
         slug_ratio = SequenceMatcher(None, nsl, esl).ratio()
         if slug_ratio >= threshold_slug:
             return (True, f"Slug similarity {slug_ratio:.2f}", post['filename'])
-
-        # Keyword overlap - catch 2+ shared content words
         new_words = get_content_words(new_title)
         existing_words = get_content_words(post['title'])
         if new_words and existing_words:
@@ -142,27 +130,18 @@ def is_duplicate(new_title, new_slug, existing_posts, threshold_title=0.55, thre
             min_len = min(len(new_words), len(existing_words))
             if min_len > 0:
                 overlap_ratio = len(overlap) / min_len
-                # 2+ overlapping content words with 60%+ overlap ratio
                 if len(overlap) >= 2 and overlap_ratio >= 0.6:
                     return (True, f"Keyword overlap ({overlap})", post['filename'])
-
     return (False, "", "")
 
 
 def check_semantic_duplicate(client, new_title, existing_posts):
-    """
-    Use Claude to check if the proposed topic is semantically too similar
-    to any existing post, even if the wording is different.
-    """
     if not existing_posts:
         return False, ""
-
     existing_titles = [p['title'] for p in existing_posts if p['title']]
     if not existing_titles:
         return False, ""
-
     titles_list = "\n".join([f"- {t}" for t in existing_titles])
-
     prompt = f"""You are a blog content deduplication checker.
 
 PROPOSED NEW POST TITLE: "{new_title}"
@@ -185,21 +164,14 @@ DUPLICATE OF: [existing title] - if it overlaps too much"""
         messages=[{"role": "user", "content": prompt}]
     ))
     result = msg.content[0].text.strip()
-
     if result.startswith("DUPLICATE"):
         return True, result
     return False, ""
 
 
 def generate_news_driven_topic(client, existing_posts):
-    """
-    Generate a fresh blog topic based on REAL current health news.
-    Uses Claude's web_search tool to find actual recent stories.
-    """
     existing_titles = [p['title'] for p in existing_posts if p['title']]
     avoid = "\n".join([f"- {t}" for t in existing_titles]) if existing_titles else "None yet."
-
-    # Use web search to find real current health news for seniors
     prompt = f"""Search for recent health news, studies, or guidelines relevant to adults over 50.
 Look for stories from the past 2 weeks from sources like NIH, CDC, Mayo Clinic, AARP, or major health journals.
 
@@ -225,8 +197,6 @@ SOURCE: [the news source or study you found]"""
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": prompt}]
     ))
-
-    # Extract text from response (may have multiple content blocks due to tool use)
     response_text = ""
     for block in msg.content:
         if hasattr(block, 'text'):
@@ -255,63 +225,38 @@ SOURCE: [the news source or study you found]"""
         "angle": angle.group(1).strip() if angle else "",
         "source": source.group(1).strip() if source else "",
     }
-
     print(f"  News source: {result.get('source', 'N/A')}")
     return result
 
 
-# ============================================================
-# TOPIC POOL - De-duplicated, each topic is distinct
-# ============================================================
-# Topics that have been published or are too similar to published
-# posts are commented out with the reason.
-# ============================================================
-
 TOPIC_CATEGORIES = [
-    # Exercise (distinct angles)
     {"topic": "Chair exercises you can do while watching TV", "keyword": "chair exercises seniors", "category": "Exercise"},
     {"topic": "Balance exercises to prevent falls at home", "keyword": "balance exercises seniors", "category": "Exercise"},
     {"topic": "Gentle yoga poses for beginners over 50", "keyword": "yoga seniors beginners", "category": "Exercise"},
     {"topic": "Walking for health: Getting started safely", "keyword": "walking exercise seniors", "category": "Exercise"},
-
-    # Medication Tips
     {"topic": "How to build a medication routine that sticks", "keyword": "medication routine tips", "category": "Medication Tips"},
     {"topic": "Understanding common medication side effects", "keyword": "medication side effects", "category": "Medication Tips"},
     {"topic": "Questions to ask your pharmacist at every visit", "keyword": "pharmacist questions seniors", "category": "Medication Tips"},
     {"topic": "How to safely store medications at home", "keyword": "medication storage tips", "category": "Medication Tips"},
-
-    # Heart Health
     {"topic": "Foods that naturally lower cholesterol", "keyword": "lower cholesterol naturally", "category": "Heart Health"},
     {"topic": "Warning signs your heart needs attention", "keyword": "heart warning signs seniors", "category": "Heart Health"},
-
-    # Brain Health
     {"topic": "5 brain exercises to keep your mind sharp", "keyword": "brain exercises seniors", "category": "Brain Health"},
     {"topic": "How social connection protects your brain", "keyword": "social connection brain health", "category": "Brain Health"},
     {"topic": "Crossword puzzles and games for cognitive health", "keyword": "brain games seniors", "category": "Brain Health"},
-
-    # Nutrition (distinct angles)
     {"topic": "The importance of staying hydrated as we age", "keyword": "hydration tips elderly", "category": "Nutrition"},
     {"topic": "Healthy snacks for sustained energy after 50", "keyword": "healthy snacks seniors", "category": "Nutrition"},
     {"topic": "Anti-inflammatory foods for joint pain relief", "keyword": "anti inflammatory foods seniors", "category": "Nutrition"},
     {"topic": "Meal planning made simple for one or two", "keyword": "meal planning seniors", "category": "Nutrition"},
     {"topic": "Calcium and vitamin D for strong bones", "keyword": "calcium vitamin D seniors", "category": "Nutrition"},
-
-    # Sleep
     {"topic": "Why sleep patterns change as we age", "keyword": "sleep changes aging", "category": "Sleep"},
     {"topic": "Creating a bedtime routine that works", "keyword": "bedtime routine seniors", "category": "Sleep"},
-
-    # Mental Wellness (distinct from breathing/mindfulness already published)
     {"topic": "Staying social: Why connection matters after 60", "keyword": "social connection elderly", "category": "Mental Wellness"},
     {"topic": "Dealing with loneliness after retirement", "keyword": "loneliness retirement seniors", "category": "Mental Wellness"},
     {"topic": "Gratitude journaling for better mental health", "keyword": "gratitude journal seniors", "category": "Mental Wellness"},
     {"topic": "How volunteering boosts your wellbeing", "keyword": "volunteering seniors benefits", "category": "Mental Wellness"},
-
-    # Safety
     {"topic": "How to prevent falls at home", "keyword": "fall prevention seniors", "category": "Safety"},
     {"topic": "Home safety checklist for aging in place", "keyword": "home safety seniors checklist", "category": "Safety"},
     {"topic": "Staying safe in extreme heat and cold", "keyword": "weather safety seniors", "category": "Safety"},
-
-    # Wellness (each is a distinct topic area)
     {"topic": "The health benefits of gardening after 50", "keyword": "gardening health benefits seniors", "category": "Wellness"},
     {"topic": "How pets improve health and happiness", "keyword": "pets health benefits seniors", "category": "Wellness"},
     {"topic": "Eye health tips to protect your vision", "keyword": "eye health tips seniors", "category": "Wellness"},
@@ -348,7 +293,7 @@ HERO_IMAGES = {
 }
 
 INLINE_IMAGES = {
-    "Mental Wellness": [{"url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", "alt": "Person relaxing peacefully"}, {"url": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80", "alt": "Peaceful beach scene"}, {"url": "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80", "alt": "Meditation hands"}, {"url": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80", "alt": "Sunlight through trees"}, {"url": "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=800&q=80", "alt": "Calm space with plants"}],
+    "Mental Wellness": [{"url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", "alt": "Person relaxing peacefully"}, {"url": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80", "alt": "Peaceful beach scene"}, {"url": "https://images.unsplash.com/photo-1545205597-3d9d02c29547?w=800&q=80", "alt": "Meditation hands"}, {"url": "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80", "alt": "Sunlight through trees"}, {"url": "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=800&q=80", "alt": "Calm space with plants"}],
     "Medication Tips": [{"url": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80", "alt": "Pill organizer"}, {"url": "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=800&q=80", "alt": "Healthcare professional"}, {"url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80", "alt": "Healthy lifestyle"}, {"url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80", "alt": "Morning routine"}, {"url": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80", "alt": "Doctor consultation"}],
     "Healthy Aging": [{"url": "https://images.unsplash.com/photo-1516307365426-bea591f05011?w=800&q=80", "alt": "Active senior outdoors"}, {"url": "https://images.unsplash.com/photo-1559234938-b60fff04894d?w=800&q=80", "alt": "Healthy choices"}, {"url": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80", "alt": "Couple walking"}, {"url": "https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=800&q=80", "alt": "Family moment"}, {"url": "https://images.unsplash.com/photo-1454418747937-bd95bb945625?w=800&q=80", "alt": "Active aging"}],
     "Exercise": [{"url": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80", "alt": "Stretching at home"}, {"url": "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=800&q=80", "alt": "Resistance training"}, {"url": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&q=80", "alt": "Walking outdoors"}, {"url": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80", "alt": "Group fitness"}, {"url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80", "alt": "Yoga exercises"}],
@@ -387,6 +332,15 @@ def get_html_template():
     return '''<!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- GTAG_INJECTED -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17929124014"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'AW-17929124014');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} | SteadiDay Blog</title>
@@ -469,6 +423,22 @@ def get_html_template():
     </div></article>
     <div class="back-to-blog"><a href="index.html">&larr; See all blog posts</a></div>
     <footer class="footer"><p>&copy; {year} SCM Solutions LLC. | <a href="{website_url}">Home</a> | <a href="{website_url}/privacy.html">Privacy</a> | <a href="{website_url}/terms.html">Terms</a></p></footer>
+<!-- GTAG_CONVERSION_INJECTED -->
+<!-- Google Ads: App Store click conversion tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {{
+    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+    links.forEach(function(link) {{
+      link.addEventListener('click', function() {{
+        gtag('event', 'conversion', {{
+          'send_to': 'AW-17929124014/gDbcCLbkio4cEK7xouVC',
+          'value': 1.0,
+          'currency': 'USD'
+        }});
+      }});
+    }});
+  }});
+</script>
 </body>
 </html>
 '''
@@ -489,12 +459,7 @@ def get_video_for_category(category):
 
 
 def find_youtube_video(client, topic, category):
-    """Use Claude with web search to find a current, working YouTube video for the blog post.
-
-    Returns a dict with id, title, channel -- or None if search fails.
-    Falls back gracefully so the caller can use the hardcoded list instead.
-    """
-
+    """Use Claude with web search to find a current, working YouTube video."""
     prompt = f"""Find ONE YouTube video that is relevant to this blog topic: "{topic}"
 Category: {category}
 
@@ -519,31 +484,24 @@ VIDEO_ID: NONE"""
             tools=[{"type": "web_search_20250305", "name": "web_search"}],
             messages=[{"role": "user", "content": prompt}]
         ))
-
         response_text = ""
         for block in msg.content:
             if hasattr(block, 'text'):
                 response_text += block.text
-
         vid_match = re.search(r'VIDEO_ID:\s*(\S+)', response_text)
         title_match = re.search(r'VIDEO_TITLE:\s*(.+?)(?:\n|$)', response_text)
         channel_match = re.search(r'VIDEO_CHANNEL:\s*(.+?)(?:\n|$)', response_text)
-
         if vid_match and vid_match.group(1).strip() != "NONE":
             video_id = vid_match.group(1).strip()
-            # Basic validation: YouTube video IDs are 11 characters
-            # (may contain letters, digits, hyphens, underscores)
             if 10 <= len(video_id) <= 12:
                 return {
                     "id": video_id,
                     "title": title_match.group(1).strip() if title_match else "Health & Wellness Tips",
                     "channel": channel_match.group(1).strip() if channel_match else "Health Channel"
                 }
-
         print("  Could not find a dynamic video, using fallback")
     except Exception as e:
         print(f"  Video search failed: {e}, using fallback")
-
     return None
 
 
@@ -551,7 +509,6 @@ def select_unique_topic(existing_posts):
     """Select a topic from the pool that hasn't been covered yet."""
     random.shuffle(TOPIC_CATEGORIES)
     for td in TOPIC_CATEGORIES:
-        # Check against existing posts
         slug_words = re.sub(r'[^a-z0-9\s]', '', td['topic'].lower()).split()[:5]
         test_slug = '-'.join(slug_words)
         dup, reason, match = is_duplicate(td['topic'], test_slug, existing_posts)
@@ -567,7 +524,6 @@ def generate_blog_post(topic_data, existing_posts, client):
     category = topic_data.get("category", "Wellness")
 
     images = get_images_for_category(category)
-    # Try to find a fresh, working YouTube video via web search
     print("  Searching for relevant YouTube video...")
     video = find_youtube_video(client, topic, category)
     if video is None:
@@ -583,7 +539,6 @@ def generate_blog_post(topic_data, existing_posts, client):
     existing_titles = [p['title'] for p in existing_posts if p['title']]
     avoid = "\n".join([f"- {t}" for t in existing_titles[:20]]) if existing_titles else "None."
 
-    # Include angle/source if available (news-driven topics)
     angle_instruction = ""
     if topic_data.get('angle'):
         angle_instruction = f"\nANGLE TO TAKE: {topic_data['angle']}"
@@ -624,40 +579,31 @@ CONTENT:
     ))
     r = msg.content[0].text
 
-    # Parse response
     title_match = re.search(r'TITLE:\s*(.+?)(?:\n|$)', r)
     title = title_match.group(1).strip() if title_match else topic
-
     meta_match = re.search(r'META_DESCRIPTION:\s*(.+?)(?:\n|$)', r)
     meta = meta_match.group(1).strip() if meta_match else f"Tips about {topic} for adults 50+"
-
     kws_match = re.search(r'KEYWORDS:\s*(.+?)(?:\n|$)', r)
     kws = kws_match.group(1).strip() if kws_match else keyword
-
     rt_match = re.search(r'READ_TIME:\s*(\d+)', r)
     rt = rt_match.group(1) if rt_match else "7"
-
     content_match = re.search(r'CONTENT:\s*(.+)', r, re.DOTALL)
     content = content_match.group(1).strip() if content_match else r
 
-    # Enforce title length
     if len(title) > 55:
         title = title[:52].rsplit(' ', 1)[0] + "..."
 
-    # Replace image placeholders
     for i, img in enumerate(images["inline"]):
         content = content.replace(
             f"[IMAGE_{i+1}]",
             f'<figure class="article-image"><img src="{img["url"]}" alt="{img["alt"]}" loading="lazy"><figcaption>{img["alt"]}</figcaption></figure>'
         )
 
-    # Replace video placeholder
     content = content.replace(
         "[VIDEO]",
         f'<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/{video["id"]}" title="{video["title"]}" frameborder="0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="video-caption">Video: {video["title"]} -- {video["channel"]}</p>'
     )
 
-    # Clean up any remaining placeholders
     content = re.sub(r'\[IMAGE_\d+\]', '', content)
     content = content.replace("[VIDEO]", '')
 
@@ -707,14 +653,11 @@ def update_blog_index(post_data, filename):
     if not os.path.exists(path):
         print(f"Warning: {path} not found")
         return False
-
     with open(path, 'r', encoding='utf-8') as f:
         content = f.read()
-
     cat = post_data.get('category', 'Wellness')
     img = CATEGORY_IMAGES.get(cat, CATEGORY_IMAGES['Wellness'])
     d = datetime.strptime(post_data['date'], '%Y-%m-%d').strftime('%B %d, %Y')
-
     entry = f'''<article class="blog-card">
                 <div class="blog-card-image" style="background-image: url('{img}');"><span class="blog-card-tag">{cat}</span></div>
                 <div class="blog-card-content">
@@ -723,65 +666,44 @@ def update_blog_index(post_data, filename):
                     <p class="blog-excerpt">{post_data['meta_description']}</p>
                     <a href="{filename}" class="read-more">Read full article<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                 </div></article>\n            '''
-
     marker = "<!--BLOG_ENTRIES_START-->"
     if marker in content:
-        # Demote current featured card to regular
         if 'class="blog-card featured"' in content:
             content = content.replace('class="blog-card featured"', 'class="blog-card"', 1)
-        # Make new entry the featured card
         entry = entry.replace('class="blog-card"', 'class="blog-card featured"')
         content = content.replace(marker, marker + "\n            " + entry)
         with open(path, 'w', encoding='utf-8') as f:
             f.write(content)
         print(f"Updated {path}")
         return True
-
     print(f"Warning: marker not found in {path}")
     return False
 
 
-# ============================================================
-# NEW IN v3.1: RSS Feed Generation
-# ============================================================
-
 def generate_rss_feed(blog_dir="blog"):
     """Generate/update blog/rss.xml from existing blog posts."""
-
     rss_path = os.path.join(blog_dir, "rss.xml")
-
     if not os.path.exists(blog_dir):
         print(f"  Warning: {blog_dir} not found. Skipping RSS generation.")
         return
-
-    # Collect all blog post HTML files (sorted newest first by filename)
     posts = []
     for fname in sorted(os.listdir(blog_dir), reverse=True):
         if fname.endswith('.html') and fname != 'index.html':
             filepath = os.path.join(blog_dir, fname)
-
-            # Skip redirect stubs (under 1KB)
             try:
                 if os.path.getsize(filepath) < 1024:
                     continue
             except OSError:
                 continue
-
             try:
                 with open(filepath, 'r', encoding='utf-8') as f:
                     content = f.read(5000)
             except Exception:
                 continue
-
-            # Extract title from <title> tag
             title_match = re.search(r'<title>(.*?)\s*\|', content)
             title = title_match.group(1).strip() if title_match else fname
-
-            # Extract meta description
             desc_match = re.search(r'<meta\s+name="description"\s+content="(.*?)"', content)
             description = desc_match.group(1) if desc_match else ""
-
-            # Extract date from filename (YYYY-MM-DD-slug.html)
             date_match = re.match(r'(\d{4}-\d{2}-\d{2})', fname)
             if date_match:
                 date_str = date_match.group(1)
@@ -789,28 +711,14 @@ def generate_rss_feed(blog_dir="blog"):
                 pub_date = date_obj.strftime('%a, %d %b %Y 00:00:00 GMT')
             else:
                 pub_date = ""
-
             canonical_url = f"{BLOG_BASE_URL}/{fname}"
-
-            posts.append({
-                'title': title,
-                'description': description,
-                'url': canonical_url,
-                'pub_date': pub_date,
-            })
-
-    # Limit to most recent 20 posts
+            posts.append({'title': title, 'description': description, 'url': canonical_url, 'pub_date': pub_date})
     posts = posts[:20]
-
-    # Build RSS XML
     now = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
-
     items_xml = ""
     for post in posts:
-        # Escape XML special characters
         safe_title = post['title'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
         safe_desc = post['description'].replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-
         items_xml += f"""
         <item>
             <title>{safe_title}</title>
@@ -819,7 +727,6 @@ def generate_rss_feed(blog_dir="blog"):
             <description>{safe_desc}</description>
             <pubDate>{post['pub_date']}</pubDate>
         </item>"""
-
     rss_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
@@ -836,32 +743,18 @@ def generate_rss_feed(blog_dir="blog"):
         </image>{items_xml}
     </channel>
 </rss>"""
-
     with open(rss_path, 'w', encoding='utf-8') as f:
         f.write(rss_xml)
-
     print(f"  RSS feed updated: {rss_path} ({len(posts)} posts)")
 
 
-# ============================================================
-# NEW IN v3.1: Buttondown Email Newsletter Notification
-# ============================================================
-
 def notify_buttondown(post_data, filename):
-    """Draft a Buttondown email notification for the new blog post.
-
-    Creates a DRAFT by default -- you review and send from buttondown.com.
-    To auto-send instead, change "status": "draft" to "status": "about_to_send".
-    """
-
+    """Draft a Buttondown email notification for the new blog post."""
     api_key = os.environ.get('BUTTONDOWN_API_KEY')
     if not api_key:
         print("  BUTTONDOWN_API_KEY not set. Skipping email notification.")
         return
-
     canonical_url = f"{BLOG_BASE_URL}/{filename}"
-
-    # Build a clean, simple email body in Markdown
     email_body = f"""# {post_data['title']}
 
 {post_data['meta_description']}
@@ -874,13 +767,11 @@ def notify_buttondown(post_data, filename):
 
 *[Download SteadiDay free on the App Store]({APP_STORE_URL})*
 """
-
     payload = json.dumps({
         "subject": f"New on SteadiDay: {post_data['title']}",
         "body": email_body,
         "status": "draft"
     }).encode('utf-8')
-
     req = urllib.request.Request(
         "https://api.buttondown.com/v1/emails",
         data=payload,
@@ -890,7 +781,6 @@ def notify_buttondown(post_data, filename):
         },
         method="POST"
     )
-
     try:
         with urllib.request.urlopen(req) as response:
             if response.status in (200, 201):
@@ -902,8 +792,6 @@ def notify_buttondown(post_data, filename):
     except Exception as e:
         print(f"  Buttondown notification failed: {e}")
 
-
-# ============================================================
 
 def save_blog_post(html, filename):
     """Save blog post HTML file."""
@@ -925,23 +813,19 @@ def set_github_env(key, value):
 
 
 def main():
-    # Fix: properly handle empty string from workflow_dispatch
     topic_override = None
     use_news = False
-
     if len(sys.argv) > 1:
         arg = sys.argv[1].strip()
         if arg == "--news":
             use_news = True
-        elif arg:  # Only set override if non-empty
+        elif arg:
             topic_override = arg
-
-    # Also check for --news as second arg
     if len(sys.argv) > 2 and sys.argv[2].strip() == "--news":
         use_news = True
 
     print("=" * 60)
-    print("SteadiDay Blog Generator v3.4")
+    print("SteadiDay Blog Generator v3.5")
     print("=" * 60)
     print(f"Date: {datetime.now().strftime('%Y-%m-%d')}")
     print(f"Mode: {'Custom topic' if topic_override else 'News-driven' if use_news else 'Topic pool'}")
@@ -981,12 +865,9 @@ def main():
     print("\nGenerating content...")
     post = generate_blog_post(td, existing, client)
 
-    # Duplicate check on generated title
     slug = '-'.join(re.sub(r'[^a-z0-9\s]', '', post['title'].lower()).split()[:5])
     dup, reason, match = is_duplicate(post['title'], slug, existing)
-
     if not dup:
-        # Also do semantic check
         sem_dup, sem_reason = check_semantic_duplicate(client, post['title'], existing)
         if sem_dup:
             dup = True
@@ -1020,11 +901,9 @@ def main():
 
     update_blog_index(post, fn)
 
-    # v3.1: Generate RSS feed
     print("\nGenerating RSS feed...")
     generate_rss_feed()
 
-    # v3.1: Create Buttondown email draft
     print("\nCreating Buttondown email draft...")
     notify_buttondown(post, fn)
 
