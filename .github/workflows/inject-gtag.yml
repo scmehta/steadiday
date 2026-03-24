@@ -1,160 +1,40 @@
-#!/usr/bin/env python3
-"""
-inject_gtag.py — Inject Google Ads tracking into all HTML files.
-
-Injects TWO things:
-  1. The base Google tag (gtag.js) in <head> — for page view tracking
-  2. An App Store click conversion listener before </body> — tracks clicks on App Store links
-
-Usage:
-    python scripts/inject_gtag.py [directory]
-
-Safe to run multiple times — uses marker strings to avoid double-injection.
-"""
-
-import os
-import sys
-import re
-
-# ── Configuration ───────────────────────────────────────────────────────────
-CONVERSION_ID = "AW-17929124014"
-CONVERSION_LABEL = "AW-17929124014/gDbcCLbkio4cEK7xouVC"
-
-# ── Snippet 1: Base Google Tag (goes in <head>) ────────────────────────────
-GTAG_MARKER = "<!-- GTAG_INJECTED -->"
-GTAG_SNIPPET = f"""{GTAG_MARKER}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={CONVERSION_ID}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{CONVERSION_ID}');
-</script>"""
-
-# ── Snippet 2: App Store Click Conversion (goes before </body>) ────────────
-CONVERSION_MARKER = "<!-- GTAG_CONVERSION_INJECTED -->"
-CONVERSION_SNIPPET = f"""{CONVERSION_MARKER}
-<!-- Google Ads: App Store click conversion tracking -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {{
-    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
-    links.forEach(function(link) {{
-      link.addEventListener('click', function() {{
-        gtag('event', 'conversion', {{
-          'send_to': '{CONVERSION_LABEL}',
-          'value': 1.0,
-          'currency': 'USD'
-        }});
-      }});
-    }});
-  }});
-</script>"""
-
-
-def inject_head_tag(html_content):
-    """Inject base gtag snippet after <head> if not already present."""
-    if GTAG_MARKER in html_content:
-        return html_content, False
-
-    pattern = re.compile(r'(<head[^>]*>)', re.IGNORECASE)
-    match = pattern.search(html_content)
-    if not match:
-        return html_content, False
-
-    insert_pos = match.end()
-    html_content = html_content[:insert_pos] + "\n" + GTAG_SNIPPET + "\n" + html_content[insert_pos:]
-    return html_content, True
-
-
-def inject_conversion_tag(html_content):
-    """Inject conversion click listener before </body> if not already present."""
-    if CONVERSION_MARKER in html_content:
-        return html_content, False
-
-    pattern = re.compile(r'(</body>)', re.IGNORECASE)
-    match = pattern.search(html_content)
-    if not match:
-        return html_content, False
-
-    insert_pos = match.start()
-    html_content = html_content[:insert_pos] + "\n" + CONVERSION_SNIPPET + "\n" + html_content[insert_pos:]
-    return html_content, True
-
-
-def process_directory(root_dir):
-    """Walk through all HTML files and inject tags."""
-    results = {"head_injected": [], "conversion_injected": [], "skipped": [], "errors": []}
-
-    for dirpath, dirnames, filenames in os.walk(root_dir):
-        dirnames[:] = [d for d in dirnames if not d.startswith('.') and d != 'node_modules']
-
-        for filename in filenames:
-            if not filename.endswith('.html'):
-                continue
-
-            filepath = os.path.join(dirpath, filename)
-
-            try:
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    content = f.read()
-
-                content, head_changed = inject_head_tag(content)
-                content, conv_changed = inject_conversion_tag(content)
-
-                if head_changed or conv_changed:
-                    with open(filepath, 'w', encoding='utf-8') as f:
-                        f.write(content)
-
-                    if head_changed:
-                        results["head_injected"].append(filepath)
-                    if conv_changed:
-                        results["conversion_injected"].append(filepath)
-                else:
-                    results["skipped"].append(filepath)
-
-            except Exception as e:
-                results["errors"].append((filepath, str(e)))
-
-    return results
-
-
-def main():
-    root_dir = sys.argv[1] if len(sys.argv) > 1 else "."
-
-    if not os.path.isdir(root_dir):
-        print(f"Error: '{root_dir}' is not a directory.")
-        sys.exit(1)
-
-    print(f"Scanning '{root_dir}' for HTML files...")
-    results = process_directory(root_dir)
-
-    if results["head_injected"]:
-        print(f"\n✅ Injected base Google tag into {len(results['head_injected'])} file(s):")
-        for f in results["head_injected"]:
-            print(f"   {f}")
-
-    if results["conversion_injected"]:
-        print(f"\n✅ Injected conversion click tracker into {len(results['conversion_injected'])} file(s):")
-        for f in results["conversion_injected"]:
-            print(f"   {f}")
-
-    if results["skipped"]:
-        print(f"\n⏭️  Skipped {len(results['skipped'])} file(s) (already have tags):")
-        for f in results["skipped"]:
-            print(f"   {f}")
-
-    if results["errors"]:
-        print(f"\n❌ Errors in {len(results['errors'])} file(s):")
-        for f, err in results["errors"]:
-            print(f"   {f}: {err}")
-
-    total_changes = len(results["head_injected"]) + len(results["conversion_injected"])
-    if total_changes == 0:
-        print("\nNo changes needed — all files already have both tags.")
-    else:
-        print(f"\nDone! {total_changes} injection(s) made.")
-
-
-if __name__ == "__main__":
-    main()
+name: Inject Google Ads Tag
+on:
+  push:
+    paths:
+      - '**.html'
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run injection script
+        run: python scripts/inject_gtag.py .
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Auto-inject Google Ads gtag + conversion tracking"
+          git pull --rebase origin main
+          for i in 1 2 3; do
+            if git push; then
+              echo "Push successful on attempt $i"
+              break
+            fi
+            echo "Push failed on attempt $i, retrying..."
+            sleep 5
+            git pull --rebase origin main
+          done
