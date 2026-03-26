@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 “””
-SteadiDay Blog Generator v3.5
-Changes from v3.4:
+SteadiDay Blog Generator v3.6
+Changes from v3.5:
 
+- Fixed: Added verify_youtube_video() that checks YouTube oEmbed API before embedding
+- Fixed: Fallback videos from CATEGORY_VIDEOS are now verified before use (skips dead/private videos)
+- Fixed: If no working video is found, blog publishes without a video instead of showing “Video unavailable”
+- Fixed: Dynamically-found videos are also verified before embedding
+  Changes from v3.4:
 - Fixed: YouTube embeds now use youtube.com instead of youtube-nocookie.com
   (youtube-nocookie.com is blocked by Brave, many ad blockers, and some CSPs)
 - Fixed: Removed loading=“lazy” from video iframes (caused iframes to never load
@@ -462,6 +467,21 @@ return {
 def get_video_for_category(category):
 return random.choice(CATEGORY_VIDEOS.get(category, CATEGORY_VIDEOS[‘Wellness’]))
 
+def verify_youtube_video(video_id):
+“”“Check if a YouTube video is publicly available using the oEmbed API.
+Returns True if available, False if unavailable/private/deleted.”””
+url = f”https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json”
+try:
+req = urllib.request.Request(url, headers={“User-Agent”: “Mozilla/5.0”})
+with urllib.request.urlopen(req, timeout=10) as resp:
+return resp.status == 200
+except urllib.error.HTTPError:
+return False
+except Exception as e:
+print(f”  Video verification request failed: {e}”)
+# If we can’t reach YouTube to verify, assume it’s okay rather than blocking
+return True
+
 def find_youtube_video(client, topic, category):
 “”“Use Claude with web search to find a current, working YouTube video.”””
 prompt = f””“Find ONE YouTube video that is relevant to this blog topic: “{topic}”
@@ -500,11 +520,15 @@ try:
     if vid_match and vid_match.group(1).strip() != "NONE":
         video_id = vid_match.group(1).strip()
         if 10 <= len(video_id) <= 12:
-            return {
-                "id": video_id,
-                "title": title_match.group(1).strip() if title_match else "Health & Wellness Tips",
-                "channel": channel_match.group(1).strip() if channel_match else "Health Channel"
-            }
+            # Verify the video is actually available before using it
+            if verify_youtube_video(video_id):
+                return {
+                    "id": video_id,
+                    "title": title_match.group(1).strip() if title_match else "Health & Wellness Tips",
+                    "channel": channel_match.group(1).strip() if channel_match else "Health Channel"
+                }
+            else:
+                print(f"  Dynamic video {video_id} is unavailable, using fallback")
     print("  Could not find a dynamic video, using fallback")
 except Exception as e:
     print(f"  Video search failed: {e}, using fallback")
@@ -533,8 +557,18 @@ images = get_images_for_category(category)
 print("  Searching for relevant YouTube video...")
 video = find_youtube_video(client, topic, category)
 if video is None:
-    video = get_video_for_category(category)
-    print(f"  Using fallback video: {video['title']}")
+    # Try fallback videos, verifying each one is still available
+    fallback_videos = CATEGORY_VIDEOS.get(category, CATEGORY_VIDEOS['Wellness'])[:]
+    random.shuffle(fallback_videos)
+    for fallback in fallback_videos:
+        if verify_youtube_video(fallback["id"]):
+            video = fallback
+            print(f"  Using verified fallback video: {video['title']}")
+            break
+        else:
+            print(f"  Fallback video '{fallback['title']}' ({fallback['id']}) is unavailable, skipping")
+    if video is None:
+        print("  No working video found. Blog will be published without a video.")
 else:
     print(f"  Found video: {video['title']} by {video['channel']}")
 num_images = len(images["inline"])
@@ -610,10 +644,11 @@ for i, img in enumerate(images["inline"]):
         f'<figure class="article-image"><img src="{img["url"]}" alt="{img["alt"]}" loading="lazy"><figcaption>{img["alt"]}</figcaption></figure>'
     )
 
-content = content.replace(
-    "[VIDEO]",
-    f'<div class="video-container"><iframe src="https://www.youtube.com/embed/{video["id"]}" title="{video["title"]}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-caption">Video: {video["title"]} -- {video["channel"]}</p>'
-)
+if video:
+    content = content.replace(
+        "[VIDEO]",
+        f'<div class="video-container"><iframe src="https://www.youtube.com/embed/{video["id"]}" title="{video["title"]}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-caption">Video: {video["title"]} -- {video["channel"]}</p>'
+    )
 
 content = re.sub(r'\[IMAGE_\d+\]', '', content)
 content = content.replace("[VIDEO]", '')
