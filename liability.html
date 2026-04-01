@@ -10,6 +10,15 @@
   gtag('config', 'AW-17929124014');
 </script>
 
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF8H890XTV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LF8H890XTV');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liability Waiver – SteadiDay</title>
@@ -45,311 +54,96 @@
             --radius-lg: 20px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 18px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 18px; }
         body {
             font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--charcoal);
-            background: var(--cream);
+            font-size: 1.125rem; line-height: 1.8; color: var(--charcoal); background: var(--cream);
             -webkit-font-smoothing: antialiased;
         }
+        h1, h2, h3 { font-family: 'Merriweather', Georgia, serif; font-weight: 700; line-height: 1.3; color: var(--navy); }
+        a { color: var(--teal); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--teal-dark); }
 
-        h1, h2, h3 {
-            font-family: 'Merriweather', Georgia, serif;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--navy);
-        }
-
-        a {
-            color: var(--teal);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--teal-dark);
-        }
-
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            background: rgba(255, 251, 245, 0.97);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(30, 58, 95, 0.08);
-            box-shadow: var(--shadow-soft);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0;
+            background: rgba(255, 251, 245, 0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.08); box-shadow: var(--shadow-soft);
         }
+        .nav-container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .nav-logo img { width: 48px; height: 48px; border-radius: 12px; box-shadow: var(--shadow-soft); }
+        .nav-logo span { font-family: 'Merriweather', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+        .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--teal); font-weight: 600; }
+        .nav-back:hover { color: var(--teal-dark); }
 
-        .nav-container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .nav-logo span {
-            font-family: 'Merriweather', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--navy);
-        }
-
-        .nav-back {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--teal);
-            font-weight: 600;
-        }
-
-        .nav-back:hover {
-            color: var(--teal-dark);
-        }
-
-        /* Main Content */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .page-header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .page-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .last-updated {
-            color: var(--charcoal-light);
-            font-size: 1rem;
-        }
+        main { max-width: 800px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+        .page-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid var(--gold); }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .last-updated { color: var(--charcoal-light); font-size: 1rem; }
 
         .important-notice {
-            background: #FFF4E5;
-            border: 2px solid var(--gold);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            margin-bottom: 2.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+            background: #FFF4E5; border: 2px solid var(--gold); border-radius: var(--radius-lg);
+            padding: 1.5rem; margin-bottom: 2.5rem; display: flex; gap: 1rem; align-items: flex-start;
         }
+        .important-notice svg { flex-shrink: 0; color: var(--gold); }
+        .important-notice p { margin: 0; font-weight: 600; color: var(--navy); }
 
-        .important-notice svg {
-            flex-shrink: 0;
-            color: var(--gold);
-        }
-
-        .important-notice p {
-            margin: 0;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .section {
-            margin-bottom: 2.5rem;
-        }
-
-        .section h2 {
-            font-size: 1.35rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-        }
-
-        .section p {
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        .section ul {
-            margin: 1rem 0 1rem 1.5rem;
-        }
-
-        .section li {
-            margin-bottom: 0.5rem;
-            color: var(--charcoal);
-        }
+        .section { margin-bottom: 2.5rem; }
+        .section h2 { font-size: 1.35rem; margin-bottom: 1rem; color: var(--navy); }
+        .section p { margin-bottom: 1rem; color: var(--charcoal); }
+        .section ul { margin: 1rem 0 1rem 1.5rem; }
+        .section li { margin-bottom: 0.5rem; color: var(--charcoal); }
 
         .warning-box {
-            background: #FFF4E5;
-            border-left: 4px solid var(--gold);
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin: 1.5rem 0;
+            background: #FFF4E5; border-left: 4px solid var(--gold);
+            padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 1.5rem 0;
         }
-
-        .warning-box p {
-            margin: 0;
-            color: var(--navy);
-        }
-
-        .warning-box strong {
-            color: #B7791F;
-        }
+        .warning-box p { margin: 0; color: var(--navy); }
+        .warning-box strong { color: #B7791F; }
 
         .critical-box {
-            background: var(--red-light);
-            border-left: 4px solid var(--red);
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin: 1.5rem 0;
+            background: var(--red-light); border-left: 4px solid var(--red);
+            padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 1.5rem 0;
         }
-
-        .critical-box p {
-            margin: 0;
-            color: var(--navy);
-        }
-
-        .critical-box strong {
-            color: var(--red);
-        }
+        .critical-box p { margin: 0; color: var(--navy); }
+        .critical-box strong { color: var(--red); }
 
         .highlight-box {
-            background: var(--teal-light);
-            border-left: 4px solid var(--teal);
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin: 1.5rem 0;
+            background: var(--teal-light); border-left: 4px solid var(--teal);
+            padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 1.5rem 0;
         }
-
-        .highlight-box p {
-            margin: 0;
-            color: var(--navy);
-        }
+        .highlight-box p { margin: 0; color: var(--navy); }
 
         .contact-box {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-medium);
-            margin-top: 3rem;
+            background: var(--white); padding: 2rem; border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium); margin-top: 3rem;
         }
-
-        .contact-box h2 {
-            margin-bottom: 1rem;
-        }
-
-        .contact-box p {
-            margin-bottom: 0.5rem;
-        }
-
+        .contact-box h2 { margin-bottom: 1rem; }
+        .contact-box p { margin-bottom: 0.5rem; }
         .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--teal);
-            color: var(--white);
-            padding: 0.75rem 1.25rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            transition: all 0.2s ease;
+            display: inline-flex; align-items: center; gap: 0.5rem; background: var(--teal); color: var(--white);
+            padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-weight: 600; transition: all 0.2s ease;
         }
+        .contact-link:hover { background: var(--teal-dark); color: var(--white); transform: translateY(-2px); }
 
-        .contact-link:hover {
-            background: var(--teal-dark);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 0;
-            background: var(--charcoal);
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-copy {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
+        footer { padding: 2rem 0; background: var(--charcoal); text-align: center; margin-top: 4rem; }
+        .footer-content { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-copy { color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; }
 
         @media (max-width: 768px) {
-            html {
-                font-size: 16px;
-            }
-
-            main {
-                padding: 7rem 1.5rem 3rem;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .important-notice {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .important-notice svg {
-                margin: 0 auto;
-            }
+            html { font-size: 16px; }
+            main { padding: 7rem 1.5rem 3rem; }
+            .page-header h1 { font-size: 2rem; }
+            .important-notice { flex-direction: column; text-align: center; }
+            .important-notice svg { margin: 0 auto; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -365,11 +159,10 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main>
         <div class="page-header">
             <h1>Liability Waiver</h1>
-            <p class="last-updated">Last Updated: December 14, 2025</p>
+            <p class="last-updated">Last Updated: April 1, 2026</p>
         </div>
 
         <div class="important-notice">
@@ -389,19 +182,19 @@
 
         <div class="section">
             <h2>No Medical Advice or Treatment</h2>
-            <p>The app does not provide medical advice, diagnosis, or treatment. Any health information you receive through the app, including data from Apple Health or other integrations, is for <strong>informational purposes only</strong>.</p>
+            <p>The app does not provide medical advice, diagnosis, or treatment. Any health information you receive through the app, including data from Apple Health, Health Connect, or other integrations, is for <strong>informational purposes only</strong>.</p>
             <p>Always consult your doctor, pharmacist, or other qualified healthcare provider before making medical decisions.</p>
         </div>
 
         <div class="section">
-            <h2>Apple Health Data Disclaimer</h2>
-            <p>When you enable Apple Health integration, you acknowledge and accept that:</p>
+            <h2>Health Data Disclaimer</h2>
+            <p>When you enable health integrations (such as Apple Health on iPhone or Health Connect on Android), you acknowledge and accept that:</p>
             <ul>
-                <li>All Apple Health data is displayed for informational and wellness tracking purposes only</li>
-                <li>We do not verify, validate, or guarantee the accuracy of Apple Health data</li>
-                <li>Apple Health data should not be used as the sole basis for medical decisions</li>
-                <li>We are not responsible for the accuracy, completeness, or reliability of data from Apple Health</li>
-                <li>We disclaim all liability for health outcomes or medical decisions based on Apple Health data</li>
+                <li>All health data is displayed for informational and wellness tracking purposes only</li>
+                <li>We do not verify, validate, or guarantee the accuracy of health data from any source</li>
+                <li>Health data should not be used as the sole basis for medical decisions</li>
+                <li>We are not responsible for the accuracy, completeness, or reliability of data from health platforms</li>
+                <li>We disclaim all liability for health outcomes or medical decisions based on health data or any other health-related features</li>
             </ul>
         </div>
 
@@ -462,6 +255,18 @@
         </div>
 
         <div class="section">
+            <h2>Data Storage and Loss</h2>
+            <p>SteadiDay™ stores all your data on your device. We are not responsible for data loss due to:</p>
+            <ul>
+                <li>Device loss, theft, or damage</li>
+                <li>Software updates or reinstallation</li>
+                <li>Failure to maintain device backups</li>
+                <li>Operating system changes or resets</li>
+            </ul>
+            <p>We recommend backing up your device regularly and using the app's data export feature to save a copy of your information.</p>
+        </div>
+
+        <div class="section">
             <h2>Release of Liability</h2>
             <p>You release and hold harmless SteadiDay™, SCM Solutions LLC, and all developers, employees, and partners from any claims, damages, losses, or expenses arising from:</p>
             <ul>
@@ -471,8 +276,9 @@
                 <li>Service outages or technical failures</li>
                 <li>Reliance on app features for medical decisions</li>
                 <li>Any health outcomes related to app use</li>
-                <li>Inaccuracies, errors, or omissions in Apple Health data</li>
-                <li>Medical decisions or health outcomes based on Apple Health data or any other health-related features</li>
+                <li>Inaccuracies, errors, or omissions in health data from any source</li>
+                <li>Medical decisions or health outcomes based on health data or any other health-related features</li>
+                <li>Data loss due to device issues or lack of backup</li>
             </ul>
         </div>
 
@@ -491,12 +297,6 @@
                 <li>The amount you paid for the app in the past 12 months, <strong>or</strong></li>
                 <li>$100, whichever is less</li>
             </ul>
-        </div>
-
-        <div class="section">
-            <h2>Subscription and Payment Limitations</h2>
-            <p>We are not responsible for any issues related to subscription billing, payment processing, or refunds. All payment matters are handled by Apple through the App Store.</p>
-            <p>Subscription cancellations must be done through your Apple ID settings at least 24 hours before the renewal date.</p>
         </div>
 
         <div class="section">
@@ -522,22 +322,25 @@
                 </svg>
                 Send Us a Message
             </a></p>
-            <p style="margin-top: 1rem;"><strong>Company:</strong> SCM Solutions LLC</p>
+            <p style="margin-top: 1rem;"><strong>Email:</strong> <a href="mailto:support@steadiday.com">support@steadiday.com</a></p>
+            <p><strong>Company:</strong> SCM Solutions LLC</p>
             <p><strong>Location:</strong> Virginia, United States</p>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="liability.html">Liability Waiver</a>
+                <a href="index.html#features">Features</a>
+                <a href="blog/index.html">Blog</a>
                 <a href="security.html">Security</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="liability.html">Liability Waiver</a>
+                <a href="index.html#contact">Contact</a>
             </div>
-            <p class="footer-copy">© 2025 SCM Solutions LLC. All rights reserved. Made with care in Virginia, USA.</p>
+            <p class="footer-copy">&copy; 2026 SCM Solutions LLC. All rights reserved. Made with care in Virginia, USA.</p>
         </div>
     </footer>
 <!-- Google Ads: App Store click conversion tracking -->
