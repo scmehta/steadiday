@@ -59,6 +59,10 @@ jobs:
             echo "args=" >> $GITHUB_OUTPUT
             echo "Mode: Topic pool (Thursday schedule)"
           fi
+          
+          # Log recent blog categories for debugging
+          echo "Recent blog posts:"
+          ls -1t blog/2026-*.html 2>/dev/null | head -5 || echo "  No recent posts found"
       - name: Generate blog post
         run: |
           if [ -n "${{ steps.mode.outputs.args }}" ]; then
