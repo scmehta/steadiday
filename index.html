@@ -970,6 +970,65 @@ gtag('config', 'G-LF8H890XTV');
         color: var(--navy);
     }
 
+    /* ==================== TESTIMONIALS ==================== */
+    .testimonials {
+        padding: 6rem 0;
+        background: var(--white);
+    }
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .testimonial-card {
+        background: var(--cream);
+        padding: 2.5rem 2rem;
+        border-radius: var(--radius-lg);
+        border-top: 4px solid var(--teal);
+        position: relative;
+    }
+
+    .testimonial-quote {
+        font-size: 1.1rem;
+        color: var(--charcoal);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+    }
+
+    .testimonial-quote::before {
+        content: '\201C';
+        font-family: 'Merriweather', Georgia, serif;
+        font-size: 3rem;
+        color: var(--teal);
+        opacity: 0.3;
+        position: absolute;
+        top: 1rem;
+        left: 1.25rem;
+        line-height: 1;
+    }
+
+    .testimonial-author {
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 1rem;
+    }
+
+    .testimonial-detail {
+        color: var(--charcoal-light);
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
     /* ==================== PRICING ==================== */
     .pricing {
         padding: 6rem 0;
@@ -1013,20 +1072,6 @@ gtag('config', 'G-LF8H890XTV');
         padding: 0.4rem 1rem;
         border-radius: 20px;
         margin-bottom: 1.5rem;
-    }
-
-    .pricing-free-price {
-        font-family: 'Merriweather', serif;
-        font-size: 4rem;
-        font-weight: 700;
-        color: var(--teal);
-        margin-bottom: 0.25rem;
-    }
-
-    .pricing-free-subtitle {
-        font-size: 1.15rem;
-        color: var(--charcoal-light);
-        margin-bottom: 2rem;
     }
 
     .pricing-free-features {
@@ -1173,6 +1218,41 @@ gtag('config', 'G-LF8H890XTV');
     .privacy-link svg {
         width: 20px;
         height: 20px;
+    }
+
+    /* ==================== ABOUT / FOUNDER ==================== */
+    .about-founder {
+        padding: 5rem 0;
+        background: var(--cream-dark);
+    }
+
+    .about-founder-content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-founder-content h2 {
+        margin-bottom: 1.25rem;
+    }
+
+    .about-founder-content p {
+        font-size: 1.15rem;
+        color: var(--charcoal-light);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .about-founder-content .founder-name {
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .about-founder-content .founder-detail {
+        color: var(--charcoal-light);
+        font-size: 0.95rem;
     }
 
     /* ==================== DOWNLOAD CTA ==================== */
@@ -1715,6 +1795,26 @@ gtag('config', 'G-LF8H890XTV');
                     <h3>Calendar Sync</h3>
                     <p>Connects with Apple Calendar and Reminders so all your appointments, events, and to-dos appear in one convenient place.</p>
                 </div>
+                <!-- NEW: Care Summary -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Care Summary</h3>
+                    <p>Share a daily summary with family or caregivers. They'll know you're doing well — without giving up your privacy.</p>
+                </div>
+                <!-- NEW: Slow Mode -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Slow Mode</h3>
+                    <p>Turn on Slow Mode for easier interactions — larger tap targets, fewer distractions, and more time to read each screen.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1799,19 +1899,46 @@ gtag('config', 'G-LF8H890XTV');
         </div>
     </section>
 
-    <!-- PRICING: Everything Free -->
+    <!-- NEW: Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What People Are Saying</span>
+                <h2>Built for real life</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">I finally stopped worrying about forgetting my medications. The reminders are gentle and I can mark each one as I take it.</p>
+                    <p class="testimonial-author">Margaret, 67</p>
+                    <p class="testimonial-detail">Virginia</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">I set this up on my mom's phone in about ten minutes. She loves the big buttons and the daily task lists. The Care Summary lets me check in without being overbearing.</p>
+                    <p class="testimonial-author">David, 41</p>
+                    <p class="testimonial-detail">Set up for his mother</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">The magnifier alone was worth the download. I use it at the grocery store every time. And knowing that SOS button is there gives me peace of mind.</p>
+                    <p class="testimonial-author">Robert, 72</p>
+                    <p class="testimonial-detail">North Carolina</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATED: Pricing — Reframed (removed $0, community phase messaging) -->
     <section class="pricing" id="pricing">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Pricing</span>
-                <h2>Everything is free</h2>
-                <p>Every feature in SteadiDay™ is completely free. No catches, no credit card required.</p>
+                <h2>All features included from day one</h2>
+                <p>We're building SteadiDay™ with our community. Your feedback makes it better for everyone.</p>
             </div>
             <div class="pricing-free-banner">
                 <div class="pricing-free-card">
-                    <span class="pricing-free-badge">Available Now</span>
-                    <div class="pricing-free-price">$0</div>
-                    <div class="pricing-free-subtitle">All features included — no limits, no upgrades needed</div>
+                    <span class="pricing-free-badge">Community Phase</span>
+                    <div style="font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 0.5rem;">Every feature. No credit card. No catches.</div>
+                    <p style="color: var(--charcoal-light); margin-bottom: 2rem; font-size: 1.05rem;">Every feature is unlocked so you can try the full experience and share your feedback. Your input directly shapes what we build next.</p>
                     <ul class="pricing-free-features">
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Emergency SOS & Fall Detection</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited Medications</li>
@@ -1819,7 +1946,7 @@ gtag('config', 'G-LF8H890XTV');
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited Trusted Contacts</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Apple Health Integration</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Food & Water Tracking</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Calendar & Reminders Sync</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Care Summary for Family</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mind Breaks & Helpful Tools</li>
                     </ul>
                     <a href="https://apps.apple.com/app/steadiday/id6758526744" class="btn-appstore" style="display: inline-flex;">
@@ -1902,6 +2029,18 @@ gtag('config', 'G-LF8H890XTV');
                         Terms of Service
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: About / Founder Section -->
+    <section class="about-founder" id="about">
+        <div class="container">
+            <div class="about-founder-content">
+                <h2>Who built SteadiDay</h2>
+                <p>SteadiDay was built after watching family members juggle medications, appointments, and daily routines without a single app that brought it all together. Every feature was designed with real families in mind. From the large buttons and simple navigation to the Care Summary that lets loved ones check in without being intrusive.</p>
+                <p class="founder-name">Saawan Mehta, Founder</p>
+                <p class="founder-detail">SCM Solutions LLC — Virginia, USA</p>
             </div>
         </div>
     </section>
