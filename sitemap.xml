@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://www.steadiday.com/blog/</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,6 +41,12 @@
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-04-09-from-workmate-to-soul-mate.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.steadiday.com/blog/2026-04-06-5week-brain-training-cuts-dementia.html</loc>
