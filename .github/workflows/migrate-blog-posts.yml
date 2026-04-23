@@ -1,7 +1,7 @@
 name: Migrate existing blog posts
 
 on:
-  workflow_dispatch:  # Manual trigger only
+  workflow_dispatch:
 
 jobs:
   migrate:
@@ -13,10 +13,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run migration (dry run first)
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run migration (dry run)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/update_existing_posts.py
 
       - name: Apply migration
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/update_existing_posts.py --apply
 
       - name: Commit changes
@@ -24,5 +31,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add blog/
-          git diff --staged --quiet || git commit -m "Migrate blog posts: fresh images, dynamic layouts, video checks"
+          git diff --staged --quiet || git commit -m "Migrate blog posts: topic-specific images, dynamic layouts"
           git push
