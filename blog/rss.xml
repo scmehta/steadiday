@@ -3,154 +3,29 @@
     <channel>
         <title>SteadiDay Blog - Health &amp; Wellness for Adults 50+</title>
         <link>https://www.steadiday.com/blog/index.html</link>
-        <description>Health and wellness tips for adults 50+. Expert advice on medication management, heart health, sleep, exercise, nutrition and mental wellness from the SteadiDay team.</description>
+        <description>Health and wellness tips for adults 50+.</description>
         <language>en-us</language>
-        <lastBuildDate>Mon, 20 Apr 2026 11:07:54 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 Apr 2026 12:45:50 GMT</lastBuildDate>
         <atom:link href="https://www.steadiday.com/blog/rss.xml" rel="self" type="application/rss+xml" />
-        <image>
-            <url>https://www.steadiday.com/assets/icon.jpeg</url>
-            <title>SteadiDay Blog</title>
-            <link>https://www.steadiday.com/blog/index.html</link>
-        </image>
-        <item>
-            <title>Best Medication Reminder Apps for Seniors (2026)</title>
-            <link>https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</guid>
-            <description>Compare the top medication reminder apps for seniors in 2026. We review Medisafe, Pill Reminder, CareZone, and more to help you find the best fit.</description>
-            <pubDate></pubDate>
-        </item>
-        <item>
-            <title>Vitamin D: Your Midlife Brain Protection Strategy</title>
-            <link>https://www.steadiday.com/blog/2026-04-20-vitamin-d-your-midlife-brain.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-20-vitamin-d-your-midlife-brain.html</guid>
-            <description>New research reveals how optimizing vitamin D in your 40s-50s protects against brain aging and tau buildup. Learn practical steps to safeguard your mind.</description>
-            <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Your Smile After 50: A Complete Dental Care Guide</title>
-            <link>https://www.steadiday.com/blog/2026-04-18-your-smile-after-50-a.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-18-your-smile-after-50-a.html</guid>
-            <description>Essential dental health strategies for adults 50+. Learn about age-related changes, modern treatments, and daily habits to keep your teeth and gums healthy.</description>
-            <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>New 2026 Heart Guidelines: What's Changed for You</title>
-            <link>https://www.steadiday.com/blog/2026-04-13-new-2026-heart-guidelines-whats.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-13-new-2026-heart-guidelines-whats.html</guid>
-            <description>Discover how the March 2026 AHA/ACC guidelines introduce PREVENT risk tools with personalized cholesterol management for adults 50+. Updated heart health insights.</description>
-            <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>From Workmate to Soul Mate: Beating Retirement Blues</title>
-            <link>https://www.steadiday.com/blog/2026-04-09-from-workmate-to-soul-mate.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-09-from-workmate-to-soul-mate.html</guid>
-            <description>Transform retirement loneliness into meaningful connections. Discover fresh strategies to rebuild your social world and find purpose beyond the workplace.</description>
-            <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>5-Week Brain Training Cuts Dementia Risk by 25%</title>
-            <link>https://www.steadiday.com/blog/2026-04-06-5week-brain-training-cuts-dementia.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-06-5week-brain-training-cuts-dementia.html</guid>
-            <description>New Johns Hopkins research reveals just 10 hours of cognitive speed training over 5 weeks reduces dementia risk by 25% for 20+ years. Start today.</description>
-            <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>From Workplace to Warm Connections After 50</title>
-            <link>https://www.steadiday.com/blog/2026-04-02-from-workplace-to-warm-connections.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-02-from-workplace-to-warm-connections.html</guid>
-            <description>Retirement loneliness is real, but not permanent. Discover practical strategies to build meaningful connections and create your new social blueprint after 50.</description>
-            <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Social Connection: Your Brain's Best Defense</title>
-            <link>https://www.steadiday.com/blog/2026-03-26-social-connection-your-brains-best.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-26-social-connection-your-brains-best.html</guid>
-            <description>Discover how staying socially connected after 50 can protect your brain from cognitive decline and boost mental sharpness for years to come.</description>
-            <pubDate>Thu, 26 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Why Vaccination Rates Are Dropping for Adults 50+</title>
-            <link>https://www.steadiday.com/blog/2026-03-23-why-vaccination-rates-are-dropping.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-23-why-vaccination-rates-are-dropping.html</guid>
-            <description>New CDC data reveals concerning drops in flu, COVID, and pneumonia vaccination rates among older adults. Learn why this matters and how to stay protected.</description>
-            <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Foods That Fight Joint Pain: Natural Relief at 50+</title>
-            <link>https://www.steadiday.com/blog/2026-03-21-foods-that-fight-joint-pain.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-21-foods-that-fight-joint-pain.html</guid>
-            <description>Discover powerful anti-inflammatory foods that can help reduce joint pain naturally. Expert tips and practical meal ideas for adults over 50.</description>
-            <pubDate>Sat, 21 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Blood Pressure Numbers: Your Complete Guide</title>
-            <link>https://www.steadiday.com/blog/2026-03-19-blood-pressure-numbers-your-complete.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-19-blood-pressure-numbers-your-complete.html</guid>
-            <description>Learn what your blood pressure readings really mean and how to track them effectively. Get expert tips for managing your numbers at 50+.</description>
-            <pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Calm Your Mind: Breathing Exercises for Stress Relief</title>
-            <link>https://www.steadiday.com/blog/2026-03-16-calm-your-mind-breathing-exercises.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-16-calm-your-mind-breathing-exercises.html</guid>
-            <description>Discover simple, effective breathing techniques to manage stress and improve wellbeing. Perfect for adults 50+ looking for natural stress relief methods.</description>
-            <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Morning Stretches for Better Mobility After 50</title>
-            <link>https://www.steadiday.com/blog/2026-03-09-morning-stretches-for-better-mobility.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-09-morning-stretches-for-better-mobility.html</guid>
-            <description>Discover gentle morning stretches to improve mobility, reduce stiffness, and start your day feeling energized. Simple routines perfect for adults 50+.</description>
-            <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Natural Chronic Pain Relief for Adults 50+</title>
-            <link>https://www.steadiday.com/blog/2026-03-05-natural-chronic-pain-relief-for.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-05-natural-chronic-pain-relief-for.html</guid>
-            <description>Discover effective natural methods to manage chronic pain after 50. Learn gentle exercises, nutrition tips, and holistic approaches for better living.</description>
-            <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Easy Heart-Healthy Recipes for Active Adults 50+</title>
-            <link>https://www.steadiday.com/blog/2026-03-02-easy-hearthealthy-recipes-for-active.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-02-easy-hearthealthy-recipes-for-active.html</guid>
-            <description>Discover simple, delicious heart-healthy recipes perfect for adults 50+. Quick prep, nutritious ingredients, and flavors you'll love every day.</description>
-            <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Simple Memory Techniques That Really Work</title>
-            <link>https://www.steadiday.com/blog/2026-02-26-simple-memory-techniques-that-really.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-26-simple-memory-techniques-that-really.html</guid>
-            <description>Discover proven memory improvement techniques designed for adults 50+. Easy tips to boost recall, stay sharp, and maintain independence.</description>
-            <pubDate>Thu, 26 Feb 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Breathing Exercises to Reduce Stress After 50</title>
-            <link>https://www.steadiday.com/blog/2026-02-17-breathing-exercises-to-reduce-stress.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-17-breathing-exercises-to-reduce-stress.html</guid>
-            <description>Learn simple breathing techniques to manage stress and anxiety. Discover 5 effective exercises perfect for adults 50+ to promote calm and wellbeing.</description>
-            <pubDate>Tue, 17 Feb 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>Sleep Better Tonight: 7 Tips for Quality Rest After 50</title>
-            <link>https://www.steadiday.com/blog/2026-02-09-sleep-better-tonight-7-tips.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-09-sleep-better-tonight-7-tips.html</guid>
-            <description>Discover proven sleep strategies for adults 50+. From bedroom environment to managing medications, get practical tips for deeper, more restorative sleep.</description>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>2026-02-02-simple-mindfulness-for-seniors.html</title>
-            <link>https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</guid>
-            <description>Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50. Start your journey to better mental wellness today.</description>
-            <pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title>How to Remember to Take Your Medication Every Day</title>
-            <link>https://www.steadiday.com/blog/2026-02-01-how-to-remember-to-take-medication.html</link>
-            <guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-01-how-to-remember-to-take-medication.html</guid>
-            <description>Practical strategies for adults 50+ to build consistent medication habits. Learn proven techniques to never miss a dose again.</description>
-            <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
-        </item>
+        <item><title>Best Medication Reminder Apps for Seniors (2026)</title><link>https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/best-medication-reminder-apps-seniors.html</guid><description>Compare the top medication reminder apps for seniors in 2026. We review Medisafe, Pill Reminder, CareZone, and more to help you find the best fit.</description><pubDate></pubDate></item>
+        <item><title>Photo Sharing Grandparents: Busting the Big Myths</title><link>https://www.steadiday.com/blog/2026-04-23-photo-sharing-grandparents-busting-the.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-23-photo-sharing-grandparents-busting-the.html</guid><description>Think photo sharing grandparents need tech skills? Think again. Bust 5 common myths and discover how easy it is to stay close with grandkids.</description><pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Vitamin D: Your Midlife Brain Protection Strategy</title><link>https://www.steadiday.com/blog/2026-04-20-vitamin-d-your-midlife-brain.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-20-vitamin-d-your-midlife-brain.html</guid><description>New research reveals how optimizing vitamin D in your 40s-50s protects against brain aging and tau buildup. Learn practical steps to safeguard your mind.</description><pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Your Smile After 50: A Complete Dental Care Guide</title><link>https://www.steadiday.com/blog/2026-04-18-your-smile-after-50-a.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-18-your-smile-after-50-a.html</guid><description>Essential dental health strategies for adults 50+. Learn about age-related changes, modern treatments, and daily habits to keep your teeth and gums healthy.</description><pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>New 2026 Heart Guidelines: What's Changed for You</title><link>https://www.steadiday.com/blog/2026-04-13-new-2026-heart-guidelines-whats.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-13-new-2026-heart-guidelines-whats.html</guid><description>Discover how the March 2026 AHA/ACC guidelines introduce PREVENT risk tools with personalized cholesterol management for adults 50+. Updated heart health insights.</description><pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>From Workmate to Soul Mate: Beating Retirement Blues</title><link>https://www.steadiday.com/blog/2026-04-09-from-workmate-to-soul-mate.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-09-from-workmate-to-soul-mate.html</guid><description>Transform retirement loneliness into meaningful connections. Discover fresh strategies to rebuild your social world and find purpose beyond the workplace.</description><pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>5-Week Brain Training Cuts Dementia Risk by 25%</title><link>https://www.steadiday.com/blog/2026-04-06-5week-brain-training-cuts-dementia.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-06-5week-brain-training-cuts-dementia.html</guid><description>New Johns Hopkins research reveals just 10 hours of cognitive speed training over 5 weeks reduces dementia risk by 25% for 20+ years. Start today.</description><pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>From Workplace to Warm Connections After 50</title><link>https://www.steadiday.com/blog/2026-04-02-from-workplace-to-warm-connections.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-04-02-from-workplace-to-warm-connections.html</guid><description>Retirement loneliness is real, but not permanent. Discover practical strategies to build meaningful connections and create your new social blueprint after 50.</description><pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Social Connection: Your Brain's Best Defense</title><link>https://www.steadiday.com/blog/2026-03-26-social-connection-your-brains-best.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-26-social-connection-your-brains-best.html</guid><description>Discover how staying socially connected after 50 can protect your brain from cognitive decline and boost mental sharpness for years to come.</description><pubDate>Thu, 26 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Why Vaccination Rates Are Dropping for Adults 50+</title><link>https://www.steadiday.com/blog/2026-03-23-why-vaccination-rates-are-dropping.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-23-why-vaccination-rates-are-dropping.html</guid><description>New CDC data reveals concerning drops in flu, COVID, and pneumonia vaccination rates among older adults. Learn why this matters and how to stay protected.</description><pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Foods That Fight Joint Pain: Natural Relief at 50+</title><link>https://www.steadiday.com/blog/2026-03-21-foods-that-fight-joint-pain.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-21-foods-that-fight-joint-pain.html</guid><description>Discover powerful anti-inflammatory foods that can help reduce joint pain naturally. Expert tips and practical meal ideas for adults over 50.</description><pubDate>Sat, 21 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Blood Pressure Numbers: Your Complete Guide</title><link>https://www.steadiday.com/blog/2026-03-19-blood-pressure-numbers-your-complete.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-19-blood-pressure-numbers-your-complete.html</guid><description>Learn what your blood pressure readings really mean and how to track them effectively. Get expert tips for managing your numbers at 50+.</description><pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Calm Your Mind: Breathing Exercises for Stress Relief</title><link>https://www.steadiday.com/blog/2026-03-16-calm-your-mind-breathing-exercises.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-16-calm-your-mind-breathing-exercises.html</guid><description>Discover simple, effective breathing techniques to manage stress and improve wellbeing. Perfect for adults 50+ looking for natural stress relief methods.</description><pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Morning Stretches for Better Mobility After 50</title><link>https://www.steadiday.com/blog/2026-03-09-morning-stretches-for-better-mobility.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-09-morning-stretches-for-better-mobility.html</guid><description>Discover gentle morning stretches to improve mobility, reduce stiffness, and start your day feeling energized. Simple routines perfect for adults 50+.</description><pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Natural Chronic Pain Relief for Adults 50+</title><link>https://www.steadiday.com/blog/2026-03-05-natural-chronic-pain-relief-for.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-05-natural-chronic-pain-relief-for.html</guid><description>Discover effective natural methods to manage chronic pain after 50. Learn gentle exercises, nutrition tips, and holistic approaches for better living.</description><pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Easy Heart-Healthy Recipes for Active Adults 50+</title><link>https://www.steadiday.com/blog/2026-03-02-easy-hearthealthy-recipes-for-active.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-03-02-easy-hearthealthy-recipes-for-active.html</guid><description>Discover simple, delicious heart-healthy recipes perfect for adults 50+. Quick prep, nutritious ingredients, and flavors you'll love every day.</description><pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Simple Memory Techniques That Really Work</title><link>https://www.steadiday.com/blog/2026-02-26-simple-memory-techniques-that-really.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-26-simple-memory-techniques-that-really.html</guid><description>Discover proven memory improvement techniques designed for adults 50+. Easy tips to boost recall, stay sharp, and maintain independence.</description><pubDate>Thu, 26 Feb 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Breathing Exercises to Reduce Stress After 50</title><link>https://www.steadiday.com/blog/2026-02-17-breathing-exercises-to-reduce-stress.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-17-breathing-exercises-to-reduce-stress.html</guid><description>Learn simple breathing techniques to manage stress and anxiety. Discover 5 effective exercises perfect for adults 50+ to promote calm and wellbeing.</description><pubDate>Tue, 17 Feb 2026 00:00:00 GMT</pubDate></item>
+        <item><title>Sleep Better Tonight: 7 Tips for Quality Rest After 50</title><link>https://www.steadiday.com/blog/2026-02-09-sleep-better-tonight-7-tips.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-09-sleep-better-tonight-7-tips.html</guid><description>Discover proven sleep strategies for adults 50+. From bedroom environment to managing medications, get practical tips for deeper, more restorative sleep.</description><pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate></item>
+        <item><title>2026-02-02-simple-mindfulness-for-seniors.html</title><link>https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</link><guid isPermaLink="true">https://www.steadiday.com/blog/2026-02-02-simple-mindfulness-for-seniors.html</guid><description>Discover gentle mindfulness for seniors with easy exercises perfect for beginners over 50. Start your journey to better mental wellness today.</description><pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate></item>
     </channel>
 </rss>
