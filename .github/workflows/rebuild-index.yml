@@ -1,0 +1,25 @@
+name: Rebuild blog index
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Rebuild index
+        run: python scripts/rebuild_blog_index.py --apply
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/index.html
+          git diff --staged --quiet || git commit -m "Rebuild blog index from post files"
+          git push
