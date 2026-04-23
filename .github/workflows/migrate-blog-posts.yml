@@ -6,6 +6,7 @@ on:
 jobs:
   migrate:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -15,11 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install anthropic
-
-      - name: Run migration (dry run)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/update_existing_posts.py
 
       - name: Apply migration
         env:
