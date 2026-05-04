@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://www.steadiday.com/blog/</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,6 +41,12 @@
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.steadiday.com/blog/2026-05-04-athome-alzheimers-injection-whats-coming.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.steadiday.com/blog/2026-04-30-medication-routine-tips-that-actually.html</loc>
