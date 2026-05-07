@@ -130,4 +130,23 @@
     <footer class="footer"><p>&copy; 2026 SCM Solutions LLC. | <a href="https://www.steadiday.com">Home</a> | <a href="https://www.steadiday.com/privacy.html">Privacy</a> | <a href="https://www.steadiday.com/terms.html">Terms</a></p></footer>
 <!-- GTAG_CONVERSION_INJECTED -->
 <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(link){link.addEventListener('click',function(){gtag('event','conversion',{'send_to':'AW-17929124014/gDbcCLbkio4cEK7xouVC','value':1.0,'currency':'USD'});});});});</script>
+<!-- Google Ads: App Store click conversion tracking -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track clicks on all App Store links as conversions
+    var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17929124014/gtKACKzG_Y8cEK7xouVC',
+            'event_callback': function() {
+              // Allow the link to proceed after tracking
+            }
+          });
+        }
+      });
+    }
+  });
+</script>
 </body></html>
