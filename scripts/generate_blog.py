@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """
-SteadiDay Blog Generator v5.4
+SteadiDay Blog Generator v5.5
+
+v5.5 changes (sitemap automation):
+- After every blog publish, automatically invoke generate_sitemap.py to
+  refresh /sitemap.xml. Sitemap was previously manually maintained, which
+  meant new posts could be missing and lastmod dates drifted (batch-stamped
+  instead of per-post). Now every publish produces an accurate sitemap.
+- New helper regenerate_sitemap() shells out to the standalone script
+  rather than importing it, so the two stay independently runnable. If
+  the sitemap script ever fails, the blog publish still completes — the
+  failure is logged for the GitHub Actions output instead of crashing.
 
 v5.4 changes (title-truncation fix):
 - Removed the hard truncation line in generate_blog_post() that chopped any
@@ -15,6 +25,8 @@ v5.4 changes (title-truncation fix):
 - Tightened both content prompts (pool-driven and news-driven) to FORBID
   ellipses and trailing truncation, and to shorten wording rather than
   cut off mid-thought when length is a constraint.
+- Added a belt-and-suspenders safety net: if the model still returns
+  trailing ellipses despite the prompt, strip them rather than publish.
 
 v5.3 changes (image-quality fixes):
 - Card thumbnail on the index now uses the article's actual hero image,
@@ -38,7 +50,7 @@ study/source linking, 6 writing styles, 16 categories, 120+ topics).
 
 import anthropic
 from anthropic import APIStatusError
-import random, re, os, sys, glob, json, time, urllib.request
+import random, re, os, sys, glob, json, time, urllib.request, subprocess
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 
@@ -1102,6 +1114,50 @@ def generate_rss_feed(blog_dir="blog"):
         f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n    <channel>\n        <title>SteadiDay Blog - Health &amp; Wellness for Adults 50+</title>\n        <link>{WEBSITE_URL}/blog/index.html</link>\n        <description>Health and wellness tips for adults 50+.</description>\n        <language>en-us</language>\n        <lastBuildDate>{now}</lastBuildDate>\n        <atom:link href="{WEBSITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />{items}\n    </channel>\n</rss>')
     print(f"  RSS feed updated: {rss_path} ({len(posts)} posts)")
 
+
+def regenerate_sitemap():
+    """Invoke generate_sitemap.py to refresh /sitemap.xml after publish.
+
+    Shells out rather than importing so the two scripts stay independently
+    runnable. If the sitemap script breaks for any reason, the blog publish
+    still completes — the print captures the failure for the GitHub Actions
+    log instead of crashing the workflow.
+    """
+    # Look for generate_sitemap.py in a few likely locations relative to
+    # the current working dir (repo root when run from GitHub Actions).
+    candidates = [
+        "scripts/generate_sitemap.py",
+        "generate_sitemap.py",
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "generate_sitemap.py"),
+    ]
+    script_path = next((p for p in candidates if os.path.exists(p)), None)
+
+    if not script_path:
+        print("  ⚠ generate_sitemap.py not found in expected locations — skipping sitemap regeneration")
+        return
+
+    try:
+        result = subprocess.run(
+            ["python3", script_path],
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+        if result.returncode == 0:
+            print(f"  ✅ Sitemap regenerated via {script_path}")
+            # Pass through the sitemap script's own success log for visibility
+            for line in result.stdout.splitlines()[-3:]:
+                if line.strip():
+                    print(f"    {line}")
+        else:
+            print(f"  ⚠ Sitemap script exited with code {result.returncode}")
+            print(f"    stderr: {result.stderr.strip()[:500]}")
+    except subprocess.TimeoutExpired:
+        print("  ⚠ Sitemap regeneration timed out after 60s — continuing without it")
+    except Exception as e:
+        print(f"  ⚠ Sitemap regeneration failed: {e}")
+
+
 def notify_buttondown(post_data, filename):
     api_key = os.environ.get('BUTTONDOWN_API_KEY')
     if not api_key: print("  BUTTONDOWN_API_KEY not set."); return
@@ -1140,7 +1196,7 @@ def main():
         elif arg: topic_override = arg
     if len(sys.argv) > 2 and sys.argv[2].strip() == "--news": use_news = True
 
-    print("="*60); print("SteadiDay Blog Generator v5.4"); print("="*60)
+    print("="*60); print("SteadiDay Blog Generator v5.5"); print("="*60)
     print(f"Date: {datetime.now().strftime('%Y-%m-%d')}")
     print(f"Mode: {'Custom' if topic_override else 'News' if use_news else 'Pool'}")
     print(f"Model: {CLAUDE_MODEL} | Topics: {len(TOPIC_CATEGORIES)} | Categories: {len(VALID_CATEGORIES)}\n")
@@ -1202,6 +1258,7 @@ def main():
     print(f"  Saved: {fp}\n")
     update_blog_index(post, fn)
     print("\nGenerating RSS feed..."); generate_rss_feed()
+    print("\nRegenerating sitemap..."); regenerate_sitemap()
     print("\nCreating Buttondown draft..."); notify_buttondown(post, fn)
     set_github_env("BLOG_TITLE",post['title']); set_github_env("BLOG_FILENAME",fn); set_github_env("BLOG_DATE",post['date'])
     print(f"\nDone! Published: {post['title']}")
