@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
 """
-SteadiDay Blog Generator v5.3
+SteadiDay Blog Generator v5.4
+
+v5.4 changes (title-truncation fix):
+- Removed the hard truncation line in generate_blog_post() that chopped any
+  title over 55 chars at index 52 and appended "...". This was the root
+  cause of titles like "Daytime Napping and Mortality Risk: What Older..."
+  appearing across the blog. A bad-but-complete title is infinitely better
+  than a fragment ending in an ellipsis.
+- Replaced with a soft warning at 65 chars so the script logs over-long
+  titles without mangling them. Google's SERP truncation is pixel-based
+  (~580px, roughly 60-70 chars), so the old 55-char ceiling was overly
+  strict and pushed the model toward truncated phrasing.
+- Tightened both content prompts (pool-driven and news-driven) to FORBID
+  ellipses and trailing truncation, and to shorten wording rather than
+  cut off mid-thought when length is a constraint.
 
 v5.3 changes (image-quality fixes):
 - Card thumbnail on the index now uses the article's actual hero image,
@@ -196,9 +210,17 @@ EXISTING POSTS (do NOT duplicate):
 Frame the topic through "what this means for your daily life." Present only evidence-based,
 factual information — no political opinions or editorial commentary.
 
+TITLE RULES (CRITICAL):
+- The title MUST be a COMPLETE, GRAMMATICAL phrase or sentence.
+- Target length: 50-60 characters. Hard maximum: 65 characters.
+- NEVER use ellipses ("...") or any trailing punctuation that suggests truncation.
+- If the full idea will not fit, SHORTEN the wording — do NOT cut off mid-thought.
+- A short complete title ("Why Morning Naps May Be a Warning Sign") is better than
+  a long fragment ("Daytime Napping and Mortality Risk: What Older...").
+
 FORMAT:
 TOPIC: [specific description referencing the actual study/guideline]
-TITLE: [under 55 characters, compelling not clinical]
+TITLE: [complete title, 50-65 chars, NO ellipses, NO truncation, compelling not clinical]
 KEYWORD: [primary SEO keyword phrase]
 CATEGORY: [exactly one of: {"|".join(VALID_CATEGORIES)}]
         Pick the MOST SPECIFIC category that fits. Use 'Wellness' ONLY when no other
@@ -878,26 +900,33 @@ TONE GUIDELINES:
 EXISTING POSTS (do NOT duplicate):
 {content_summaries}
 
+TITLE RULES (CRITICAL):
+- The title MUST be a COMPLETE, GRAMMATICAL phrase or sentence.
+- Target length: 50-60 characters. Hard maximum: 65 characters.
+- NEVER use ellipses ("...") or any trailing punctuation that suggests truncation.
+- If the full idea will not fit, SHORTEN the wording — do NOT cut off mid-thought.
+- A short complete title ("Why Morning Naps May Be a Warning Sign") is better than
+  a long fragment ("Daytime Napping and Mortality Risk: What Older...").
+- Include the primary keyword naturally.
+
 SEO REQUIREMENTS:
-- TITLE should include the primary keyword naturally (under 55 chars)
 - META_DESCRIPTION must include the keyword and a compelling reason to click (150-160 chars)
 - Use the primary keyword in the first paragraph and at least 2 section headings
 - Include 2-3 internal links to related posts on steadiday.com/blog/ if relevant topics exist
 - Primary keyword for SEO: "{keyword}"
 
 CONTENT REQUIREMENTS:
-1. TITLE under 55 characters, specific and compelling
-2. 1000-1500 words, 6-7 sections with <h2> tags
-3. Mention SteadiDay's {feature} feature naturally (it's free)
-4. Include at least 2 specific statistics with their sources
-5. Advice must be DISTINCT from existing posts
+1. 1000-1500 words, 6-7 sections with <h2> tags
+2. Mention SteadiDay's {feature} feature naturally (it's free)
+3. Include at least 2 specific statistics with their sources
+4. Advice must be DISTINCT from existing posts
 
 MEDIA PLACEHOLDERS:
 {img_ph}
 After section 4: [VIDEO]
 
 FORMAT:
-TITLE: [under 55 chars]
+TITLE: [complete title, 50-65 chars, NO ellipses, NO truncation]
 META_DESCRIPTION: [150-160 chars, include keyword]
 KEYWORDS: keyword1, keyword2, {keyword}
 READ_TIME: X
@@ -914,7 +943,22 @@ CONTENT:
     rt = (re.search(r'READ_TIME:\s*(\d+)', r) or type('',(),{'group':lambda s,n:"7"})).group(1)
     content_match = re.search(r'CONTENT:\s*(.+)', r, re.DOTALL)
     content = content_match.group(1).strip() if content_match else r
-    if len(title) > 55: title = title[:52].rsplit(' ',1)[0] + "..."
+
+    # Soft warning only — NEVER truncate. A bad-but-complete title is
+    # infinitely better than a fragment ending in "...". Google SERP
+    # truncation is pixel-based (~580px, roughly 60-70 chars), so we ship
+    # over-long titles as-is and log them for prompt tuning if recurring.
+    if len(title) > 65:
+        print(f"  ⚠ Title is {len(title)} chars (target: 50-60, max: 65). Shipping as-is.")
+        print(f"  ⚠ Over-long title: {title!r}")
+
+    # Safety net: if the model still returned trailing ellipses despite the
+    # prompt, strip them rather than publish "...". This is belt-and-suspenders.
+    if title.endswith("...") or title.endswith("…"):
+        cleaned = title.rstrip(". ").rstrip("…").rstrip()
+        print(f"  ⚠ Model returned trailing ellipses. Stripping: {title!r} -> {cleaned!r}")
+        title = cleaned
+
     layout = random.choice(IMAGE_LAYOUT_PATTERNS)
     for i, img in enumerate(images["inline"]):
         layout_class = layout[i % len(layout)]
@@ -1096,7 +1140,7 @@ def main():
         elif arg: topic_override = arg
     if len(sys.argv) > 2 and sys.argv[2].strip() == "--news": use_news = True
 
-    print("="*60); print("SteadiDay Blog Generator v5.3"); print("="*60)
+    print("="*60); print("SteadiDay Blog Generator v5.4"); print("="*60)
     print(f"Date: {datetime.now().strftime('%Y-%m-%d')}")
     print(f"Mode: {'Custom' if topic_override else 'News' if use_news else 'Pool'}")
     print(f"Model: {CLAUDE_MODEL} | Topics: {len(TOPIC_CATEGORIES)} | Categories: {len(VALID_CATEGORIES)}\n")
