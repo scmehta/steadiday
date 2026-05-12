@@ -238,6 +238,8 @@ gtag('config', 'G-LF8H890XTV');
         --gold: #D4A853;
         --gold-light: #FBF6E9;
         --success: #2E7D32;
+        --alert: #C0392B;
+        --alert-light: #FDEDEC;
         --shadow-soft: 0 2px 12px rgba(30, 58, 95, 0.08);
         --shadow-medium: 0 4px 24px rgba(30, 58, 95, 0.12);
         --shadow-strong: 0 8px 32px rgba(30, 58, 95, 0.16);
@@ -633,6 +635,14 @@ gtag('config', 'G-LF8H890XTV');
         }
     }
 
+    /* Microcopy under the hero CTA */
+    .hero-cta-microcopy {
+        font-size: 0.95rem;
+        color: var(--charcoal-light);
+        margin-top: 1rem;
+        font-style: italic;
+    }
+
     /* ========== DESKTOP QR CODE (hero) ==========
        Hidden on mobile/tablet — useless when the user is already on their phone.
        On desktop, sits next to the App Store badge so a laptop visitor
@@ -770,6 +780,76 @@ gtag('config', 'G-LF8H890XTV');
         font-size: 0.9rem;
         color: var(--charcoal-light);
         line-height: 1.4;
+    }
+
+    /* ==================== WHY FAMILIES CHOOSE (problem/solution cards) ==================== */
+    .why-families {
+        padding: 5rem 0;
+        background: var(--cream-dark);
+    }
+
+    .why-families .section-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 3rem;
+    }
+
+    .why-families .section-header h2 {
+        font-size: 2.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .why-families .section-header p {
+        font-size: 1.15rem;
+        color: var(--charcoal-light);
+    }
+
+    .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .why-card {
+        background: var(--white);
+        padding: 2.25rem 1.75rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-soft);
+        border-top: 4px solid var(--teal);
+        transition: all 0.3s ease;
+    }
+
+    .why-card.alert-accent {
+        border-top-color: var(--alert);
+    }
+
+    .why-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .why-card-question {
+        font-family: 'Merriweather', Georgia, serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--navy);
+        font-style: italic;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    .why-card-answer {
+        color: var(--charcoal);
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    @media (max-width: 1024px) {
+        .why-grid {
+            grid-template-columns: 1fr;
+            max-width: 580px;
+            margin: 0 auto;
+        }
     }
 
     /* ==================== FEATURES ==================== */
@@ -1668,16 +1748,17 @@ gtag('config', 'G-LF8H890XTV');
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                     </svg>
-                    Now Available on the App Store
+                    Built for the parent you worry about
                 </div>
-                <h1>Daily support for <span>independent</span> living</h1>
-                <p class="hero-description">Your all-in-one daily companion. Medications, tasks synced with your calendar, Apple Health tracking, food and water logs, helpful tools like magnifier and Find My iPhone, relaxing mind games, and emergency safety—everything in one simple app.</p>
+                <h1>One button. <span>911 and you</span>, instantly.</h1>
+                <p class="hero-description">SteadiDay puts a real safety net on your parent's iPhone. One tap calls 911 <em>and</em> texts you their exact location — the moment something feels wrong. Automatic fall detection. Medication reminders. A Care Summary so you know they're okay, without being intrusive. No account. Free forever.</p>
                 <div class="hero-buttons">
                     <a href="https://apps.apple.com/app/steadiday/id6758526744" class="app-store-badge" aria-label="Download SteadiDay on the App Store">
                         <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
                     </a>
-                    <a href="#features" class="btn btn-secondary">See Features</a>
+                    <a href="#features" class="btn btn-secondary">See How It Works</a>
                 </div>
+                <p class="hero-cta-microcopy">Set it up on her phone in 5 minutes — no account required.</p>
                 <!-- Desktop-only QR code: helps laptop visitors install directly on their iPhone -->
                 <div class="hero-qr" aria-hidden="false" role="region" aria-label="Install on iPhone via QR code">
                     <img src="assets/qr-code.jpg" alt="QR code to open SteadiDay on the App Store" />
@@ -1689,7 +1770,7 @@ gtag('config', 'G-LF8H890XTV');
             </div>
             <div class="hero-image">
                 <div class="hero-phone">
-                    <img src="assets/screenshot-home.png" alt="SteadiDay all-in-one wellness app home screen showing medication reminders, daily tasks, health tracking, and emergency SOS for adults 50+">
+                    <img src="assets/screenshot-sos.png" alt="SteadiDay Emergency SOS screen — one tap to call 911, send SOS text with location to a trusted contact, or call a trusted contact directly">
                 </div>
             </div>
         </div>
@@ -1701,12 +1782,23 @@ gtag('config', 'G-LF8H890XTV');
                 <div class="trust-item">
                     <div class="trust-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <h4>Built in Virginia</h4>
+                        <p>A real US-based team, not a faceless app</p>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                         </svg>
                     </div>
                     <div class="trust-text">
                         <h4>100% Private</h4>
-                        <p>Data stays on your phone</p>
+                        <p>Data stays on her phone</p>
                     </div>
                 </div>
                 <div class="trust-item">
@@ -1731,16 +1823,30 @@ gtag('config', 'G-LF8H890XTV');
                         <p>Every feature, no cost</p>
                     </div>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
-                        </svg>
-                    </div>
-                    <div class="trust-text">
-                        <h4>Built in Virginia</h4>
-                        <p>US-based small team</p>
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Why families choose SteadiDay (problem/solution cards) -->
+    <section class="why-families">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Why Families Choose SteadiDay</span>
+                <h2>The worries you've already had</h2>
+                <p>SteadiDay was built around the questions that wake adult children up at night.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card alert-accent">
+                    <p class="why-card-question">"What if she falls and can't reach her phone?"</p>
+                    <p class="why-card-answer">SteadiDay's SOS is reachable from her home screen. One press: 911 is called, <strong>and</strong> you get a text with her exact GPS location. Automatic fall detection works in the background — if she falls and doesn't respond, the alert still goes out.</p>
+                </div>
+                <div class="why-card">
+                    <p class="why-card-question">"Did she take her medication today?"</p>
+                    <p class="why-card-answer">Gentle reminders on her phone. She sees what she's taken. If she chooses to share a Care Summary, you can see she's doing well — no surveillance, no nagging texts back and forth.</p>
+                </div>
+                <div class="why-card">
+                    <p class="why-card-question">"I don't want to set up another account for her."</p>
+                    <p class="why-card-answer">You won't. No accounts, no passwords, no subscriptions. Install the app on her iPhone, set your number as the emergency contact, and you're done. Five minutes.</p>
                 </div>
             </div>
         </div>
@@ -1750,28 +1856,11 @@ gtag('config', 'G-LF8H890XTV');
         <div class="container">
             <div class="section-header">
                 <span class="section-label">Features</span>
-                <h2>One app for your entire day</h2>
-                <p>Medications, tasks, health, tools, and more—all designed for clarity with large buttons and simple navigation. Every feature is free.</p>
+                <h2>Everything in one simple app</h2>
+                <p>Designed for clarity with large buttons and straightforward navigation. Every feature is free.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                        </svg>
-                    </div>
-                    <h3>Medication Reminders</h3>
-                    <p>Never miss a dose. Get gentle reminders at the right time, and track what you've taken.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
-                        </svg>
-                    </div>
-                    <h3>Daily Tasks</h3>
-                    <p>Simple, easy-to-read task lists for your daily routines, errands, and appointments. Check off items as you go.</p>
-                </div>
+                <!-- Emergency SOS — now first, as the lead feature -->
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1779,7 +1868,17 @@ gtag('config', 'G-LF8H890XTV');
                         </svg>
                     </div>
                     <h3>Emergency SOS</h3>
-                    <p>One tap to alert your trusted contacts. Quick access when you need help fast.</p>
+                    <p>One tap calls 911 and texts a trusted contact with exact GPS location. Designed to be reachable in the moments that matter most.</p>
+                </div>
+                <!-- Fall Detection — newly surfaced as a top-line feature -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3>Fall Detection</h3>
+                    <p>Automatic detection in the background. If a fall is detected and there's no response, an alert goes out to the trusted contact — no button press required.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -1793,20 +1892,47 @@ gtag('config', 'G-LF8H890XTV');
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                         </svg>
                     </div>
-                    <h3>Health & Wellness</h3>
-                    <p>Track food, water intake, and sync with Apple Health for steps, heart rate, and sleep—all your wellness data in one dashboard.</p>
+                    <h3>Medication Reminders</h3>
+                    <p>Never miss a dose. Gentle reminders at the right time, with a clear log of what's been taken.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
-                    <h3>Mind Breaks</h3>
-                    <p>Enjoy simple, relaxing games and calming activities. Take a mental break whenever you need to pause and recharge.</p>
+                    <h3>Care Summary</h3>
+                    <p>Share a daily summary with family or caregivers — they'll know everything is okay without needing to check in every day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Daily Tasks</h3>
+                    <p>Simple, easy-to-read task lists for daily routines, errands, and appointments. Check items off as you go.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Health & Wellness</h3>
+                    <p>Track food, water intake, and sync with Apple Health for steps, heart rate, and sleep — all in one dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Calendar Sync</h3>
+                    <p>Connects with Apple Calendar and Reminders so all appointments, events, and to-dos appear in one convenient place.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -1820,23 +1946,12 @@ gtag('config', 'G-LF8H890XTV');
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                         </svg>
                     </div>
-                    <h3>Calendar Sync</h3>
-                    <p>Connects with Apple Calendar and Reminders so all your appointments, events, and to-dos appear in one convenient place.</p>
+                    <h3>Mind Breaks</h3>
+                    <p>Simple, relaxing games and calming activities. A mental break whenever you need to pause and recharge.</p>
                 </div>
-                <!-- NEW: Care Summary -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h3>Care Summary</h3>
-                    <p>Share a daily summary with family or caregivers. They'll know you're doing well — without giving up your privacy.</p>
-                </div>
-                <!-- NEW: Slow Mode -->
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1892,6 +2007,12 @@ gtag('config', 'G-LF8H890XTV');
             <div class="screenshots-grid">
                 <div class="screenshot-item">
                     <div class="screenshot-frame">
+                        <img src="assets/screenshot-sos.png" alt="SteadiDay Emergency SOS">
+                    </div>
+                    <h4>Emergency SOS</h4>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
                         <img src="assets/screenshot-home.png" alt="SteadiDay home screen">
                     </div>
                     <h4>Home</h4>
@@ -1901,12 +2022,6 @@ gtag('config', 'G-LF8H890XTV');
                         <img src="assets/screenshot-medical.png" alt="SteadiDay health tracking">
                     </div>
                     <h4>Medical Info</h4>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-frame">
-                        <img src="assets/screenshot-sos.png" alt="SteadiDay Emergency SOS">
-                    </div>
-                    <h4>Emergency SOS</h4>
                 </div>
                 <div class="screenshot-item">
                     <div class="screenshot-frame">
@@ -2076,13 +2191,14 @@ gtag('config', 'G-LF8H890XTV');
         </div>
     </section>
 
-    <!-- NEW: About / Founder Section -->
+    <!-- UPDATED: About / Founder Section — name removed per request, attribution to SCM Solutions LLC team -->
     <section class="about-founder" id="about">
         <div class="container">
             <div class="about-founder-content">
                 <h2>Who built SteadiDay</h2>
-                <p>SteadiDay was built after watching family members juggle medications, appointments, and daily routines without a single app that brought it all together. Every feature was designed with real families in mind. From the large buttons and simple navigation to the Care Summary that lets loved ones check in without being intrusive.</p>
-                <p class="founder-name">Saawan Mehta, Founder</p>
+                <p>SteadiDay was built after watching family members juggle medications, appointments, and daily routines without a single app that brought it all together. Every feature was designed with real families in mind — from the large buttons and simple navigation to the Care Summary that lets loved ones check in without being intrusive.</p>
+                <p>We're a small, independent team based in Virginia. No venture capital. No hidden investors. Just people building the app we wished existed for our own parents.</p>
+                <p class="founder-name">The SteadiDay Team</p>
                 <p class="founder-detail">SCM Solutions LLC — Virginia, USA</p>
             </div>
         </div>
@@ -2092,8 +2208,8 @@ gtag('config', 'G-LF8H890XTV');
         <div class="container">
             <div class="download-cta-content">
                 <span class="download-cta-badge">Available Now</span>
-                <h2>Start your day with confidence</h2>
-                <p class="download-cta-subtitle">Download SteadiDay free from the App Store. Every feature included — medications, tasks, health tracking, safety, and more.</p>
+                <h2>Set it up for the parent you worry about</h2>
+                <p class="download-cta-subtitle">Free on the App Store. Every feature included — Emergency SOS, fall detection, medication reminders, Care Summary, and more. No account. Five minutes to set up.</p>
                 <div class="download-cta-buttons">
                     <a href="https://apps.apple.com/app/steadiday/id6758526744" class="app-store-badge" aria-label="Download SteadiDay on the App Store">
                         <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
@@ -2103,7 +2219,7 @@ gtag('config', 'G-LF8H890XTV');
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
-                    100% free. Your data stays on your device.
+                    100% free. Data stays on the device.
                 </p>
             </div>
         </div>
