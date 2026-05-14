@@ -74,7 +74,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/
+          # Stage the blog directory AND the sitemap (which generate_sitemap.py
+          # writes to the repo root). Without staging sitemap.xml, the rebase
+          # below fails with "cannot pull with rebase: You have unstaged changes".
+          git add blog/ sitemap.xml
           
           # Check if there are changes to commit
           if git diff --cached --quiet; then
